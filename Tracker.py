@@ -5,8 +5,8 @@ import numpy as np
 
 class Tracker(object):
   
-  def __init__(self):
-    self.video_capture = cv2.VideoCapture(0)
+  def __init__(self, vidcap = 0):
+    self.video_capture = cv2.VideoCapture(vidcap)
     if self.video_capture.isOpened():
       self.valid, self.image = self.video_capture.read()
     else:
