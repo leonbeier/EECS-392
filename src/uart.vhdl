@@ -7,10 +7,21 @@ use WORK.fifo.all;
 
 entity uart is
   port (
+    -- internal clock and reset signals
+    clock_50 : in std_logic;
     reset : in std_logic;
-    baud_rate : in integer := DEFAULT_BAUD_RATE;
+    
+    -- uart communication dependent
+    baud_rate : in unsigned := DEFAULT_BAUD_RATE;
     rx : in std_logic,
-    tx : in std_logic,
+    tx : out std_logic,
+    
+    -- fifo control
+    write : in std_logic;
+    odata : out std_logic_vector(7 downto 0);
+    idata : in std_logic_vector(7 downto 0);
+    ibuffer : in fifo;
+    obuffer : in fifo;
   );
 end entity uart;
 
@@ -26,48 +37,147 @@ architecture uart of uart is
   signal uart_tx_state : uart_state;
   signal uart_tx_next : uart_state;
   signal uart_tx_fifo : fifo;
+  
+  -- fifos
+  signal tx_read : std_logic;
+  signal tx_full : std_logic;
+  signal tx_data : std_logic_vector(7 downto 0);
+  signal rx_write : std_logic;
+  signal rx_empty : std_logic;
+  signal rx_data : std_logic_vector(7 downto 0);
 begin
 
-  uart_rx_trigger : process(CLOCK_50, RESET_N) is
-    -- check the baud rate and set the counter
-    variable internal_count : integer := 0;
-    variable bit_count : unsigned integer := 0;
-    variable bit_buffer : std_logic_vector(7 downto 0);
+  uart_rx_manager: process(clock_50, reset, baud_rate, rx, rx_write, rx_empty, rx_data) is
+    variable clock_count : unsigned := 0;
+    variable uart_baud_count : unsigned := 0;
+    variable uart_mid_baud_count : unsigned := 0;
+    variable data_count : unsigned := 0;
+    variable data_buffer : std_logic_vector(7 downto 0);
+    variable counter : unsigned := 0;
   begin
-    if(internal_count = counter_clk) then
+    if(rising_edge(clock_50)) then
+      uart_rx_next <= uart_rx_state;
       case(uart_rx_state) is
         -- check for a start bit
-        when INIT =>
+        when TRIGGER =>
+          tx_write <= '0';
+          clock_count := 0;
           if(rx = '1') then
-            uart_rx_next <= ACTIVE;
+            uart_rx_next <= INIT;
+            
+            -- TODO: Deal with clock drift due to small discrepancies?
+            --       Ask the Professor about this.
+            uart_baud_count := CLOCK_FREQUENCY / baud_rate;
+            uart_mid_baud_count := CLOCK_FREQUENCY / (unsigned(2)*baud_rate);
+          end if;
+        when INIT =>
+          -- wait until the midpoint of the pulse
+          if(clock_count > uart_mid_baud_count) then
+            -- reset the counter and proceed to the next state
+            clock_count := 0;
+            if(rx = '1') then
+              uart_rx_next <= ACTIVE;
+            else
+              uart_rx_next <= TRIGGER;
+            end if;
+          else
+            clock_count := clock_count + 1;
           end if;
         when ACTIVE =>
           -- load the next 8 bits into a temporary buffer
-          bit_buffer(bit_count) <= rx;
-          bit_count := bit_count + 1;
-          if(bit_count = 7) then
-            uart_rx_next <= STOP;
+          if(clock_count = uart_baud_count) then
+            data_buffer(data_count) <= rx;
+            if(data_count = 7) then
+              data_count := 0;
+              clock_count := 0;
+              uart_rx_next <= STOP;
+            else
+              data_count := data_count + 1;
+            end if;
+          else
+            clock_count := clock_count + 1;
           end if;
         when STOP =>
           -- check if the next bit is high
           --  if it is then write the buffer to the fifo
-          if(rx = '1') then
-            -- load data into byte fifo
-            -- TODO
+          if(clock_count = uart_baud_count) then
+            if(rx = '1') then
+              if(tx_full = '0') then
+                -- make sure that the fifo is not full and load data
+                tx_write <= '1';
+                tx_data <= data_buffer;
+              end if;
+            end if;
+            
+            -- hold the signal for half the baud rate period
+            uart_rx_next <= HOLD;
+          else
+            clock_count := clock_count + 1;
+          end if;
+        when HOLD =>
+          -- wait half a clock cycle for the signal to remain high before retriggering
+          if(clock_count = uart_mid_baud_count) then
+            uart_rx_next <= TRIGGER;
+          else
+            clock_count := clock_count + 1;
           end if;
     end if;
   end process uart_rx_trigger;
   
-  uart_tx_trigger: process() is
+  uart_tx_manager: process(clock_50, tx, tx_read, tx_full, tx_data) is
     -- Data
+    variable clock_count : unsigned := 0;
+    variable data_count : unsigned := 0;
+    variable data_buffer : std_logic_vector(7 downto 0);
+    variable uart_baud_count : unsigned := 0;
   begin
     -- Write out the tx fifo until empty
-  end process uart_tx_trigger;
-  
-  uart_state_machine: process()
-    
-  begin
-    -- TODO
-  end process uart_state_machine;
+    -- Check if data in fifo, read data into temporary storage, write each bit 
+    if(rising_edge(clock_50) then
+      case(uart_tx_state)
+        when TRIGGER =>
+          clock_count := 0;
+          if(tx_read) then
+            -- enable start bit
+            data_count := 0;
+            data_buffer <= tx_data;
+            uart_tx_next <= INIT;
+            tx <= '1';
+            
+            -- TODO: Deal with clock drift due to small discrepancies?
+            --       Ask the Professor about this.
+            uart_baud_count := CLOCK_FREQUENCY / baud_rate;
+          end if;
+        when INIT =>
+          if(clock_count = uart_baud_count) then
+            clock_count := 0;
+            tx <= data_buffer(data_count);
+            data_count := data_count + 1;
+            uart_tx_next <= ACTIVE;
+          else
+            clock_count := clock_count + 1;
+          end if;
+        when ACTIVE =>
+          if(clock_count = uart_baud_count) then
+            if(data_count = 7) then
+              data_count := 0;
+              clock_count := 0;
+              tx <= '1';
+              uart_tx_next <= STOP;
+            else
+              tx <= data_buffer(data_count);
+              data_count := data_count + 1;
+            end if;
+          else
+            clock_count := clock_count + 1;
+          end if;
+        when STOP =>
+          if(clock_count = uart_baud_count) then
+            clock_count := 0;
+            uart_tx_next <= TRIGGER;
+          end if;
+        when HOLD =>
+    end if;
+  end process uart_tx_manager;
 
 end architecture uart; 
