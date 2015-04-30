@@ -5,7 +5,7 @@ use WORK.tracker_constants.all;
 
 entity fifo is
   generic(
-    constant BUFFER_SIZE : integer := 100;
+    constant BUFFER_SIZE : integer := 3;
     constant DATA_WIDTH : integer := 8
   );
   
