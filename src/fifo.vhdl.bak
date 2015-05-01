@@ -5,7 +5,7 @@ use WORK.tracker_constants.all;
 
 entity fifo is
   generic(
-    constant BUFFER_SIZE : integer := 3;
+    constant BUFFER_SIZE : integer := 100;
     constant DATA_WIDTH : integer := 8
   );
   
@@ -33,7 +33,8 @@ architecture fifo of fifo is
   signal tail_update : integer;
   signal temp_full : std_logic;
   signal temp_empty : std_logic;
-  type buffer_t is array((BUFFER_SIZE-1) downto 0)  of std_logic_vector((DATA_WIDTH-1) downto 0);
+
+  type buffer_t is array((BUFFER_SIZE) downto 0)  of std_logic_vector((DATA_WIDTH-1) downto 0);
   signal fifo_buffer : buffer_t;
   begin
 
@@ -52,19 +53,20 @@ architecture fifo of fifo is
       tail <= tail_update;
     end if;
   end process buffer_tail;
-  
-  tail_update <= tail+1 when (write_en = '1' and temp_full = '0' and tail /= BUFFER_SIZE-1) else
-                 0 when (write_en = '1' and temp_full = '0' and tail = BUFFER_SIZE-1) else
+
+  tail_update <= tail+1 when (write_en = '1' and temp_full = '0' and tail /= BUFFER_SIZE) else
+                 0 when (write_en = '1' and temp_full = '0' and tail = BUFFER_SIZE) else
                  tail;
   
-  temp_full <= '0' when (head < BUFFER_SIZE-2 and head /= tail+2) else
-          '0' when (head = BUFFER_SIZE-2 and head /= 0) else
-          '0' when (head = BUFFER_SIZE-1 and head /= 1) else
-          '1';
-  
+  temp_full <= '1' when (tail = BUFFER_SIZE and head = 0) else
+	       '1' when (head = tail +1) else
+	       '0';
+
   buffer_reader: process(read_clk) begin
-    if(rising_edge(read_clk)) then
+    if(rising_edge(read_clk) and temp_empty /= '1') then
       data_out <= fifo_buffer(head);
+    else if (rising_edge(read_clk)) then
+      data_out <= (others => 'U');
     end if;
   end process buffer_reader;
 
@@ -76,12 +78,13 @@ architecture fifo of fifo is
     end if;
   end process buffer_head;
   
-  head_update <= head+1 when (read_en = '1' and temp_empty = '0' and head /= BUFFER_SIZE-1) else
-                 0 when (read_en = '1' and temp_empty = '0' and head = BUFFER_SIZE-1) else
+  head_update <= head+1 when (read_en = '1' and temp_empty = '0' and head /= BUFFER_SIZE) else
+                 0 when (read_en = '1' and temp_empty = '0' and head = BUFFER_SIZE) else
                  head;
   
   temp_empty <= '0' when (head /= tail) else '1';
   
+
   full <= temp_full;
   empty <= temp_empty;
 end architecture;

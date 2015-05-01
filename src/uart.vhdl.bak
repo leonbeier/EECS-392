@@ -129,7 +129,6 @@ begin
     variable data_count : natural := 0;
     variable data_buffer : std_logic_vector(7 downto 0);
     variable uart_baud_count : natural := 0;
-    variable uart_mid_baud_count : natural := 0;
   begin
     -- Write out the tx fifo until empty
     -- Check if data in fifo, read data into temporary storage, write each bit 
@@ -147,7 +146,6 @@ begin
             -- TODO: Deal with clock drift due to small discrepancies?
             --       Ask the Professor about this.
             uart_baud_count := CLOCK_FREQUENCY / baud_rate;
-	    uart_mid_baud_count := CLOCK_FREQUENCY / (natural(2)*baud_rate);
           end if;
         when INIT =>
           if(clock_count = uart_baud_count) then

@@ -44,7 +44,7 @@ end component fifo;
 	signal full : std_logic;
 	signal empty : std_logic;
 	begin
-	fum: fifo generic map(BUFFER_SIZE := 3)
+	fum: fifo generic map(3,8)
 	port map (read_clk, write_clk, reset, read_en, write_en, data_in, data_out, full, empty);
 
 	test: process begin
@@ -55,7 +55,10 @@ end component fifo;
 	write_en <= '1';
 	data_in <= "00000001";
 	wait for 5 ns;
+	write_clk <= '1';
+	wait for 5 ns;
 	reset <= '0';
+	write_clk <= '0';
 	wait for 5 ns;
 	write_clk <= '1';
 	wait for 5 ns;
@@ -88,6 +91,17 @@ end component fifo;
 	read_clk <= '1';
 	wait for 5 ns;
 	read_clk <= '0';
+	write_en <= '1';
+	wait for 5 ns;
+	data_in <= "00001000";
+	wait for 5 ns;
+	write_clk <= '1';
+	wait for 5 ns;
+	read_clk <= '1';
+	wait for 5 ns;
+	read_clk <= '0';
+	wait for 5 ns;
+	read_clk <= '1';
 	wait for 5 ns;
 	wait;
 	end process;
