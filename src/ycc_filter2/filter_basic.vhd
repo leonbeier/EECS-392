@@ -1,6 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use work.constants_ycc.all;
+use work.ycc_constants.all;
 
 entity filter_basic is
   port(
