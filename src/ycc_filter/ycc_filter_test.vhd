@@ -20,8 +20,8 @@ architecture test of ycc_filter_tb is
         
         variable inline : line;
         variable outline : line;
-        file infile : text open read_mode is "filter_input.txt";
-        file outfile : text open write_mode is "filter_output.txt";
+        file infile : text open read_mode is "ycbcr2hsv_input.txt";
+        file outfile : text open write_mode is "ycbcr2hsv_output.txt";
         
         variable y : natural;
         variable cb : natural;
