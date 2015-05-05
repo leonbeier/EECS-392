@@ -27,23 +27,14 @@ architecture test of ycc_filter_tb is
         variable cb : natural;
         variable cr : natural;
         
-        variable blue_key : natural;
-        variable red_key : natural;
-        
         variable rows : natural;
         variable cols : natural;
         
         begin
             
-            readline(infile, inline);
-            read(inline, blue_key);
-            
-            readline(infile, inline);
-            read(inline, red_key);
-            
             y_key <= 0;
-            cb_key <= blue_key;
-            cr_key <= red_key;
+            cb_key <= 100;
+            cr_key <= 210;
             
             readline(infile, inline);
             read(inline, rows);
