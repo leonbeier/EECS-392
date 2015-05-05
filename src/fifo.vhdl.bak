@@ -5,8 +5,8 @@ use WORK.tracker_constants.all;
 
 entity fifo is
   generic(
-    constant BUFFER_SIZE : natural := 100;
-    constant DATA_WIDTH : natural := 8
+    constant BUFFER_SIZE : integer := 100;
+    constant DATA_WIDTH : integer := 8
   );
   
   port(
@@ -21,8 +21,11 @@ entity fifo is
     signal empty : out std_logic
   );
 end entity fifo;
+
+  
   
 
+  
 architecture fifo of fifo is
   signal head : integer := 0;
   signal head_update : integer;
@@ -62,7 +65,7 @@ architecture fifo of fifo is
   buffer_reader: process(read_clk) begin
     if(rising_edge(read_clk) and temp_empty /= '1') then
       data_out <= fifo_buffer(head);
-    elsif (rising_edge(read_clk)) then
+    else if (rising_edge(read_clk)) then
       data_out <= (others => 'U');
     end if;
   end process buffer_reader;

@@ -1,11 +1,11 @@
 library IEEE;
-
+use IEEE.numeric_std.all;
 use IEEE.std_logic_1164.all;
 
 package tracker_constants is
   -- 50MHz clock with a default baud rate of 9600 (bits/second)
-  constant CLOCK_FREQUENCY : unsigned integer := 50000000;
-  constant DEFAULT_BAUD_RATE : unsigned integer := 9600;
+  constant CLOCK_FREQUENCY : integer := 50000000;
+  constant DEFAULT_BAUD_RATE : natural := 25000000;--9600;
   
   -- Image constants
   constant IMAGE_WIDTH : unsigned integer := 640;

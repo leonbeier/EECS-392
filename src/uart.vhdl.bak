@@ -115,24 +115,23 @@ begin
         when STOP =>
           -- check if the next bit is low
           --  if it is then write the buffer to the fifo
-          if(clock_count = uart_baud_count-1 and rx = '0') then            
+          if(clock_count = uart_baud_count-1) then
+            if(rx = '0') then
+              if(rx_full = '0') then
+                -- make sure that the fifo is not full and load data
+                rx_write <= '1';
+                rx_data <= data_buffer;
+              end if;
+            end if;
+            
             -- hold the signal for half the baud rate period
             uart_rx_next <= HOLD;
-	  elsif(clock_count = uart_baud_count-1 and rx = '1') then 
-	    uart_rx_next <= TRIGGER;
           else
             clock_count := clock_count + 1;
           end if;
         when HOLD =>
           -- wait half a clock cycle for the signal to remain high before retriggering
           if(clock_count = uart_mid_baud_count) then
-	      if(rx = '0') then
-              	if(rx_full = '0') then
-                -- make sure that the fifo is not full and load data
-                rx_write <= '1';
-                rx_data <= data_buffer;
-                end if;
-              end if;
             uart_rx_next <= TRIGGER;
           else
             clock_count := clock_count + 1;
