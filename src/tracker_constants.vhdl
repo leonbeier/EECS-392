@@ -7,6 +7,9 @@ package tracker_constants is
   constant CLOCK_FREQUENCY : integer := 50000000;
   constant DEFAULT_BAUD_RATE : natural := 25000000;--9600;
   
+  -- math constants
+  constant PI : integer := 3141519
+  
   -- Image constants
   constant IMAGE_WIDTH : unsigned integer := 640;
   constant IMAGE_HEIGHT : unsigned integer := 480;
