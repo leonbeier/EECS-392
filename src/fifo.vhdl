@@ -5,8 +5,8 @@ use WORK.tracker_constants.all;
 
 entity fifo is
   generic(
-    constant BUFFER_SIZE : integer := 100;
-    constant DATA_WIDTH : integer := 8
+    constant BUFFER_SIZE : natural := 100;
+    constant DATA_WIDTH : natural := 8
   );
   
   port(
@@ -21,10 +21,10 @@ entity fifo is
     signal empty : out std_logic;
   );
 end entity fifo;
-  signal head : integer := 0;
-  signal head_update : integer;
-  signal tail : integer := 0;
-  signal tail_update : integer;
+  signal head : natural := 0;
+  signal head_update : natural;
+  signal tail : natural := 0;
+  signal tail_update : natural;
   
   type buffer_t is array((BUFFER_SIZE-1) downto 0)  of std_logic_vector((DATA_WIDTH-1) downto 0);
   signal fifo_buffer : buffer_t;

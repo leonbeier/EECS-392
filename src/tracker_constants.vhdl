@@ -7,6 +7,16 @@ package tracker_constants is
   constant CLOCK_FREQUENCY : unsigned integer := 50000000;
   constant DEFAULT_BAUD_RATE : unsigned integer := 9600;
   
-  type uart_state is (TRIGGER, INIT, ACTIVE, STOP, HOLD)
+  -- Image constants
+  constant IMAGE_WIDTH : unsigned integer := 640;
+  constant IMAGE_HEIGHT : unsigned integer := 480;
+  
+  type uart_state is (TRIGGER, INIT, ACTIVE, STOP, HOLD);
+  type i2c_state is (INIT, START, ACTIVATION, ADDRESS, DATA, STOP, HOLD);
+  
+  -- i2c constants
+  constant I2C_START : std_logic_vector(8 downto 0) := "00000001";
+  
+  type image_buffer is array(IMAGE_HEIGHT-1 downto 0, IMAGE_WIDTH-1 downto 0) of std_logic_vector(IMAGE_DEPTH-1 downto 0);
     
 end package tracker_constants;
