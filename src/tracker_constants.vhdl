@@ -16,6 +16,8 @@ package tracker_constants is
   
   -- i2c constants
   constant I2C_START : std_logic_vector(8 downto 0) := "00000001";
+  constant I2C_ADDR_WIDTH : natural := 7;
+  constant I2C_DATA_WIDTH : natural := 8;
   
   type image_buffer is array(IMAGE_HEIGHT-1 downto 0, IMAGE_WIDTH-1 downto 0) of std_logic_vector(IMAGE_DEPTH-1 downto 0);
     
