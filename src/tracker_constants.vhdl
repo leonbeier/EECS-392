@@ -12,7 +12,7 @@ package tracker_constants is
   constant IMAGE_HEIGHT : unsigned integer := 480;
   
   type uart_state is (TRIGGER, INIT, ACTIVE, STOP, HOLD);
-  type i2c_state is (INIT, START, ACTIVATION, ADDRESS, DATA, STOP, HOLD);
+  type i2c_state is (INIT, START, ADDRESS, DATA, STOP, HOLD);
   
   -- i2c constants
   constant I2C_START : std_logic_vector(8 downto 0) := "00000001";
