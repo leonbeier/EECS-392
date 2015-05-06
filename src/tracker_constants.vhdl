@@ -24,6 +24,6 @@ package tracker_constants is
   constant I2C_ADDR_WIDTH : natural := 7;
   constant I2C_DATA_WIDTH : natural := 8;
   
-  type image_buffer is array(IMAGE_HEIGHT-1 downto 0, IMAGE_WIDTH-1 downto 0) of std_logic_vector(IMAGE_DEPTH-1 downto 0);
-    
+  -- adv7180 constants
+  constant ADV7180_LINES : natural := 720;
 end package tracker_constants;
