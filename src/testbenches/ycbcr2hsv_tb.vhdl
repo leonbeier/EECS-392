@@ -9,8 +9,8 @@ entity ycbcr2hsv_tb is
 end entity ycbcr2hsv_tb;
 
 architecture ycbcr2hsv_tb of ycbcr2hsv_tb is
-  component ycbcr2hsv is
-    generic (
+	component ycbcr2hsv is
+	  generic (
       Y_WIDTH : natural := 4;
       CB_WIDTH : natural := 2;
       CR_WIDTH : natural := 2;
@@ -23,7 +23,7 @@ architecture ycbcr2hsv_tb of ycbcr2hsv_tb is
       cr : in std_logic_vector(CR_WIDTH-1 downto 0);
       
       h, s, v : out std_logic_vector(HSV_BASE_WIDTH-1 downto 0)
-    );  
+    );	
   end component ycbcr2hsv;
   
   signal y : std_logic_vector(15 downto 0);
@@ -71,20 +71,24 @@ begin
       read(inline, cr_data);
       
       -- conversion
-      y_sig := std_logic_vector(to_signed(y_data, 16));
-      cb_sig := std_logic_vector(to_signed(cb_data, 8));
-      cr_sig := std_logic_vector(to_signed(cr_data, 8));
-      
-      -- parsing
-      y <= y_sig;
-      cb <= cb_sig;
-      cr <= cr_sig;
+      y <= std_logic_vector(to_unsigned(y_data, 16));
+      cb <= std_logic_vector(to_unsigned(cb_data, 8));
+      cr <= std_logic_vector(to_unsigned(cr_data, 8));
       
       wait for 5 ns;
       
-      write(outline, to_integer(signed(y)));
+      write(outline, to_integer(unsigned(h)));
       writeline(outfile, outline);
+      
+      write(outline, to_integer(unsigned(s)));
+      writeline(outfile, outline);
+      
+      write(outline, to_integer(unsigned(v)));
+      writeline(outfile, outline);
+      
     end loop;
+    
+    wait;
     
   end process tb;
 
