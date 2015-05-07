@@ -2,7 +2,7 @@ library IEEE;
 
 use IEEE.std_logic_1164.all;
 
-entity tristate is
+entity tristate_vector is
   generic (
     DATA_WIDTH : natural := 8;
   );
@@ -13,10 +13,10 @@ entity tristate is
     en : in std_logic_vector(DATA_WIDTH-1 downto 0);
   );
 
-end entity tristate;
+end entity tristate_vector;
 
-architecture tristate of tristate is
+architecture tristate_vector of tristate_vector is
 
 begin
   dout <= din when en = '1' else (others => 'Z');
-end architecture tristate;
+end architecture tristate_vector;

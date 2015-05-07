@@ -1,6 +1,4 @@
 package constants is
-  constant DATA_WIDTH : natural := 32; -- bits
-  
   component sdram is
   generic(
     size: natural := 32

@@ -5,22 +5,22 @@ use ieee.numeric_std.all;
 
 entity sdram is
   generic(
-    ram_size: natural := 32
+    RAM_SIZE: natural := 32;
+    DATA_WIDTH : natural := 32; 
   );
   port(
     clk: in std_logic;
     data_in: in std_logic_vector(DATA_WIDTH-1 downto 0);
-    write_addr: in natural range 0 to ram_size-1;
-    read_addr: in natural range 0 to ram_size-1;
+    write_addr: in natural range 0 to RAM_SIZE-1;
+    read_addr: in natural range 0 to RAM_SIZE-1;
     we: in std_logic;
     data_out: out std_logic_vector(DATA_WIDTH-1 downto 0)
   );
 end entity sdram;
 
 architecture behavior of sdram is
-  type mem is array(0 to ram_size-1) of std_logic_vector(DATA_WIDTH-1 downto 0);
+  type mem is array(0 to RAM_SIZE-1) of std_logic_vector(DATA_WIDTH-1 downto 0);
   signal ram_block : mem;
-  
 begin
   
   process(clk)
