@@ -6,7 +6,7 @@ use ieee.numeric_std.all;
 entity sdram is
   generic(
     RAM_SIZE: natural := 32;
-    DATA_WIDTH : natural := 32; 
+    DATA_WIDTH : natural := 32 
   );
   port(
     clk: in std_logic;
