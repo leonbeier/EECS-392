@@ -4,6 +4,8 @@ use work.ycc_constants.all;
 
 entity ycc_filter is
   port(
+    clk : in std_logic;
+    
     y : in natural;
     cb : in natural;
     cr : in natural;
@@ -20,9 +22,16 @@ architecture behavior of ycc_filter is
   signal cb_res, cr_res : std_logic;
 begin
   
-  cb_filter : filter_basic port map(value => cb, key => cb_key, tolerance => CB_TOL, result => cb_res);
-  cr_filter : filter_basic port map(value => cr, key => cr_key, tolerance => CR_TOL, result => cr_res);
+  cb_filter : filter_basic port map(clk => clk, value => cb, key => cb_key, tolerance => CB_TOL, result => cb_res);
+  cr_filter : filter_basic port map(clk => clk, value => cr, key => cr_key, tolerance => CR_TOL, result => cr_res);
   
   result <= cb_res and cr_res;
+  
+  --process(clk)
+  --begin
+    --if (falling_edge(clk)) then
+      
+    --end if;
+  --end process;
   
 end architecture behavior;

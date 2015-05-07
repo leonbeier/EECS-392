@@ -9,6 +9,7 @@ constant CR_TOL : natural := 5;
 
 component filter_basic is
   port(
+    clk : in std_logic;
     value : in integer;
     key : in integer;
     tolerance : in integer;
@@ -18,6 +19,8 @@ end component filter_basic;
 
 component ycc_filter is
   port(
+    clk : in std_logic;
+    
     y : in natural;
     cb : in natural;
     cr : in natural;

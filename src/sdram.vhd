@@ -1,6 +1,6 @@
 library ieee;
 use ieee.std_logic_1164.all;
-use work.constants.all;
+use work.sdram_constants.all;
 use ieee.numeric_std.all;
 
 entity sdram is
