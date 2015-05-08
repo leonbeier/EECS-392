@@ -59,6 +59,10 @@ begin
     
     wait for 5 ns;
     
+     -- y <= std_logic_vector(to_unsigned(111, 16));
+     -- cb <= std_logic_vector(to_unsigned(117, 8));
+     -- cr <= std_logic_vector(to_unsigned(177, 8));
+    
     while not endfile(infile) loop
       -- buffer in the data
       readline(infile, inline);
