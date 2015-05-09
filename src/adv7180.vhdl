@@ -1,6 +1,7 @@
 library IEEE;
 
 use IEEE.std_logic_1164.all;
+use IEEE.math_real.all;
 
 entity adv7180
 
@@ -38,26 +39,40 @@ architecture adv7180 of adv7180 is
     ); 
   end component sdram;
   
-  signal ram_clk : std_logic;
+  signal ram_clk, ram_we : std_logic;
   signal ram_dout : std_logic_vector(IMAGE_DEPTH-1 downto 0);
-  signal ram_write_addr, ram_read_addr : std_logic_vector(
+  signal ram_write_addr, ram_read_addr : std_logic_vector(ceil(log2(real(IMAGE_WIDTH*IMAGE_HEIGHT)))-1 downto 0);
+  signal image_data : std_logic_vector(7 downot 0);
+  signal ram_size : integer := integer(ceil(log2(real(IMAGE_WIDTH*IMAGE_HEIGHT))));
 begin
   -- index each pixel using single line ram buffer
-  ram_buffer: sdram generic map(RAM_SIZE => IMAGE_WIDTH*IMAGE_HEIGHT, 
+  ram_buffer: sdram generic map(RAM_SIZE => ram_size, 
                                 DATA_WIDTH => IMAGE_DEPTH)
                     port map(clk => td_clk27, 
-                             data_in => td_data, 
+                             data_in => image_data, 
                              write_addr => ram_write_addr, 
                              read_addr => ram_read_addr, 
                              we => ram_we, 
                              data_out => ram_dout);
   
   adv7180_decoder: process is
+    variable clock_count : integer := 0;
+    
+    -- array of 4 elements
+    variable pixel_buffer : integer_buffer;
   begin
+    ram_we <= '0';
     if(rising_edge(td_vs)) then
       ram_write_addr <= 0;
+    elsif(rising_edge(td_hs)) then
+      clock_count := 0;
     elsif(rising_egde(td_clk27)) then
-      ram_write_addr <= ram_write_addr + 1;
+      if(clock_count >= 272 and clock_count < 1712) then
+        ram_we <= '1';
+        image_data <= td_data;
+        ram_write_addr <= ram_write_addr + 1;
+      end if;
+      clock_count := clock_count + 1;
     end if;
   end process adv7180;
   
