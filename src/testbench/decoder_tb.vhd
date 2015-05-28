@@ -15,16 +15,12 @@ architecture test_arch of decoder_tb is
     -- tv decoder
     td_data : in std_logic_vector(7 downto 0);
     td_clk27, td_hs, td_vs : in std_logic;
-    td_reset_n : in std_logic;
-    
-    -- clocks
-    clock_50 : in std_logic;
+    td_reset : in std_logic;
     
     -- SRAM connections
     ram_clk, ram_we : out std_logic;
     ram_din : out std_logic_vector(7 downto 0);
-    ram_write_addr : out natural := 0;
-    ram_size : out natural := 22
+    ram_write_addr : out natural := 0
   );
 
   end component adv7180;
@@ -46,18 +42,17 @@ end component sdram;
 
     signal td_data : std_logic_vector(7 downto 0);
     signal td_clk27, td_hs, td_vs : std_logic;
-    signal td_reset_n : std_logic;
-    signal clock_50 : std_logic;
+    signal td_reset : std_logic;
     --signal sdram_clk, sdram_we : std_logic;
     signal sdram_data_out : std_logic_vector(7 downto 0);
     --CONTINUE AT HOME!!
     signal ram_clk, ram_we : std_logic;
     signal ram_din : std_logic_vector(7 downto 0);
-    signal ram_write_addr, temp_read_addr, ram_size : natural;
+    signal ram_write_addr, temp_read_addr : natural;
     
    begin 
   sdram_map: sdram generic map (RAM_SIZE => 22, DATA_WIDTH => 8) port map   (td_clk27, ram_din, ram_write_addr, temp_read_addr, ram_we, sdram_data_out);
-   tb_start: adv7180 port map (td_data, td_clk27, td_hs, td_vs, td_reset_n, clock_50, ram_clk, ram_we, ram_din, ram_write_addr, ram_size);  
+   tb_start: adv7180 port map (td_data, td_clk27, td_hs, td_vs, td_reset, ram_clk, ram_we, ram_din, ram_write_addr);  
   
    clk_process : process is
    begin
@@ -67,7 +62,7 @@ end component sdram;
         wait for clk_period/2;  --for next 27 mhz /2 signal is '1'.
    end process;
   
-  hsync_cycle: process 
+  hsync_cycle: process is 
   begin
         td_hs <= '0';
         --HS to active video time
@@ -81,10 +76,9 @@ end component sdram;
         wait for 2 * clk_period; 
         --Restart the cycle! 
         td_hs <= '0';
-
 	end process;
   
-    vsync_cycle: process 
+    vsync_cycle: process is
   begin
         td_vs <= '0';
         --HS to active video time
@@ -98,17 +92,14 @@ end component sdram;
         wait for 2 * clk_period; 
         --Restart the cycle! 
         td_vs <= '0';
-
-
 	end process;
 	
 	
-	data_input: process
+	data_input: process is
 	begin
 	  td_data <= x"00";
 	  wait for clk_period;
 	  td_data <= x"11";
-	  
 	end process;
 	
 	--NOTE: RESET SIGNAL IS NEVER USED?
