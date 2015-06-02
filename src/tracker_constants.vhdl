@@ -18,7 +18,7 @@ package tracker_constants is
   constant IMAGE_DEPTH : natural := 8;
   
   type uart_state is (TRIGGER, INIT, ACTIVE, STOP, HOLD);
-  type i2c_state is (INIT, START, ADDRESS, DATA, STOP, HOLD);
+  type i2c_state is (INIT, START, ADDRESS, DATA, STOP);
   
   -- i2c constants
   constant I2C_ADDR_WIDTH : natural := 7;
