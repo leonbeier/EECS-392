@@ -9,8 +9,9 @@ entity adv7180 is
 
   port (
     -- tv decoder
+    td_clk27 : in std_logic;
     td_data : in std_logic_vector(7 downto 0);
-    td_clk27, td_hs, td_vs : in std_logic;
+    td_hs, td_vs : in std_logic;
     td_reset : in std_logic;
     
     -- SRAM connections
