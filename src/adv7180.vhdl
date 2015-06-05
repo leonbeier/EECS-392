@@ -33,17 +33,19 @@ begin
     variable ram_address : natural := 0;
   begin
     ram_we <= '0';
-    if(rising_edge(td_vs)) then
-      ram_address := 0;
-    elsif(rising_edge(td_hs)) then
-      clock_count := 0;
-    elsif(rising_edge(td_clk27)) then
+    if(rising_edge(td_clk27)) then
       if(clock_count >= 272 and clock_count < 1712) then
         ram_we <= '1';
         ram_din <= td_data;
         ram_address := ram_address + 1;
       end if;
       clock_count := clock_count + 1;
+    end if;
+    if(rising_edge(td_hs)) then
+      clock_count := 0;
+    end if;
+    if(rising_edge(td_vs)) then
+      ram_address := 0;
     end if;
     ram_write_addr <= ram_address;
   end process adv7180_decoder;
