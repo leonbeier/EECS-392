@@ -89,7 +89,7 @@ begin
               ram_din <= td_data;
               ram_address := ram_address + 1;
             else
-              fifo_write_en <= '0';
+              ram_we <= '0';
             end if;
             clock_count := clock_count + 1;
           end if;
