@@ -7,7 +7,7 @@ entity tristate is
   port (
     din : in std_logic;
     dout : out std_logic;
-    en : in std_logic;
+    en : in std_logic
   );
 
 end entity tristate;

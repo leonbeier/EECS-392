@@ -8,9 +8,6 @@ use WORK.tracker_constants.all;
 entity adv7180 is
 
   port (
-    -- fpga clock
-    clk50 : in std_logic;
-    
     -- tv decoder
     td_clk27 : in std_logic;
     td_data : in std_logic_vector(7 downto 0);
@@ -53,17 +50,17 @@ architecture adv7180 of adv7180 is
   signal vs_flag, hs_flag : std_logic;
   
   -- FIFO Signals
-  signal fifo_read_clk, fifo_write_clk, fifo_reset, 
-        fifo_read_en, fifo_write_en, fifo_full, fifo_empty : std_logic;
-  signal fifo_din, fifo_dout : std_logic_vector(7 downto 0);
+  -- signal fifo_read_clk, fifo_write_clk, fifo_reset, 
+  --       fifo_read_en, fifo_write_en, fifo_full, fifo_empty : std_logic;
+  -- signal fifo_din, fifo_dout : std_logic_vector(7 downto 0);
 
 begin
     
-  data_fifo: fifo generic map(DATA_WIDTH => , BUFFER_SIZE => ) 
-                  port map(fifo_read_clk, fifo_write_clk, fifo_reset, fifo_read_en, fifo_write_en, fifo_din, fifo_dout, fifo_full, fifo_empty);
-  fifo_read_clk <= clk50;
-  fifo_write_clk <= clk50;
-  fifo_reset <= td_reset;
+  -- data_fifo: fifo generic map(DATA_WIDTH => 8, BUFFER_SIZE => 2**22-1) 
+  --                 port map(fifo_read_clk, fifo_write_clk, fifo_reset, fifo_read_en, fifo_write_en, fifo_din, fifo_dout, fifo_full, fifo_empty);
+  -- fifo_read_clk <= clk50;
+  -- fifo_write_clk <= clk50;
+  -- fifo_reset <= td_reset;
   ram_clk <= td_clk27;
   
   adv7180_decoder: process(td_data, td_clk27, td_hs, td_vs, td_reset) is
@@ -78,8 +75,7 @@ begin
           if(state = VS_RESET) then
             ram_address := 0;
           end if;
-          fifo_read_en <= '0';
-          fifo_write_en <= '0';
+          ram_we <= '0';
           clock_count := 0;
           state <= READ;
         when READ =>
@@ -89,8 +85,8 @@ begin
             state <= HS_RESET;
           else
             if(clock_count >= 272 and clock_count < 1712) then
-              fifo_write_en <= '1';
-              fifo_din <= td_data;
+              ram_we <= '1';
+              ram_din <= td_data;
               ram_address := ram_address + 1;
             else
               fifo_write_en <= '0';
@@ -140,14 +136,5 @@ begin
       end if;
     end if;
   end process vs_manager;
-  
-  fifo_manager: process(td_data, td_clk27, td_hs, td_vs, td_reset) is
-  begin
-    if(falling_edge(clk50)) then
-      if(active = '1') then
-        
-      end if;
-    end if;
-  end process fifo_manager;
-  
+
 end architecture adv7180;
