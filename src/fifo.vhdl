@@ -1,14 +1,12 @@
 library IEEE;
-
 use IEEE.std_logic_1164.all;
-use WORK.tracker_constants.all;
+--use WORK.tracker_constants.all;
 
 entity fifo is
   generic(
-    constant BUFFER_SIZE : natural := 100;
+    constant BUFFER_SIZE : natural := 128;
     constant DATA_WIDTH : natural := 8
   );
-  
   port(
     signal read_clk : in std_logic;
     signal write_clk : in std_logic;
@@ -21,7 +19,6 @@ entity fifo is
     signal empty : out std_logic
   );
 end entity fifo;
-  
 
 architecture fifo of fifo is
   signal head : integer := 0;
@@ -44,7 +41,7 @@ architecture fifo of fifo is
   end process buffer_writer;
   
   buffer_tail: process(write_clk, reset) begin
-    if(reset = '1') then
+    if(reset = '0') then
       tail <= 0;
     elsif(rising_edge(write_clk)) then
       tail <= tail_update;
@@ -68,7 +65,7 @@ architecture fifo of fifo is
   end process buffer_reader;
 
   buffer_head: process(read_clk, reset) begin
-    if(reset = '1') then
+    if(reset = '0') then
       head <= 0;
     elsif(rising_edge(read_clk)) then
       head <= head_update;
