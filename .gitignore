@@ -2,8 +2,8 @@
 *.swo
 *.pyc
 *.bak
-.*
 *.qpf
+.*
 *~
 *.mti
 *.mpf
