@@ -93,6 +93,9 @@ begin
             end if;
             clock_count := clock_count + 1;
           end if;
+        when others =>
+          state <= VS_RESET;
+      end case;
     end if;
     data_address <= ram_address;
   end process adv7180_decoder;

@@ -1,9 +1,9 @@
 library IEEE;
-library IEEE_PROPOSED;
+-- library IEEE_PROPOSED;
     
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
-use IEEE_PROPOSED.fixed_pkg.all;
+-- use IEEE_PROPOSED.fixed_pkg.all;
 
 package tracker_constants is
   -- 50MHz clock with a default baud rate of 9600 (bits/second)
@@ -17,6 +17,7 @@ package tracker_constants is
   
   type uart_state is (TRIGGER, INIT, ACTIVE, STOP, HOLD);
   type i2c_state is (INIT, START, ADDRESS, DATA, STOP);
+  type decoder_state is (VS_RESET, HS_RESET, READ);
   
   -- i2c constants
   constant I2C_ADDR_WIDTH : natural := 7;
@@ -29,8 +30,8 @@ package tracker_constants is
   constant ROM_DATA_WIDTH : natural := 10;
   
   -- fixed point math constants
-  constant PI : ufixed(11 downto -20) := 3.14159265358979323846;
+  -- constant PI : ufixed(11 downto -20) := 3.14159265358979323846;
   -- dependent on the length of the sine lut in rom
-  constant SINE_LUT_RESOLUTION : ufixed(11 downto -20) := 0.00153248422126331377;
-  constant SINE_LUT_LENGTH : natural := 1024;
+  -- constant SINE_LUT_RESOLUTION : ufixed(11 downto -20) := 0.00153248422126331377;
+  -- constant SINE_LUT_LENGTH : natural := 1024;
 end package tracker_constants;

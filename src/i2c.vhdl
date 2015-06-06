@@ -199,21 +199,21 @@ begin
             -- move through the data buffer and update pulse
             if(clock_count = 0) then
               if(data_count <= I2C_DATA_WIDTH) then
-		if(reading = '1' and writing = '0') then
-			data_buffer(data_count-1) := sda;
-		end if;
-		clock_count := clock_count + 1;
-              elsif(data_count = I2C_DATA_WIDTH+1) then
                 if(reading = '1' and writing = '0') then
-			sda_enable <= '1';
-			sda_write <= '0';
-		elsif(reading = '0' and writing = '1') then
-			if(sda = '1') then
-				er := '1';
-				i2c_s <= INIT;
-			end if;
-		end if;
-		clock_count := clock_count +1;
+                  data_buffer(data_count-1) := sda;
+                end if;
+                clock_count := clock_count + 1;
+                          elsif(data_count = I2C_DATA_WIDTH+1) then
+                            if(reading = '1' and writing = '0') then
+                  sda_enable <= '1';
+                  sda_write <= '0';
+                elsif(reading = '0' and writing = '1') then
+                  if(sda = '1') then
+                    er := '1';
+                    i2c_s <= INIT;
+                  end if;
+                end if;
+                clock_count := clock_count +1;
               end if;
 
             elsif(clock_count = i2c_period_count/4) then
@@ -244,8 +244,8 @@ begin
 
             elsif(clock_count = (3*i2c_period_count/4)) then
               scl_write <= '1';
-	      clock_count := clock_count + 1;
-	      data_count := data_count + 1;
+              clock_count := clock_count + 1;
+              data_count := data_count + 1;
               clock_count := 0;
             end if;
             
@@ -263,26 +263,26 @@ begin
               odata <= data_buffer;
             end if; 
             scl_write <= '0';
-	    clock_count := clock_count +1;
+            clock_count := clock_count +1;
           elsif(clock_count = i2c_period_count/4) then
-	    sda_enable <= '1';
-	    sda_write <= '0';
-	    clock_count := clock_count +1;
+            sda_enable <= '1';
+            sda_write <= '0';
+            clock_count := clock_count +1;
           elsif(clock_count = i2c_period_count/2) then
             scl_write <= '1';
-	    clock_count := clock_count +1;
+            clock_count := clock_count +1;
           elsif(clock_count = (3*i2c_period_count)/4) then
             sda_write <= '1';
-	    clock_count := clock_count +1;
+            clock_count := clock_count +1;
           elsif(clock_count = i2c_period_count) then
             clock_count := 0;
-	    data_count := 0;
+            data_count := 0;
             i2c_s <= INIT;
           end if;
-	when OTHERS =>
---set counts to XX
-	--clock_ct := 'X';
-	end case;
+        when OTHERS =>
+          --set counts to XX
+          --clock_ct := 'X';
+      end case;
     end if;
   end process i2c_manager;
 
