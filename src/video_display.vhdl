@@ -55,18 +55,72 @@ architecture video_display of video_display is
 
   end component adv7180;
 
+  component vga is
+    port(
+      clk, reset                                 : in std_logic;
+      pixel                            : in std_logic_vector(23 downto 0);
+
+      pixel_clock_out                     : out std_logic;                        
+      pixel_row, pixel_col                   : out std_logic_vector(9 downto 0);
+      horiz_sync_out, vert_sync_out    : out std_logic; 
+      vga_blank                        : out std_logic;
+      red, green, blue                 : out std_logic_vector(7 downto 0)
+    );                  
+  end component vga;
+
+  component ycc2rgb is
+    port (
+      clk : in std_logic;
+      y, cb, cr : in std_logic_vector(7 downto 0);
+      r, g, b : out std_logic_vector(7 downto 0)
+    ); 
+  end component ycc2rgb;
+
   -- ram signals
   signal ram_clk, ram_we : std_logic;
   signal ram_write_addr, ram_read_addr : natural;
-  signal ram_din, ram_dout : std_logic_vector(7 downto 0);
+  signal ram_din, ram_dout : std_logic_vector(31 downto 0);
+
+  -- vga signals
+  signal vga_clk, vga_reset, vga_pixel_out, vga_hs, vga_vs, vga_blank : std_logic;
+  signal vga_pixel : std_logic_vector(23 downto 0);
+  signal vga_pixel_row, vga_pixel_col : std_logic_vector(9 downto 0);
+  signal vga_red, vga_green, vga_blue : std_logic_vector(7 downto 0);
+
+  -- ycc2rgb signals
+  signal ycc_clk : std_logic;
+  signal ycc_y, ycc_cb, ycc_cr : std_logic_vector(7 downto 0);
+  signal red_out, green_out, blue_out : std_logic_vector(7 downto 0);
+
+  -- temporary signals
+  signal ycbcr_pixel : std_logic_vector(31 downto 0);
+  signal ycc_even : boolean := true;
 
 begin
   
-  ram_read_addr <= 0;
+  ycc_y <= ram_dout(24 downto 16) when (ycc_even = true) else ram_dout(7 downto 0);
+  ycc_cb <= ram_dout(31 downto 24);
+  ycc_cr <= ram_dout(15 downto 8);
 
-  ram_block: sram generic map(DATA_WIDTH => 8, RAM_SIZE => 2**22-1)
+  ram_block: sram generic map(DATA_WIDTH => 32, RAM_SIZE => 153600)
                   port map(ram_clk, ram_we, ram_write_addr, ram_din, ram_read_addr, ram_dout);
 
   decoder: adv7180 port map(td_clk27, td_data, td_hs, td_vs, td_reset, ram_clk, ram_we, ram_din, ram_write_addr);
 
+  ycc2rgb_converter: ycc2rgb port map(ycc_clk, ycc_y, ycc_cb, ycc_cr, red_out, green_out, blue_out);
+
+  vga_output: vga port map(vga_clk, vga_reset, vga_pixel, vga_pixel_clock_out, vga_pixel_row, vga_pixel_col, vga_hs, vga_vs, vga_blank, vga_red, vga_green, vga_blue);
+  
+  ram_read_manager: process(vga_clk, vga_reset) is
+  begin
+    if(vga_reset) then
+      ram_read_addr <= 0;
+      ycc_even <= true;
+    elsif(rising_edge(vga_clk)) then
+      ram_read_addr <= ((vga_pixel_row * IMG_WIDTH) + vga_pixel_col)/2;
+      ycc_even <= true when (ram_read_addr mod 2 = 0) else false;
+      vga_pixel <= red_out & green_out & blue_out;
+    end if;
+  end process;
+  
 end architecture;

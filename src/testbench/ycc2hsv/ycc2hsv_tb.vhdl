@@ -5,16 +5,16 @@ use IEEE.numeric_std.all;
 use STD.textio.all;
 use WORK.tracker_constants.all;
 
-entity ycbcr2rgb_tb is
-end entity ycbcr2rgb_tb;
+entity ycc2hsv_tb is
+end entity ycc2hsv_tb;
 
-architecture ycbcr2rgb_tb of ycbcr2rgb_tb is
-	component ycbcr2rgb is
+architecture ycc2hsv_tb of ycc2hsv_tb is
+	component ycc2hsv is
 	  generic (
       Y_WIDTH : natural := 4;
       CB_WIDTH : natural := 2;
       CR_WIDTH : natural := 2;
-      RGB_BASE_WIDTH : natural := 8
+      HSV_BASE_WIDTH : natural := 8
     );
     
     port (
@@ -22,23 +22,23 @@ architecture ycbcr2rgb_tb of ycbcr2rgb_tb is
       cb : in std_logic_vector(CB_WIDTH-1 downto 0);
       cr : in std_logic_vector(CR_WIDTH-1 downto 0);
       
-      h, s, v : out std_logic_vector(RGB_BASE_WIDTH-1 downto 0)
+      h, s, v : out std_logic_vector(HSV_BASE_WIDTH-1 downto 0)
     );	
-  end component ycbcr2rgb;
+  end component ycc2hsv;
   
   signal y : std_logic_vector(15 downto 0);
   signal cb, cr : std_logic_vector(7 downto 0);
-  signal r, g, b : std_logic_vector(9 downto 0);
+  signal h, s, v : std_logic_vector(9 downto 0);
   
 begin
-  -- create instance of ycbcr2rgb converter
-  converter: ycbcr2rgb generic map(Y_WIDTH => 16, CB_WIDTH => 8, CR_WIDTH => 8, RGB_BASE_WIDTH => 10) 
+  -- create instance of ycc2hsv converter
+  converter: ycc2hsv generic map(Y_WIDTH => 16, CB_WIDTH => 8, CR_WIDTH => 8, HSV_BASE_WIDTH => 10) 
                        port map(y, cb, cr, h, s, v);
   
   tb: process is
     variable inline, outline : line;
-    file infile : text open read_mode is "ycbcr2rgb_input.txt";
-    file outfile : text open write_mode is "ycbcr2rgb_output.txt";
+    file infile : text open read_mode is "ycc2hsv_input.txt";
+    file outfile : text open write_mode is "ycc2hsv_output.txt";
     
     variable rows, cols : natural;
     variable y_data, cb_data, cr_data : integer;
@@ -59,6 +59,10 @@ begin
     
     wait for 5 ns;
     
+     -- y <= std_logic_vector(to_unsigned(111, 16));
+     -- cb <= std_logic_vector(to_unsigned(117, 8));
+     -- cr <= std_logic_vector(to_unsigned(177, 8));
+    
     while not endfile(infile) loop
       -- buffer in the data
       readline(infile, inline);
@@ -77,13 +81,13 @@ begin
       
       wait for 5 ns;
       
-      write(outline, to_integer(unsigned(r)));
+      write(outline, to_integer(unsigned(h)));
       writeline(outfile, outline);
       
-      write(outline, to_integer(unsigned(g)));
+      write(outline, to_integer(unsigned(s)));
       writeline(outfile, outline);
       
-      write(outline, to_integer(unsigned(b)));
+      write(outline, to_integer(unsigned(v)));
       writeline(outfile, outline);
       
     end loop;
@@ -92,4 +96,4 @@ begin
     
   end process tb;
 
-end architecture ycbcr2rgb_tb;
+end architecture ycc2hsv_tb;

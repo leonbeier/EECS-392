@@ -5,31 +5,35 @@ use IEEE.numeric_std.all;
 use STD.textio.all;
 use WORK.tracker_constants.all;
 
-entity rgb2hsv_tb is
-end entity rgb2hsv_tb;
+entity ycc2rgb_tb is
+end entity ycc2rgb_tb;
 
-architecture rgb2hsv_tb of rgb2hsv_tb is
-	component rgb2hsv is
+architecture ycc2rgb_tb of ycc2rgb_tb is
+	component ycc2rgb is
     port (
-      r, g, b : in std_logic_vector(7 downto 0);
+      y : in std_logic_vector(7 downto 0);
+      cb : in std_logic_vector(7 downto 0);
+      cr : in std_logic_vector(7 downto 0);
+      
       h, s, v : out std_logic_vector(7 downto 0)
     );	
-  end component rgb2hsv;
+  end component ycc2rgb;
   
+  signal y, cb, cr : std_logic_vector(7 downto 0);
   signal r, g, b : std_logic_vector(7 downto 0);
-  signal h, s, v : std_logic_vector(7 downto 0);
   
 begin
-  -- create instance of rgb2hsv converter
-  converter: rgb2hsv port map(r, g, b, h, s, v);
+  -- create instance of ycc2rgb converter
+  converter: ycc2rgb port map(y, cb, cr, h, s, v);
   
   tb: process is
     variable inline, outline : line;
-    file infile : text open read_mode is "rgb2hsv_input.txt";
-    file outfile : text open write_mode is "rgb2hsv_output.txt";
+    file infile : text open read_mode is "ycc2rgb_input.txt";
+    file outfile : text open write_mode is "ycc2rgb_output.txt";
     
     variable rows, cols : natural;
-    variable r_data, g_data, b_data : integer;
+    variable y_data, cb_data, cr_data : integer;
+    variable y_sig, cb_sig, cr_sig : std_logic_vector(7 downto 0);
   begin
     readline(infile, inline);
     read(inline, rows);
@@ -57,19 +61,19 @@ begin
       read(inline, cr_data);
       
       -- conversion
-      r <= std_logic_vector(to_unsigned(r_data, 8));
-      g <= std_logic_vector(to_unsigned(g_data, 8));
-      b <= std_logic_vector(to_unsigned(b_data, 8));
+      y <= std_logic_vector(to_unsigned(y_data, 8));
+      cb <= std_logic_vector(to_unsigned(cb_data, 8));
+      cr <= std_logic_vector(to_unsigned(cr_data, 8));
       
       wait for 5 ns;
       
-      write(outline, to_integer(unsigned(h)));
+      write(outline, to_integer(unsigned(r)));
       writeline(outfile, outline);
       
-      write(outline, to_integer(unsigned(s)));
+      write(outline, to_integer(unsigned(g)));
       writeline(outfile, outline);
       
-      write(outline, to_integer(unsigned(v)));
+      write(outline, to_integer(unsigned(b)));
       writeline(outfile, outline);
       
     end loop;
@@ -78,4 +82,4 @@ begin
     
   end process tb;
 
-end architecture rgb2hsv_tb;
+end architecture ycc2rgb_tb;

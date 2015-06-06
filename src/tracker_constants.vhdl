@@ -28,6 +28,9 @@ package tracker_constants is
   
   -- ROM constants
   constant ROM_DATA_WIDTH : natural := 10;
+
+  -- Integer constants
+  type byte is natural range 0 to 255;
   
   -- fixed point math constants
   -- constant PI : ufixed(11 downto -20) := 3.14159265358979323846;
