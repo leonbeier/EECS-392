@@ -102,6 +102,7 @@ begin
   begin
     if(td_reset = '0') then
       hs_idle := true;
+      hs_flag <= '0';
     elsif(rising_edge(td_clk27)) then
       hs_flag <= '0';
       if(hs_idle) then
@@ -122,6 +123,7 @@ begin
   begin
     if(td_reset = '0') then
       vs_idle := true;
+      vs_flag <= '0';
     elsif(rising_edge(td_clk27)) then
       vs_flag <= '0';
       if(vs_idle) then
