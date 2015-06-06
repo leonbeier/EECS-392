@@ -70,8 +70,8 @@ begin
     if(td_reset = '0') then
       state <= VS_RESET;
     elsif(rising_edge(td_clk27)) then
-      case(state)
-        when VS_RESET or HS_RESET =>
+      case(state) is
+        when VS_RESET | HS_RESET =>
           if(state = VS_RESET) then
             ram_address := 0;
           end if;
