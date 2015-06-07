@@ -30,13 +30,13 @@ architecture video_display of video_display is
       RAM_SIZE: natural := 128;
       DATA_WIDTH : natural := 32 
     );
+	 
     port(
-      clk: in std_logic;
-      we : in std_logic;
-      write_addr: in natural range 0 to RAM_SIZE-1;
-      data_in: in std_logic_vector(DATA_WIDTH-1 downto 0);
-      read_addr: in natural range 0 to RAM_SIZE-1;
-      data_out: out std_logic_vector(DATA_WIDTH-1 downto 0)
+      clk, reset, we : in std_logic;
+      write_addr : in natural range 0 to RAM_SIZE-1;
+      data_in : in std_logic_vector(DATA_WIDTH-1 downto 0);
+      read_addr : in natural range 0 to RAM_SIZE-1;
+      data_out : out std_logic_vector(DATA_WIDTH-1 downto 0)
     );
   end component sram;
 
@@ -58,7 +58,6 @@ architecture video_display of video_display is
       ram_din : out std_logic_vector(31 downto 0);
       ram_write_addr : out natural
     );
-
   end component adv7180;
 
   component vga is
@@ -117,7 +116,7 @@ begin
 
   -- structural port maps -------------------------------------------------------------------------
   ram_block: sram generic map(DATA_WIDTH => 32, RAM_SIZE => IMAGE_SIZE)
-                  port map(ram_clk, ram_we, ram_write_addr, ram_din, ram_read_addr, ram_dout);
+                  port map(ram_clk, reset, ram_we, ram_write_addr, ram_din, ram_read_addr, ram_dout);
 
   decoder: adv7180 generic map(DECIMATION_ROWS => 2, DECIMATION_COLS => 2)
                    port map(td_clk27, td_data, td_hs, td_vs, reset, ram_clk, ram_we, ram_din, ram_write_addr);
