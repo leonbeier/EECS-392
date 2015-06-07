@@ -5,23 +5,23 @@ use IEEE.numeric_std.all;
 use WORK.tracker_constants.all;
 
 
-entity ycbcr2hsv is
+entity ycc2hsv is
   
   port (
-    clk : in std_logic;
+    clk, reset : in std_logic;
     r, g, b : in std_logic_vector(7 downto 0);
     h, s, v : out std_logic_vector(7 downto 0)
   );
   
-end entity ycbcr2hsv;
+end entity ycc2hsv;
 
 
-architecture ycbcr2hsv of ycbcr2hsv is
+architecture ycc2hsv of ycc2hsv is
   signal r_int, g_int, b_int : integer;
   signal max_value, min_value, delta : integer;
-  signal h_value, s_value, v_value : unsigned(8-1 downto 0);
+  signal h_value, s_value, v_value : unsigned(7 downto 0);
 begin
-  -- rgb conversion from ycbcr
+  -- rgb conversion from ycc
   r_int <= to_integer(unsigned(r));
   g_int <= to_integer(unsigned(g));
   b_int <= to_integer(unsigned(b));
@@ -43,13 +43,33 @@ begin
   v_value <= to_unsigned(max_value, 8);
   
   gen_output: process(clk) is
+    variable hue, saturation, value : unsigned(7 downto 0);
   begin
-    if(rising_edge(clk)) then
+    if(reset = '0') then
+      h <= (others => '0');
+      s <= (others => '0');
+      v <= (others => '0');
+    elsif(rising_edge(clk)) then
       -- perform limiting
-      h <= std_logic_vector(h_value) when (h_value <= 180) else std_logic_vector(to_unsigned(180, 8));
-      s <= std_logic_vector(s_value) when (s_value <= 255) else std_logic_vector(to_unsigned(255, 8));
-      v <= std_logic_vector(v_value) when (v_value <= 255) else std_logic_vector(to_unsigned(255, 8));
+      hue := h_value;
+      saturation := s_value;
+      value := v_value;
+      
+      case(hue <= 180) is
+        when true => h <= std_logic_vector(hue);
+        when false => h <= std_logic_vector(to_unsigned(180, 8));
+      end case;
+      
+      case(saturation <= 255) is
+        when true => s <= std_logic_vector(saturation);
+        when false => s <= std_logic_vector(to_unsigned(255, 8));
+      end case;
+      
+      case(value <= 255) is
+        when true => v <= std_logic_vector(value);
+        when false => v <= std_logic_vector(to_unsigned(255, 8));
+      end case;
     end if;
   end process;
   
-end architecture ycbcr2hsv;
+end architecture ycc2hsv;

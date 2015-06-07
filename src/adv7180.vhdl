@@ -16,7 +16,7 @@ entity adv7180 is
     
     -- SRAM connections
     ram_clk, ram_we : out std_logic;
-    ram_din : out std_logic_vector(7 downto 0);
+    ram_din : out std_logic_vector(31 downto 0);
     ram_write_addr : out natural := 0
   );
 
@@ -52,20 +52,24 @@ architecture adv7180 of adv7180 is
   -- FIFO Signals
   -- signal fifo_read_clk, fifo_write_clk, fifo_reset, 
   --       fifo_read_en, fifo_write_en, fifo_full, fifo_empty : std_logic;
-  -- signal fifo_din, fifo_dout : std_logic_vector(7 downto 0);
+  -- signal fifo_din, fifo_dout : std_logic_vector(31 downto 0);
 
 begin
     
-  -- data_fifo: fifo generic map(DATA_WIDTH => 8, BUFFER_SIZE => 2**22-1) 
+  -- data_fifo: fifo generic map(DATA_WIDTH => 32, BUFFER_SIZE => 153600) 
   --                 port map(fifo_read_clk, fifo_write_clk, fifo_reset, fifo_read_en, fifo_write_en, fifo_din, fifo_dout, fifo_full, fifo_empty);
   -- fifo_read_clk <= clk50;
   -- fifo_write_clk <= clk50;
   -- fifo_reset <= td_reset;
+
   ram_clk <= td_clk27;
+  ram_write_addr <= data_address;
   
   adv7180_decoder: process(td_data, td_clk27, td_hs, td_vs, td_reset) is
     variable clock_count : integer := 0;
-    variable ram_address : natural := 0;
+    variable buffer_index : natural := 0;
+    variable data_buffer : std_logic_vector(31 downto 0);
+    variable next_data_address : natural;
   begin
     if(td_reset = '0') then
       state <= VS_RESET;
@@ -73,9 +77,12 @@ begin
       case(state) is
         when VS_RESET | HS_RESET =>
           if(state = VS_RESET) then
-            ram_address := 0;
+            next_data_address := 0;
+            data_address <= 0;
           end if;
           ram_we <= '0';
+          buffer_index := 0;
+          data_buffer := (others => '0');
           clock_count := 0;
           state <= READ;
         when READ =>
@@ -85,9 +92,18 @@ begin
             state <= HS_RESET;
           else
             if(clock_count >= 272 and clock_count < 1712) then
-              ram_we <= '1';
-              ram_din <= td_data;
-              ram_address := ram_address + 1;
+              data_buffer(8*(buffer_index+1)-1 downto 8*buffer_index-1) := td_data;
+              if(buffer_index = 3) then
+                ram_we <= '1';
+                ram_din <= data_buffer;
+                buffer_index := 0;
+                next_data_address := next_data_address + 1;
+                if(next_data_address > 1) then
+                  data_address <= next_data_address;
+                end if;
+              else
+                buffer_index := buffer_index + 1;
+              end if;
             else
               ram_we <= '0';
             end if;
@@ -97,7 +113,6 @@ begin
           state <= VS_RESET;
       end case;
     end if;
-    data_address <= ram_address;
   end process adv7180_decoder;
   
   hs_manager:  process(td_data, td_clk27, td_hs, td_vs, td_reset) is

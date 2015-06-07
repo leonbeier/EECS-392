@@ -13,7 +13,7 @@ package tracker_constants is
   -- Image constants
   constant IMAGE_WIDTH : natural := 640;
   constant IMAGE_HEIGHT : natural := 480;
-  constant IMAGE_DEPTH : natural := 8;
+  constant IMAGE_DEPTH : natural := 24;
   
   type uart_state is (TRIGGER, INIT, ACTIVE, STOP, HOLD);
   type i2c_state is (INIT, START, ADDRESS, DATA, STOP);
@@ -30,7 +30,7 @@ package tracker_constants is
   constant ROM_DATA_WIDTH : natural := 10;
 
   -- Integer constants
-  type byte is natural range 0 to 255;
+  subtype byte is natural range 0 to 255;
   
   -- fixed point math constants
   -- constant PI : ufixed(11 downto -20) := 3.14159265358979323846;

@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 -- 8 bit images
 entity ycc2rgb is
   port (
-    clk : in std_logic;
+    clk, reset : in std_logic;
     y, cb, cr : in std_logic_vector(7 downto 0);
     r, g, b : out std_logic_vector(7 downto 0)
   ); 
@@ -27,14 +27,30 @@ begin
   gen_output : process(clk)
     variable red, green, blue : signed(8 downto 0);
   begin
-    if rising_edge(clk) then
+    if(reset = '0') then
+      -- active low reset
+      r <= (others => '0');
+      g <= (others => '0');
+      b <= (others => '0');
+    elsif rising_edge(clk) then
       red := to_signed(r_int, 9);
       green := to_signed(g_int, 9);
       blue := to_signed(b_int, 9);
       
-      r <= std_logic_vector(red(7 downto 0)) when (red >= 0) else (others => '0')
-      g <= std_logic_vector(green(7 downto 0)) when (green >= 0) else (others => '0')
-      b <= std_logic_vector(blue(7 downto 0)) when (blue >= 0) else (others => '0')
+      case(red >= 0) is
+        when true => r <= std_logic_vector(red(7 downto 0));
+        when false => r <= (others => '0');
+      end case;
+
+      case(green >= 0) is
+        when true => g <= std_logic_vector(green(7 downto 0));
+        when false => g <= (others => '0');
+      end case;
+
+      case(blue >= 0) is
+        when true => b <= std_logic_vector(blue(7 downto 0));
+        when false => b <= (others => '0');
+      end case;
     end if;
   end process;
   
