@@ -62,11 +62,11 @@ architecture video_display of video_display is
 
   component vga is
     port(
-      clk, reset                                 : in std_logic;
+      clk, reset                       : in std_logic;
       pixel                            : in std_logic_vector(23 downto 0);
 
-      pixel_clock_out                     : out std_logic;                        
-      pixel_row, pixel_col                   : out std_logic_vector(9 downto 0);
+      pixel_clock_out                  : out std_logic;                        
+      pixel_row, pixel_col             : out std_logic_vector(9 downto 0);
       horiz_sync_out, vert_sync_out    : out std_logic; 
       vga_blank                        : out std_logic;
       red, green, blue                 : out std_logic_vector(7 downto 0)
@@ -113,16 +113,16 @@ begin
   vga_clk <= vga_pixel_clk;
   vga_row_int <= to_integer(unsigned(vga_pixel_row));
   vga_col_int <= to_integer(unsigned(vga_pixel_col));
-
+  
   -- structural port maps -------------------------------------------------------------------------
   ram_block: sram generic map(DATA_WIDTH => 32, RAM_SIZE => IMAGE_SIZE)
                   port map(ram_clk, reset, ram_we, ram_write_addr, ram_din, ram_read_addr, ram_dout);
-
+  
   decoder: adv7180 generic map(DECIMATION_ROWS => 2, DECIMATION_COLS => 2)
                    port map(td_clk27, td_data, td_hs, td_vs, reset, ram_clk, ram_we, ram_din, ram_write_addr);
-
+  
   ycc2rgb_converter: ycc2rgb port map(td_clk27, reset, ycc_y, ycc_cb, ycc_cr, red_out, green_out, blue_out);
-
+  
   vga_output: vga port map(clk50, reset, vga_pixel, vga_pixel_clk, vga_pixel_row, vga_pixel_col, vga_hs, vga_vs, vga_blank, vga_red, vga_green, vga_blue);
   
   -- ram address update -------------------------------------------------------------------------

@@ -36,8 +36,7 @@ architecture test_arch of decoder_tb is
       DATA_WIDTH : natural := 32 
     );
     port(
-      clk: in std_logic;
-      we : in std_logic;
+      clk, reset, we: in std_logic;
       write_addr: in natural range 0 to RAM_SIZE-1;
       data_in: in std_logic_vector(DATA_WIDTH-1 downto 0);
       read_addr: in natural range 0 to RAM_SIZE-1;
@@ -45,27 +44,32 @@ architecture test_arch of decoder_tb is
     );
   end component;
 
+    constant IMAGE_SIZE : natural := 38400;
+
     -- decoder signals
     signal td_data : std_logic_vector(7 downto 0);
     signal td_clk27, td_hs, td_vs : std_logic;
-    signal td_reset : std_logic;
 
     -- ram signals
     signal ram_dout : std_logic_vector(31 downto 0);
     signal ram_clk, ram_we : std_logic;
     signal ram_din : std_logic_vector(31 downto 0);
     signal ram_write_addr, ram_read_addr : natural;
+
+    signal reset : std_logic;
     
  begin
   
   -- concurrent signal assignments
+  reset <= '1';
+
   ram_read_addr <= (ram_write_addr - 1) when (ram_read_addr > 0) else 0; 
 
-  sram_map: sram generic map (RAM_SIZE => 153600, DATA_WIDTH => 32) 
-                 port map (td_clk27, ram_we, ram_write_addr, ram_din, ram_read_addr, ram_dout);
+  sram_map: sram generic map (RAM_SIZE => IMAGE_SIZE, DATA_WIDTH => 32) 
+                 port map (td_clk27, reset, ram_we, ram_write_addr, ram_din, ram_read_addr, ram_dout);
 
   tb_start: adv7180 generic map(DECIMATION_ROWS => 2, DECIMATION_COLS => 2)
-                    port map (td_clk27, td_data, td_hs, td_vs, td_reset, ram_clk, ram_we, ram_din, ram_write_addr);  
+                    port map (td_clk27, td_data, td_hs, td_vs, reset, ram_clk, ram_we, ram_din, ram_write_addr);  
   
   clk_process : process is
   begin
@@ -78,43 +82,34 @@ architecture test_arch of decoder_tb is
   hsync_cycle: process is 
   begin
         td_hs <= '0';
-        --HS to active video time
-        wait for 272 * clk_period;  
-        --Length of the image
-        wait for 1075200 * clk_period;
-        --EAV time
-        wait for 4 * clk_period;
+        -- Startup
+        wait for 2 * clk_period;
         td_hs <= '1';
-        --HSYNC active time
-        wait for 2 * clk_period; 
-        --Restart the cycle! 
-        td_hs <= '0';
+        -- H Blank
+        wait for 270 * clk_period;  
+        -- Active Video
+        wait for 1440 * clk_period;
+        -- EAV
+        wait for 4 * clk_period;
 	end process;
   
-    vsync_cycle: process is
+  vsync_cycle: process is
   begin
         td_vs <= '0';
         --HS to active video time
-        wait for 272 * clk_period;  
-        --Length of the image
-        wait for 1075200 * clk_period;
-        --EAV time
-        wait for 4 * clk_period;
+        wait for 2 * clk_period;
         td_vs <= '1';
-        --VSYNC active time
-        wait for 2 * clk_period; 
-        --Restart the cycle! 
-        td_vs <= '0';
+        --Length of the image
+        wait for (1716 * 263 + 1714) * clk_period;
 	end process;
 	
 	
 	data_input: process is
 	begin
 	  td_data <= x"00";
-	  wait for clk_period;
-	  td_data <= x"11";
+	  wait for 8 * clk_period;
+	  td_data <= x"FF";
+    wait for 8 * clk_period;
 	end process;
 	
-	--NOTE: RESET SIGNAL IS NEVER USED?
-  
 end architecture test_arch;

@@ -35,7 +35,6 @@ architecture adv7180 of adv7180 is
   
   -- shared variables
   signal state : decoder_state;
-  signal next_state : decoder_state;
   signal data_address : natural;
   signal vs_flag, hs_flag : std_logic;
 
@@ -54,16 +53,17 @@ begin
   begin
     if(td_reset = '0') then
       state <= VS_RESET;
-    elsif(rising_edge(td_clk27)) then
+    elsif(falling_edge(td_clk27)) then
       case(state) is
         when VS_RESET | HS_RESET =>
           -- HS_RESET and VS_RESET
           ram_we <= '0';
           buffer_index := 0;
           data_buffer := (others => '0');
-          clock_count := 0;
+          clock_count := 4;
 
           -- HS_RESET has a lower priority
+          decimation_count_cols := 0;
           if(decimation_count_rows = (DECIMATION_ROWS-1)) then
             decimation_count_rows := 0;
           else
@@ -73,7 +73,6 @@ begin
           -- VS_RESET has a higher priority
           if(state = VS_RESET) then
             decimation_count_rows := 0;
-            decimation_count_cols := 0;
             next_data_address := 0;
             data_address <= 0;
           end if;
@@ -88,9 +87,9 @@ begin
             -- Progress to th next row
             state <= HS_RESET;
           else
+            -- Don't write by default
+            ram_we <= '0';
             if(decimation_count_rows = (DECIMATION_ROWS-1)) then
-              -- Don't write by default
-              ram_we <= '0';
               if(clock_count >= 272 and clock_count < 1712) then
                 -- ACTIVE VIDEO
                 -- Update the data buffer using the current index
@@ -106,10 +105,8 @@ begin
                       ram_we <= '1';
                       ram_din <= data_buffer;
                       -- Delay a write into the SRAM by one clock cycle
+                      data_address <= next_data_address;
                       next_data_address := next_data_address + 1;
-                      if(next_data_address > 1) then
-                        data_address <= next_data_address;
-                      end if;
                     end if;
                   else
                     decimation_count_cols := decimation_count_cols + 1;
