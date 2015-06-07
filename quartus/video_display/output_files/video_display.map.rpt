@@ -1,5 +1,5 @@
 Analysis & Synthesis report for video_display
-Sun Jun  7 03:42:13 2015
+Sun Jun  7 16:23:43 2015
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -61,16 +61,16 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Jun  7 03:42:13 2015      ;
+; Analysis & Synthesis Status        ; Successful - Sun Jun  7 16:23:43 2015      ;
 ; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Web Edition ;
 ; Revision Name                      ; video_display                              ;
 ; Top-level Entity Name              ; video_display                              ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 780                                        ;
-;     Total combinational functions  ; 727                                        ;
-;     Dedicated logic registers      ; 369                                        ;
-; Total registers                    ; 369                                        ;
-; Total pins                         ; 42                                         ;
+; Total logic elements               ; 847                                        ;
+;     Total combinational functions  ; 792                                        ;
+;     Dedicated logic registers      ; 405                                        ;
+; Total registers                    ; 405                                        ;
+; Total pins                         ; 52                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 1,228,800                                  ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
@@ -176,56 +176,57 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                                           ;
-+----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                       ; Library ;
-+----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
-; ../src/vga.vhd                   ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/vga.vhd                        ;         ;
-; ../src/ycc2rgb.vhd               ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/ycc2rgb.vhd                    ;         ;
-; ../src/video_display.vhdl        ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/video_display.vhdl             ;         ;
-; ../src/tracker_constants.vhdl    ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl         ;         ;
-; ../src/sram.vhd                  ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/sram.vhd                       ;         ;
-; ../src/adv7180.vhdl              ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/adv7180.vhdl                   ;         ;
-; altsyncram.tdf                   ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altsyncram.tdf          ;         ;
-; stratix_ram_block.inc            ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/stratix_ram_block.inc   ;         ;
-; lpm_mux.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_mux.inc             ;         ;
-; lpm_decode.inc                   ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_decode.inc          ;         ;
-; aglobal150.inc                   ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/aglobal150.inc          ;         ;
-; a_rdenreg.inc                    ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/a_rdenreg.inc           ;         ;
-; altrom.inc                       ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altrom.inc              ;         ;
-; altram.inc                       ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altram.inc              ;         ;
-; altdpram.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altdpram.inc            ;         ;
-; db/altsyncram_69h1.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/altsyncram_69h1.tdf     ;         ;
-; db/decode_osa.tdf                ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/decode_osa.tdf          ;         ;
-; db/mux_lob.tdf                   ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/mux_lob.tdf             ;         ;
-; lpm_mult.tdf                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_mult.tdf            ;         ;
-; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_add_sub.inc         ;         ;
-; multcore.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/multcore.inc            ;         ;
-; bypassff.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/bypassff.inc            ;         ;
-; altshift.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altshift.inc            ;         ;
-; multcore.tdf                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/multcore.tdf            ;         ;
-; csa_add.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/csa_add.inc             ;         ;
-; mpar_add.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/mpar_add.inc            ;         ;
-; muleabz.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/muleabz.inc             ;         ;
-; mul_lfrg.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/mul_lfrg.inc            ;         ;
-; mul_boothc.inc                   ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/mul_boothc.inc          ;         ;
-; alt_ded_mult.inc                 ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/alt_ded_mult.inc        ;         ;
-; alt_ded_mult_y.inc               ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/alt_ded_mult_y.inc      ;         ;
-; dffpipe.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/dffpipe.inc             ;         ;
-; mpar_add.tdf                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/mpar_add.tdf            ;         ;
-; lpm_add_sub.tdf                  ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_add_sub.tdf         ;         ;
-; addcore.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/addcore.inc             ;         ;
-; look_add.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/look_add.inc            ;         ;
-; alt_stratix_add_sub.inc          ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/alt_stratix_add_sub.inc ;         ;
-; db/add_sub_j9h.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/add_sub_j9h.tdf         ;         ;
-; db/add_sub_hkh.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/add_sub_hkh.tdf         ;         ;
-; altshift.tdf                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altshift.tdf            ;         ;
-; db/add_sub_k9h.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/add_sub_k9h.tdf         ;         ;
-; db/add_sub_ikh.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/add_sub_ikh.tdf         ;         ;
-; db/add_sub_i9h.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/add_sub_i9h.tdf         ;         ;
-; db/add_sub_gkh.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/db/add_sub_gkh.tdf         ;         ;
-+----------------------------------+-----------------+------------------------------+------------------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                     ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                 ; Library ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------+---------+
+; ../../src/leddcd.vhd             ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/leddcd.vhd                               ;         ;
+; ../../src/vga.vhd                ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/vga.vhd                                  ;         ;
+; ../../src/video_display.vhdl     ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/video_display.vhdl                       ;         ;
+; ../../src/ycc2rgb.vhd            ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/ycc2rgb.vhd                              ;         ;
+; ../../src/tracker_constants.vhdl ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl                   ;         ;
+; ../../src/sram.vhd               ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/sram.vhd                                 ;         ;
+; ../../src/adv7180.vhdl           ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/adv7180.vhdl                             ;         ;
+; altsyncram.tdf                   ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altsyncram.tdf                    ;         ;
+; stratix_ram_block.inc            ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/stratix_ram_block.inc             ;         ;
+; lpm_mux.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_mux.inc                       ;         ;
+; lpm_decode.inc                   ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_decode.inc                    ;         ;
+; aglobal150.inc                   ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/aglobal150.inc                    ;         ;
+; a_rdenreg.inc                    ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/a_rdenreg.inc                     ;         ;
+; altrom.inc                       ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altrom.inc                        ;         ;
+; altram.inc                       ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altram.inc                        ;         ;
+; altdpram.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altdpram.inc                      ;         ;
+; db/altsyncram_69h1.tdf           ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/altsyncram_69h1.tdf ;         ;
+; db/decode_osa.tdf                ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/decode_osa.tdf      ;         ;
+; db/mux_lob.tdf                   ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/mux_lob.tdf         ;         ;
+; lpm_mult.tdf                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_mult.tdf                      ;         ;
+; lpm_add_sub.inc                  ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_add_sub.inc                   ;         ;
+; multcore.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/multcore.inc                      ;         ;
+; bypassff.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/bypassff.inc                      ;         ;
+; altshift.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altshift.inc                      ;         ;
+; multcore.tdf                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/multcore.tdf                      ;         ;
+; csa_add.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/csa_add.inc                       ;         ;
+; mpar_add.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/mpar_add.inc                      ;         ;
+; muleabz.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/muleabz.inc                       ;         ;
+; mul_lfrg.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/mul_lfrg.inc                      ;         ;
+; mul_boothc.inc                   ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/mul_boothc.inc                    ;         ;
+; alt_ded_mult.inc                 ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/alt_ded_mult.inc                  ;         ;
+; alt_ded_mult_y.inc               ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/alt_ded_mult_y.inc                ;         ;
+; dffpipe.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/dffpipe.inc                       ;         ;
+; mpar_add.tdf                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/mpar_add.tdf                      ;         ;
+; lpm_add_sub.tdf                  ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/lpm_add_sub.tdf                   ;         ;
+; addcore.inc                      ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/addcore.inc                       ;         ;
+; look_add.inc                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/look_add.inc                      ;         ;
+; alt_stratix_add_sub.inc          ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/alt_stratix_add_sub.inc           ;         ;
+; db/add_sub_j9h.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/add_sub_j9h.tdf     ;         ;
+; db/add_sub_hkh.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/add_sub_hkh.tdf     ;         ;
+; altshift.tdf                     ; yes             ; Megafunction                 ; /home/tgdiriba/altera/15.0/quartus/libraries/megafunctions/altshift.tdf                      ;         ;
+; db/add_sub_k9h.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/add_sub_k9h.tdf     ;         ;
+; db/add_sub_ikh.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/add_sub_ikh.tdf     ;         ;
+; db/add_sub_i9h.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/add_sub_i9h.tdf     ;         ;
+; db/add_sub_gkh.tdf               ; yes             ; Auto-Generated Megafunction  ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display/db/add_sub_gkh.tdf     ;         ;
++----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------+---------+
 
 
 +--------------------------------------------------------------+
@@ -233,31 +234,31 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 780            ;
+; Estimated Total logic elements              ; 847            ;
 ;                                             ;                ;
-; Total combinational functions               ; 727            ;
+; Total combinational functions               ; 792            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 258            ;
-;     -- 3 input functions                    ; 114            ;
-;     -- <=2 input functions                  ; 355            ;
+;     -- 4 input functions                    ; 277            ;
+;     -- 3 input functions                    ; 113            ;
+;     -- <=2 input functions                  ; 402            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 416            ;
-;     -- arithmetic mode                      ; 311            ;
+;     -- normal mode                          ; 453            ;
+;     -- arithmetic mode                      ; 339            ;
 ;                                             ;                ;
-; Total registers                             ; 369            ;
-;     -- Dedicated logic registers            ; 369            ;
+; Total registers                             ; 405            ;
+;     -- Dedicated logic registers            ; 405            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
-; I/O pins                                    ; 42             ;
+; I/O pins                                    ; 52             ;
 ; Total memory bits                           ; 1228800        ;
 ;                                             ;                ;
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; td_clk27~input ;
-; Maximum fan-out                             ; 444            ;
-; Total fan-out                               ; 8038           ;
-; Average fan-out                             ; 6.00           ;
+; Maximum fan-out                             ; 479            ;
+; Total fan-out                               ; 8332           ;
+; Average fan-out                             ; 5.70           ;
 +---------------------------------------------+----------------+
 
 
@@ -266,14 +267,15 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                     ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                        ; Library Name ;
 +------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |video_display                                 ; 727 (39)          ; 369 (41)     ; 1228800     ; 0            ; 0       ; 0         ; 42   ; 0            ; |video_display                                                                                                                             ; work         ;
+; |video_display                                 ; 792 (96)          ; 405 (76)     ; 1228800     ; 0            ; 0       ; 0         ; 52   ; 0            ; |video_display                                                                                                                             ; work         ;
 ;    |adv7180:decoder|                           ; 320 (320)         ; 257 (257)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|adv7180:decoder                                                                                                             ; work         ;
+;    |leddcd:led_output|                         ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:led_output                                                                                                           ; work         ;
 ;    |sram:ram_block|                            ; 87 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block                                                                                                              ; work         ;
 ;       |altsyncram:ram_block_rtl_0|             ; 87 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0                                                                                   ; work         ;
 ;          |altsyncram_69h1:auto_generated|      ; 87 (0)            ; 3 (3)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated                                                    ; work         ;
 ;             |decode_osa:decode2|               ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2                                 ; work         ;
 ;             |mux_lob:mux3|                     ; 80 (80)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3                                       ; work         ;
-;    |vga:vga_output|                            ; 59 (59)           ; 44 (44)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|vga:vga_output                                                                                                              ; work         ;
+;    |vga:vga_output|                            ; 59 (59)           ; 45 (45)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|vga:vga_output                                                                                                              ; work         ;
 ;    |ycc2rgb:ycc2rgb_converter|                 ; 222 (115)         ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|ycc2rgb:ycc2rgb_converter                                                                                                   ; work         ;
 ;       |lpm_mult:Mult0|                         ; 33 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0                                                                                    ; work         ;
 ;          |multcore:mult_core|                  ; 33 (21)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core                                                                 ; work         ;
@@ -368,12 +370,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 369   ;
+; Total registers                              ; 405   ;
 ; Number of registers using Synchronous Clear  ; 125   ;
 ; Number of registers using Synchronous Load   ; 31    ;
-; Number of registers using Asynchronous Clear ; 47    ;
+; Number of registers using Asynchronous Clear ; 82    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 294   ;
+; Number of registers using Clock Enable       ; 297   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -435,13 +437,13 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |video_display|vga:vga_output|v_count[5]                                  ;
-; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_rows[1]  ;
-; 5:1                ; 31 bits   ; 93 LEs        ; 31 LEs               ; 62 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:clock_count[15]           ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:data_buffer[2]            ;
-; 7:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:buffer_index[10]          ;
-; 8:1                ; 31 bits   ; 155 LEs       ; 31 LEs               ; 124 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_cols[12] ;
-; 10:1               ; 62 bits   ; 372 LEs       ; 62 LEs               ; 310 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:next_data_address[30]     ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |video_display|vga:vga_output|v_count[9]                                  ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_rows[15] ;
+; 5:1                ; 31 bits   ; 93 LEs        ; 31 LEs               ; 62 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:clock_count[11]           ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:data_buffer[10]           ;
+; 7:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:buffer_index[24]          ;
+; 8:1                ; 31 bits   ; 155 LEs       ; 31 LEs               ; 124 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_cols[13] ;
+; 10:1               ; 62 bits   ; 372 LEs       ; 62 LEs               ; 310 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:next_data_address[10]     ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |video_display|adv7180:decoder|state                                      ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
 
@@ -471,8 +473,8 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------+-------+------------------------------------+
 ; Parameter Name  ; Value ; Type                               ;
 +-----------------+-------+------------------------------------+
-; decimation_rows ; 2     ; Signed Integer                     ;
-; decimation_cols ; 2     ; Signed Integer                     ;
+; decimation_rows ; 1     ; Signed Integer                     ;
+; decimation_cols ; 1     ; Signed Integer                     ;
 +-----------------+-------+------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -751,13 +753,13 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+------------------------------------------+
 
 
-+---------------------------------------------------------------------------------------------------------------------------+
-; Port Connectivity Checks: "vga:vga_output"                                                                                ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-; Port            ; Type   ; Severity ; Details                                                                             ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
-; pixel_col[1..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
-+-----------------+--------+----------+-------------------------------------------------------------------------------------+
++------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "vga:vga_output"                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port         ; Type   ; Severity ; Details                                                                             ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
+; pixel_col[0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++--------------+--------+----------+-------------------------------------------------------------------------------------+
 
 
 +----------------------------------------------------------------------------------------------------------------------------------+
@@ -774,27 +776,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 42                          ;
-; cycloneiii_ff         ; 369                         ;
-;     CLR               ; 47                          ;
-;     ENA               ; 138                         ;
+; boundary_port         ; 52                          ;
+; cycloneiii_ff         ; 405                         ;
+;     CLR               ; 80                          ;
+;     ENA               ; 139                         ;
+;     ENA CLR           ; 2                           ;
 ;     ENA SCLR          ; 125                         ;
 ;     ENA SLD           ; 31                          ;
 ;     plain             ; 28                          ;
-; cycloneiii_lcell_comb ; 727                         ;
-;     arith             ; 311                         ;
-;         2 data inputs ; 218                         ;
+; cycloneiii_lcell_comb ; 794                         ;
+;     arith             ; 339                         ;
+;         2 data inputs ; 246                         ;
 ;         3 data inputs ; 93                          ;
-;     normal            ; 416                         ;
-;         0 data inputs ; 4                           ;
-;         1 data inputs ; 14                          ;
-;         2 data inputs ; 119                         ;
-;         3 data inputs ; 21                          ;
-;         4 data inputs ; 258                         ;
+;     normal            ; 455                         ;
+;         0 data inputs ; 3                           ;
+;         1 data inputs ; 19                          ;
+;         2 data inputs ; 136                         ;
+;         3 data inputs ; 20                          ;
+;         4 data inputs ; 277                         ;
 ; cycloneiii_ram_block  ; 160                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 11.10                       ;
-; Average LUT depth     ; 5.40                        ;
+; Average LUT depth     ; 5.57                        ;
 +-----------------------+-----------------------------+
 
 
@@ -803,7 +806,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:04     ;
 +----------------+--------------+
 
 
@@ -813,18 +816,21 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
-    Info: Processing started: Sun Jun  7 03:42:02 2015
+    Info: Processing started: Sun Jun  7 16:23:24 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off video_display -c video_display
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/leddcd.vhd
+    Info (12022): Found design unit 1: leddcd-data_flow
+    Info (12023): Found entity 1: leddcd
 Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/vga.vhd
     Info (12022): Found design unit 1: vga-behavioral
     Info (12023): Found entity 1: vga
-Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/ycc2rgb.vhd
-    Info (12022): Found design unit 1: ycc2rgb-dataflow
-    Info (12023): Found entity 1: ycc2rgb
 Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/video_display.vhdl
     Info (12022): Found design unit 1: video_display-video_display
     Info (12023): Found entity 1: video_display
+Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/ycc2rgb.vhd
+    Info (12022): Found design unit 1: ycc2rgb-dataflow
+    Info (12023): Found entity 1: ycc2rgb
 Info (12021): Found 1 design units, including 0 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl
     Info (12022): Found design unit 1: tracker_constants
 Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/sram.vhd
@@ -834,11 +840,14 @@ Info (12021): Found 2 design units, including 1 entities, in source file /home/t
     Info (12022): Found design unit 1: adv7180-adv7180
     Info (12023): Found entity 1: adv7180
 Info (12127): Elaborating entity "video_display" for the top level hierarchy
+Warning (10542): VHDL Variable Declaration warning at video_display.vhdl(171): used initial value expression for variable "decimation" because variable was never assigned a value
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(173): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "sram" for hierarchy "sram:ram_block"
 Warning (10492): VHDL Process Statement warning at sram.vhd(26): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "adv7180" for hierarchy "adv7180:decoder"
 Info (12128): Elaborating entity "ycc2rgb" for hierarchy "ycc2rgb:ycc2rgb_converter"
 Info (12128): Elaborating entity "vga" for hierarchy "vga:vga_output"
+Info (12128): Elaborating entity "leddcd" for hierarchy "leddcd:led_output"
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13049): Converted tri-state buffer "sram:ram_block|data_out[0]" feeding internal logic into a wire
     Warning (13049): Converted tri-state buffer "sram:ram_block|data_out[1]" feeding internal logic into a wire
@@ -997,15 +1006,18 @@ Info (286030): Timing-Driven Synthesis is running
 Info (17049): 33 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 1016 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 13 input pins
-    Info (21059): Implemented 29 output pins
-    Info (21061): Implemented 814 logic cells
+Warning (21074): Design contains 2 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "i2c_clk"
+    Warning (15610): No output dependent on input pin "i2c_data"
+Info (21057): Implemented 1110 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 15 input pins
+    Info (21059): Implemented 37 output pins
+    Info (21061): Implemented 898 logic cells
     Info (21064): Implemented 160 RAM segments
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 35 warnings
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 40 warnings
     Info: Peak virtual memory: 1074 megabytes
-    Info: Processing ended: Sun Jun  7 03:42:13 2015
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:28
+    Info: Processing ended: Sun Jun  7 16:23:43 2015
+    Info: Elapsed time: 00:00:19
+    Info: Total CPU time (on all processors): 00:00:45
 
 

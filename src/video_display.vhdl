@@ -18,7 +18,14 @@ entity video_display is
     td_clk27 : in std_logic;
     td_data : in std_logic_vector(7 downto 0);
     td_hs, td_vs : in std_logic;
-	 td_reset : out std_logic
+    td_reset : out std_logic;
+    
+    -- i2c -------------------------------------------------------------------------
+    i2c_clk, i2c_data : in std_logic;
+    
+    -- TESTING -------------------------------------------------------------------------
+    segments_out : out std_logic_vector(6 downto 0);
+    reset_led : out std_logic
   );
   
 end entity video_display;
@@ -104,6 +111,17 @@ architecture video_display of video_display is
   signal ycbcr_pixel : std_logic_vector(31 downto 0);
   signal ycc_even : boolean := true;
   signal ycc_clk : std_logic;
+  
+  -- TESTING -------------------------------------------------------------------------
+  signal led_count : std_logic_vector(3 downto 0);
+  
+  component leddcd is
+    port(
+		  data_in : in std_logic_vector(3 downto 0);
+		  segments_out : out std_logic_vector(6 downto 0)
+    );
+  end component leddcd;		 
+
 
 begin
   
@@ -123,7 +141,7 @@ begin
   ram_block: sram generic map(DATA_WIDTH => 32, RAM_SIZE => IMAGE_SIZE)
                   port map(ram_clk, reset, ram_we, ram_write_addr, ram_din, ram_read_addr, ram_dout);
   
-  decoder: adv7180 generic map(DECIMATION_ROWS => 2, DECIMATION_COLS => 2)
+  decoder: adv7180 generic map(DECIMATION_ROWS => 1, DECIMATION_COLS => 1)
                    port map(td_clk27, td_data, td_hs, td_vs, reset, ram_clk, ram_we, ram_din, ram_write_addr);
   
   ycc2rgb_converter: ycc2rgb port map(ycc_clk, reset, ycc_y, ycc_cb, ycc_cr, red_out, green_out, blue_out);
@@ -137,8 +155,8 @@ begin
       -- active low reset
       ram_read_addr <= 0;
       ycc_even <= true;
-    elsif(rising_edge(vga_pixel_clk)) then
-      ram_read_addr <= ((vga_row_int * IMAGE_WIDTH) + vga_col_int)/4;
+    elsif(falling_edge(vga_pixel_clk)) then
+      ram_read_addr <= ((vga_row_int * IMAGE_WIDTH) + vga_col_int)/2;
       case(ram_read_addr mod 2) is
         when 1 => ycc_even <= false;
         when others => ycc_even <= true;
@@ -146,5 +164,26 @@ begin
       vga_pixel <= red_out & green_out & blue_out;
     end if;
   end process;
+  
+  -- TESTING -------------------------------------------------------------------------
+  decoder_clock: process(td_clk27) is
+	variable clock_count : natural := 0;
+	variable decimation : natural := 27000000;
+  begin
+    if(reset = '0') then
+      clock_count := 0;
+      led_count <= std_logic_vector(to_unsigned(0, 4));
+    elsif(rising_edge(td_clk27)) then
+      clock_count := clock_count + 1;
+      if(clock_count = decimation) then
+        clock_count := 0;
+        led_count <= std_logic_vector(unsigned(led_count) + 1);
+      end if;
+    end if;
+  end process;
+  
+  led_output: leddcd port map(led_count, segments_out);
+  
+  reset_led <= reset;
   
 end architecture;

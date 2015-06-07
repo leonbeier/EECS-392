@@ -52,16 +52,10 @@ set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_RO
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
-set_global_assignment -name VHDL_FILE ../src/vga.vhd
-set_global_assignment -name VHDL_FILE ../src/ycc2rgb.vhd
-set_global_assignment -name VHDL_FILE ../src/video_display.vhdl
-set_global_assignment -name VHDL_FILE ../src/tracker_constants.vhdl
-set_global_assignment -name VHDL_FILE ../src/sram.vhd
-set_global_assignment -name VHDL_FILE ../src/adv7180.vhdl
 set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
 set_location_assignment PIN_Y2 -to clk50
 set_location_assignment PIN_M23 -to reset
-set_location_assignment PIN_B4 -to td_clk27
+set_location_assignment PIN_B14 -to td_clk27
 set_location_assignment PIN_F7 -to td_data[7]
 set_location_assignment PIN_E7 -to td_data[6]
 set_location_assignment PIN_D6 -to td_data[5]
@@ -101,4 +95,62 @@ set_location_assignment PIN_E11 -to vga_red[1]
 set_location_assignment PIN_E12 -to vga_red[0]
 set_location_assignment PIN_C13 -to vga_vs
 set_location_assignment PIN_G7 -to td_reset
+set_global_assignment -name VHDL_FILE ../../src/leddcd.vhd
+set_global_assignment -name VHDL_FILE ../../src/vga.vhd
+set_global_assignment -name VHDL_FILE ../../src/video_display.vhdl
+set_global_assignment -name VHDL_FILE ../../src/ycc2rgb.vhd
+set_global_assignment -name VHDL_FILE ../../src/tracker_constants.vhdl
+set_global_assignment -name VHDL_FILE ../../src/sram.vhd
+set_global_assignment -name VHDL_FILE ../../src/adv7180.vhdl
+set_instance_assignment -name IO_STANDARD "2.5 V" -to clk50
+set_instance_assignment -name IO_STANDARD "2.5 V" -to reset
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_clk27
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_data[7]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_data[6]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_data[5]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_data[4]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_data[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_data[2]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_data[1]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_data[0]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_hs
+set_instance_assignment -name IO_STANDARD "2.5 V" -to td_vs
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blank
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blue[7]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blue[6]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blue[5]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blue[4]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blue[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blue[2]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blue[1]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_blue[0]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_clk
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_green[7]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_green[6]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_green[5]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_green[4]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_green[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_green[2]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_green[1]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_green[0]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_hs
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_red[7]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_red[6]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_red[5]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_red[4]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_red[3]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_red[2]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_red[1]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_red[0]
+set_instance_assignment -name IO_STANDARD "2.5 V" -to vga_vs
+set_location_assignment PIN_B7 -to i2c_clk
+set_location_assignment PIN_A8 -to i2c_data
+set_location_assignment PIN_G19 -to reset_led
+set_location_assignment PIN_H22 -to segments_out[6]
+set_location_assignment PIN_J22 -to segments_out[5]
+set_location_assignment PIN_L25 -to segments_out[4]
+set_location_assignment PIN_L26 -to segments_out[3]
+set_location_assignment PIN_E17 -to segments_out[2]
+set_location_assignment PIN_F22 -to segments_out[1]
+set_location_assignment PIN_G18 -to segments_out[0]
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
