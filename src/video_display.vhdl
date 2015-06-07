@@ -41,6 +41,10 @@ architecture video_display of video_display is
   end component sram;
 
   component adv7180 is
+    generic (
+      DECIMATION_ROWS : natural := 1;
+      DECIMATION_COLS : natural := 1
+    );
 
     port (
       -- tv decoder -------------------------------------------------------------------------
@@ -52,7 +56,7 @@ architecture video_display of video_display is
       -- SRAM connections -------------------------------------------------------------------------
       ram_clk, ram_we : out std_logic;
       ram_din : out std_logic_vector(31 downto 0);
-      ram_write_addr : out natural := 0
+      ram_write_addr : out natural
     );
 
   end component adv7180;
@@ -78,6 +82,9 @@ architecture video_display of video_display is
     ); 
   end component ycc2rgb;
 
+  -- constants
+  constant IMAGE_SIZE : natural := 38400;
+
   -- ram signals -------------------------------------------------------------------------
   signal ram_clk, ram_we : std_logic;
   signal ram_write_addr, ram_read_addr : natural;
@@ -99,8 +106,6 @@ architecture video_display of video_display is
 
 begin
   
-  -- clock assignments -------------------------------------------------------------------------
-
   -- concurrent signal assignments -------------------------------------------------------------------------
   ycc_y <= ram_dout(23 downto 16) when (ycc_even = true) else ram_dout(7 downto 0);
   ycc_cb <= ram_dout(31 downto 24);
@@ -111,10 +116,11 @@ begin
   vga_col_int <= to_integer(unsigned(vga_pixel_col));
 
   -- structural port maps -------------------------------------------------------------------------
-  ram_block: sram generic map(DATA_WIDTH => 32, RAM_SIZE => 153600)
+  ram_block: sram generic map(DATA_WIDTH => 32, RAM_SIZE => IMAGE_SIZE)
                   port map(ram_clk, ram_we, ram_write_addr, ram_din, ram_read_addr, ram_dout);
 
-  decoder: adv7180 port map(td_clk27, td_data, td_hs, td_vs, reset, ram_clk, ram_we, ram_din, ram_write_addr);
+  decoder: adv7180 generic map(DECIMATION_ROWS => 2, DECIMATION_COLS => 2)
+                   port map(td_clk27, td_data, td_hs, td_vs, reset, ram_clk, ram_we, ram_din, ram_write_addr);
 
   ycc2rgb_converter: ycc2rgb port map(td_clk27, reset, ycc_y, ycc_cb, ycc_cr, red_out, green_out, blue_out);
 

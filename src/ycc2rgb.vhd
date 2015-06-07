@@ -24,7 +24,7 @@ begin
   g_int <= to_integer(shift_right(to_signed(298*y_int - 100*cb_int - 208*cr_int, 32),  8)) + 136;
   b_int <= to_integer(shift_right(to_signed(298*y_int + 516*cb_int, 32), 8)) - 277;
   
-  gen_output : process(clk)
+  gen_output : process(clk, reset)
     variable red, green, blue : signed(8 downto 0);
   begin
     if(reset = '0') then

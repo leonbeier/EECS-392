@@ -6,6 +6,12 @@ use IEEE.math_real.all;
 use WORK.tracker_constants.all;
 
 entity adv7180 is
+  
+  generic (
+    -- vertical and horizontal pixel decimation
+    DECIMATION_ROWS : natural := 1;
+    DECIMATION_COLS : natural := 1
+  );
 
   port (
     -- tv decoder
@@ -17,104 +23,113 @@ entity adv7180 is
     -- SRAM connections
     ram_clk, ram_we : out std_logic;
     ram_din : out std_logic_vector(31 downto 0);
-    ram_write_addr : out natural := 0
+    ram_write_addr : out natural
   );
 
 end entity adv7180;
 
 architecture adv7180 of adv7180 is
 
-  component fifo is
-    generic(
-      constant BUFFER_SIZE : natural := 100;
-      constant DATA_WIDTH : natural := 8
-    );
-    
-    port(
-      signal read_clk : in std_logic;
-      signal write_clk : in std_logic;
-      signal reset : in std_logic;
-      signal read_en : in std_logic;
-      signal write_en : in std_logic;
-      signal data_in : in std_logic_vector((DATA_WIDTH-1) downto 0);
-      signal data_out : out std_logic_vector((DATA_WIDTH-1) downto 0);
-      signal full : out std_logic;
-      signal empty : out std_logic
-    );
-  end component fifo;
+  -- constants
+  constant IMAGE_SIZE : natural := 38400;
   
   -- shared variables
   signal state : decoder_state;
   signal next_state : decoder_state;
   signal data_address : natural;
   signal vs_flag, hs_flag : std_logic;
-  
-  -- FIFO Signals
-  -- signal fifo_read_clk, fifo_write_clk, fifo_reset, 
-  --       fifo_read_en, fifo_write_en, fifo_full, fifo_empty : std_logic;
-  -- signal fifo_din, fifo_dout : std_logic_vector(31 downto 0);
 
 begin
     
-  -- data_fifo: fifo generic map(DATA_WIDTH => 32, BUFFER_SIZE => 153600) 
-  --                 port map(fifo_read_clk, fifo_write_clk, fifo_reset, fifo_read_en, fifo_write_en, fifo_din, fifo_dout, fifo_full, fifo_empty);
-  -- fifo_read_clk <= clk50;
-  -- fifo_write_clk <= clk50;
-  -- fifo_reset <= td_reset;
-
   ram_clk <= td_clk27;
   ram_write_addr <= data_address;
   
   adv7180_decoder: process(td_data, td_clk27, td_hs, td_vs, td_reset) is
-    variable clock_count : integer := 0;
+    variable clock_count : natural := 0;
+    variable decimation_count_cols : natural := 0;
+    variable decimation_count_rows : natural := 0;
+    variable next_data_address : natural := 0;
     variable buffer_index : natural := 0;
     variable data_buffer : std_logic_vector(31 downto 0);
-    variable next_data_address : natural;
   begin
     if(td_reset = '0') then
       state <= VS_RESET;
     elsif(rising_edge(td_clk27)) then
       case(state) is
         when VS_RESET | HS_RESET =>
-          if(state = VS_RESET) then
-            next_data_address := 0;
-            data_address <= 0;
-          end if;
+          -- HS_RESET and VS_RESET
           ram_we <= '0';
           buffer_index := 0;
           data_buffer := (others => '0');
           clock_count := 0;
+
+          -- HS_RESET has a lower priority
+          if(decimation_count_rows = (DECIMATION_ROWS-1)) then
+            decimation_count_rows := 0;
+          else
+            decimation_count_rows := decimation_count_rows + 1;
+          end if;
+
+          -- VS_RESET has a higher priority
+          if(state = VS_RESET) then
+            decimation_count_rows := 0;
+            decimation_count_cols := 0;
+            next_data_address := 0;
+            data_address <= 0;
+          end if;
+
+          -- Update the state
           state <= READ;
         when READ =>
           if(vs_flag = '1') then
+            -- Restart the image buffering
             state <= VS_RESET;
           elsif(hs_flag = '1') then
+            -- Progress to th next row
             state <= HS_RESET;
           else
-            if(clock_count >= 272 and clock_count < 1712) then
-              data_buffer(8*(buffer_index+1)-1 downto 8*buffer_index-1) := td_data;
-              if(buffer_index = 3) then
-                ram_we <= '1';
-                ram_din <= data_buffer;
-                buffer_index := 0;
-                next_data_address := next_data_address + 1;
-                if(next_data_address > 1) then
-                  data_address <= next_data_address;
-                end if;
-              else
-                buffer_index := buffer_index + 1;
-              end if;
-            else
+            if(decimation_count_rows = (DECIMATION_ROWS-1)) then
+              -- Don't write by default
               ram_we <= '0';
+              if(clock_count >= 272 and clock_count < 1712) then
+                -- ACTIVE VIDEO
+                -- Update the data buffer using the current index
+                data_buffer(8*(buffer_index+1)-1 downto 8*buffer_index) := td_data;
+                if(buffer_index = 3) then
+                  -- Roll over the data buffer index
+                  buffer_index := 0;
+                  if(decimation_count_cols = (DECIMATION_COLS-1)) then
+                    -- Roll over the column-wise decimation counter
+                    decimation_count_cols := 0;
+                    if(data_address <= IMAGE_SIZE) then
+                      -- Write at the next rising edge
+                      ram_we <= '1';
+                      ram_din <= data_buffer;
+                      -- Delay a write into the SRAM by one clock cycle
+                      next_data_address := next_data_address + 1;
+                      if(next_data_address > 1) then
+                        data_address <= next_data_address;
+                      end if;
+                    end if;
+                  else
+                    decimation_count_cols := decimation_count_cols + 1;
+                  end if;
+                else
+                  -- Update the index into the data buffer
+                  buffer_index := buffer_index + 1;
+                end if;
+              end if;
+              clock_count := clock_count + 1;
             end if;
-            clock_count := clock_count + 1;
           end if;
         when others =>
+          -- Default to the start of an image
           state <= VS_RESET;
       end case;
     end if;
   end process adv7180_decoder;
   
+  -- Generates flag required for HS_RESET state transition in main state machine
   hs_manager:  process(td_data, td_clk27, td_hs, td_vs, td_reset) is
     variable hs_idle : boolean := true;
   begin
@@ -136,6 +151,7 @@ begin
     end if;
   end process hs_manager;
   
+  -- Generates flag required for VS_RESET state transition in main state machine
   vs_manager: process(td_data, td_clk27, td_hs, td_vs, td_reset) is
     variable vs_idle : boolean := true;
   begin
