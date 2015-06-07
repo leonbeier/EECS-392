@@ -1,0 +1,143 @@
+# Loading project adv7180
+# Compile of adv7180.vhdl failed with 1 errors.
+# Compile of sram.vhd failed with 1 errors.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 2 failed with 2 errors.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd failed with 1 errors.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 1 failed with 1 error.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd failed with 1 errors.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 1 failed with 1 error.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd was successful.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd was successful.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd was successful.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim work.decoder_tb
+# vsim 
+# Start time: 02:37:02 on Jun 07,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_tb(test_arch)
+# Loading work.sram(behavior)
+# Loading ieee.math_real(body)
+# Loading work.tracker_constants
+# Loading work.adv7180(adv7180)
+add wave -position insertpoint sim:/decoder_tb/tb_start/*
+run
+quit -sim
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd was successful.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim work.decoder_tb
+# vsim 
+# Start time: 02:41:05 on Jun 07,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_tb(test_arch)
+# Loading work.sram(behavior)
+# Loading ieee.math_real(body)
+# Loading work.tracker_constants
+# Loading work.adv7180(adv7180)
+run -all
+# Break key hit
+# Break in Process hs_manager at /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/adv7180.vhdl line 130
+restart -f
+run
+run
+run
+restart -f
+add wave -position insertpoint sim:/decoder_tb/tb_start/*
+run
+add wave -position insertpoint sim:/decoder_tb/tb_start/adv7180_decoder/*
+restart -f
+run
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd was successful.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# Loading work.decoder_tb(test_arch)
+# Loading work.sram(behavior)
+# Loading work.tracker_constants
+# Loading work.adv7180(adv7180)
+quit -sim
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd was successful.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim work.decoder_tb
+# vsim 
+# Start time: 02:57:09 on Jun 07,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_tb(test_arch)
+# Loading work.sram(behavior)
+# Loading ieee.math_real(body)
+# Loading work.tracker_constants
+# Loading work.adv7180(adv7180)
+add wave -position insertpoint sim:/decoder_tb/tb_start/*
+add wave -position insertpoint sim:/decoder_tb/tb_start/adv7180_decoder/*
+run
+# WARNING: No extended dataflow license exists
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Error: invalid command name "::.main_pane.dataflow.interior.cs.body.pw.df.c"
+# Break key hit
+quit -sim
+# Compile of tracker_constants.vhdl was successful.
+# Compile of sram.vhd was successful.
+# Compile of adv7180.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+vsim work.decoder_tb
+# vsim 
+# Start time: 03:08:58 on Jun 07,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_tb(test_arch)
+# Loading work.sram(behavior)
+# Loading ieee.math_real(body)
+# Loading work.tracker_constants
+# Loading work.adv7180(adv7180)
+add wave -position insertpoint sim:/decoder_tb/tb_start/*
+add wave -position insertpoint sim:/decoder_tb/tb_start/adv7180_decoder/*
+run
+run
+quit -sim

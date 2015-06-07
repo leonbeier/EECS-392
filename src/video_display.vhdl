@@ -17,7 +17,8 @@ entity video_display is
     -- adv7180 -------------------------------------------------------------------------
     td_clk27 : in std_logic;
     td_data : in std_logic_vector(7 downto 0);
-    td_hs, td_vs : in std_logic
+    td_hs, td_vs : in std_logic;
+	 td_reset : out std_logic
   );
   
 end entity video_display;
@@ -102,6 +103,7 @@ architecture video_display of video_display is
   -- temporary signals -------------------------------------------------------------------------
   signal ycbcr_pixel : std_logic_vector(31 downto 0);
   signal ycc_even : boolean := true;
+  signal ycc_clk : std_logic;
 
 begin
   
@@ -109,10 +111,13 @@ begin
   ycc_y <= ram_dout(23 downto 16) when (ycc_even = true) else ram_dout(7 downto 0);
   ycc_cb <= ram_dout(31 downto 24);
   ycc_cr <= ram_dout(15 downto 8);
+  ycc_clk <= not td_clk27;
   
   vga_clk <= vga_pixel_clk;
   vga_row_int <= to_integer(unsigned(vga_pixel_row));
   vga_col_int <= to_integer(unsigned(vga_pixel_col));
+  
+  td_reset <= reset;
   
   -- structural port maps -------------------------------------------------------------------------
   ram_block: sram generic map(DATA_WIDTH => 32, RAM_SIZE => IMAGE_SIZE)
@@ -121,7 +126,7 @@ begin
   decoder: adv7180 generic map(DECIMATION_ROWS => 2, DECIMATION_COLS => 2)
                    port map(td_clk27, td_data, td_hs, td_vs, reset, ram_clk, ram_we, ram_din, ram_write_addr);
   
-  ycc2rgb_converter: ycc2rgb port map(td_clk27, reset, ycc_y, ycc_cb, ycc_cr, red_out, green_out, blue_out);
+  ycc2rgb_converter: ycc2rgb port map(ycc_clk, reset, ycc_y, ycc_cb, ycc_cr, red_out, green_out, blue_out);
   
   vga_output: vga port map(clk50, reset, vga_pixel, vga_pixel_clk, vga_pixel_row, vga_pixel_col, vga_hs, vga_vs, vga_blank, vga_red, vga_green, vga_blue);
   
@@ -133,7 +138,7 @@ begin
       ram_read_addr <= 0;
       ycc_even <= true;
     elsif(rising_edge(vga_pixel_clk)) then
-      ram_read_addr <= ((vga_row_int * IMAGE_WIDTH) + vga_col_int)/2;
+      ram_read_addr <= ((vga_row_int * IMAGE_WIDTH) + vga_col_int)/4;
       case(ram_read_addr mod 2) is
         when 1 => ycc_even <= false;
         when others => ycc_even <= true;

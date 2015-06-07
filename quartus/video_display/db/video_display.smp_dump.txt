@@ -1,0 +1,6 @@
+
+State Machine - |video_display|adv7180:decoder|state
+Name state.READ state.HS_RESET state.VS_RESET 
+state.VS_RESET 0 0 0 
+state.HS_RESET 0 1 1 
+state.READ 1 0 1 

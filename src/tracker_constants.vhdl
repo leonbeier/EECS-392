@@ -11,8 +11,8 @@ package tracker_constants is
   constant DEFAULT_BAUD_RATE : natural := 25000000;   -- 9600
   
   -- Image constants
-  constant IMAGE_WIDTH : natural := 640;
-  constant IMAGE_HEIGHT : natural := 480;
+  constant IMAGE_WIDTH : natural := 320;
+  constant IMAGE_HEIGHT : natural := 240;
   constant IMAGE_DEPTH : natural := 24;
   
   type uart_state is (TRIGGER, INIT, ACTIVE, STOP, HOLD);

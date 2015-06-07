@@ -1,0 +1,64 @@
+# Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, the Altera Quartus II License Agreement,
+# the Altera MegaCore Function License Agreement, or other 
+# applicable license agreement, including, without limitation, 
+# that your use is for the sole purpose of programming logic 
+# devices manufactured by Altera and sold by Altera or its 
+# authorized distributors.  Please refer to the applicable 
+# agreement for further details.
+
+# Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
+# File: /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/quartus/video_display.csv
+# Generated on: Sun Jun  7 03:32:38 2015
+
+# Note: The column header names should not be changed if you wish to import this .csv file into the Quartus II software.
+
+To,Direction,Location,I/O Bank,VREF Group,Fitter Location,I/O Standard,Reserved,Current Strength,Slew Rate,Differential Pair,Strict Preservation
+clk50,Input,PIN_Y2,2,B2_N0,PIN_Y2,2.5 V,,,,,
+reset,Input,PIN_M23,6,B6_N2,PIN_M23,2.5 V,,,,,
+td_clk27,Input,PIN_B4,8,B8_N2,PIN_B4,2.5 V,,,,,
+td_data[7],Input,PIN_F7,8,B8_N2,PIN_F7,2.5 V,,,,,
+td_data[6],Input,PIN_E7,8,B8_N2,PIN_E7,2.5 V,,,,,
+td_data[5],Input,PIN_D6,8,B8_N2,PIN_D6,2.5 V,,,,,
+td_data[4],Input,PIN_D7,8,B8_N2,PIN_D7,2.5 V,,,,,
+td_data[3],Input,PIN_C7,8,B8_N2,PIN_C7,2.5 V,,,,,
+td_data[2],Input,PIN_D8,8,B8_N2,PIN_D8,2.5 V,,,,,
+td_data[1],Input,PIN_A7,8,B8_N1,PIN_A7,2.5 V,,,,,
+td_data[0],Input,PIN_E8,8,B8_N2,PIN_E8,2.5 V,,,,,
+td_hs,Input,PIN_E5,8,B8_N2,PIN_E5,2.5 V,,,,,
+td_reset,Output,PIN_G7,8,B8_N2,PIN_L27,,,,,,
+td_vs,Input,PIN_E4,8,B8_N2,PIN_E4,2.5 V,,,,,
+vga_blank,Output,PIN_F11,8,B8_N1,PIN_F11,2.5 V,,,,,
+vga_blue[7],Output,PIN_D12,8,B8_N0,PIN_D12,2.5 V,,,,,
+vga_blue[6],Output,PIN_D11,8,B8_N1,PIN_D11,2.5 V,,,,,
+vga_blue[5],Output,PIN_C12,8,B8_N0,PIN_C12,2.5 V,,,,,
+vga_blue[4],Output,PIN_A11,8,B8_N0,PIN_A11,2.5 V,,,,,
+vga_blue[3],Output,PIN_B11,8,B8_N0,PIN_B11,2.5 V,,,,,
+vga_blue[2],Output,PIN_C11,8,B8_N1,PIN_C11,2.5 V,,,,,
+vga_blue[1],Output,PIN_A10,8,B8_N0,PIN_A10,2.5 V,,,,,
+vga_blue[0],Output,PIN_B10,8,B8_N0,PIN_B10,2.5 V,,,,,
+vga_clk,Output,PIN_A12,8,B8_N0,PIN_A12,2.5 V,,,,,
+vga_green[7],Output,PIN_C9,8,B8_N1,PIN_C9,2.5 V,,,,,
+vga_green[6],Output,PIN_F10,8,B8_N1,PIN_F10,2.5 V,,,,,
+vga_green[5],Output,PIN_B8,8,B8_N1,PIN_B8,2.5 V,,,,,
+vga_green[4],Output,PIN_C8,8,B8_N1,PIN_C8,2.5 V,,,,,
+vga_green[3],Output,PIN_H12,8,B8_N1,PIN_H12,2.5 V,,,,,
+vga_green[2],Output,PIN_F8,8,B8_N2,PIN_F8,2.5 V,,,,,
+vga_green[1],Output,PIN_G11,8,B8_N1,PIN_G11,2.5 V,,,,,
+vga_green[0],Output,PIN_G8,8,B8_N2,PIN_G8,2.5 V,,,,,
+vga_hs,Output,PIN_G13,8,B8_N0,PIN_G13,2.5 V,,,,,
+vga_red[7],Output,PIN_H10,8,B8_N1,PIN_H10,2.5 V,,,,,
+vga_red[6],Output,PIN_H8,8,B8_N2,PIN_H8,2.5 V,,,,,
+vga_red[5],Output,PIN_J12,8,B8_N0,PIN_J12,2.5 V,,,,,
+vga_red[4],Output,PIN_G10,8,B8_N1,PIN_G10,2.5 V,,,,,
+vga_red[3],Output,PIN_F12,8,B8_N1,PIN_F12,2.5 V,,,,,
+vga_red[2],Output,PIN_D10,8,B8_N1,PIN_D10,2.5 V,,,,,
+vga_red[1],Output,PIN_E11,8,B8_N1,PIN_E11,2.5 V,,,,,
+vga_red[0],Output,PIN_E12,8,B8_N1,PIN_E12,2.5 V,,,,,
+vga_vs,Output,PIN_C13,8,B8_N0,PIN_C13,2.5 V,,,,,
