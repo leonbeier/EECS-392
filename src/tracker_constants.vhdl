@@ -18,6 +18,7 @@ package tracker_constants is
   type uart_state is (TRIGGER, INIT, ACTIVE, STOP, HOLD);
   type i2c_state is (INIT, START, ADDRESS, DATA, STOP);
   type decoder_state is (VS_RESET, HS_RESET, READ);
+  type config_state is (INIT, CONFIG, DONE);
   
   -- i2c constants
   constant I2C_ADDR_WIDTH : natural := 7;

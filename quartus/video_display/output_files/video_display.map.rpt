@@ -1,5 +1,5 @@
 Analysis & Synthesis report for video_display
-Sun Jun  7 16:23:43 2015
+Mon Jun  8 18:27:16 2015
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -14,27 +14,34 @@ Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
-  9. State Machine - |video_display|adv7180:decoder|state
- 10. Registers Removed During Synthesis
- 11. General Register Statistics
- 12. Inverted Register Statistics
- 13. Registers Packed Into Inferred Megafunctions
- 14. Multiplexer Restructuring Statistics (Restructuring Performed)
- 15. Source assignments for sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated
- 16. Parameter Settings for User Entity Instance: sram:ram_block
- 17. Parameter Settings for User Entity Instance: adv7180:decoder
- 18. Parameter Settings for Inferred Entity Instance: sram:ram_block|altsyncram:ram_block_rtl_0
- 19. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult3
- 20. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0
- 21. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult1
- 22. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2
- 23. altsyncram Parameter Settings by Entity Instance
- 24. lpm_mult Parameter Settings by Entity Instance
- 25. Port Connectivity Checks: "vga:vga_output"
- 26. Port Connectivity Checks: "adv7180:decoder"
- 27. Post-Synthesis Netlist Statistics for Top Partition
- 28. Elapsed Time Per Partition
- 29. Analysis & Synthesis Messages
+  9. State Machine - |video_display|i2c_config_state
+ 10. State Machine - |video_display|i2c:i2c_master|i2c_s
+ 11. State Machine - |video_display|adv7180:decoder|state
+ 12. Registers Removed During Synthesis
+ 13. Removed Registers Triggering Further Register Optimizations
+ 14. General Register Statistics
+ 15. Inverted Register Statistics
+ 16. Registers Packed Into Inferred Megafunctions
+ 17. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 18. Source assignments for sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated
+ 19. Parameter Settings for User Entity Instance: sram:ram_block
+ 20. Parameter Settings for User Entity Instance: adv7180:decoder
+ 21. Parameter Settings for User Entity Instance: fifo:fifo_i2c
+ 22. Parameter Settings for User Entity Instance: i2c:i2c_master
+ 23. Parameter Settings for Inferred Entity Instance: sram:ram_block|altsyncram:ram_block_rtl_0
+ 24. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult3
+ 25. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0
+ 26. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult1
+ 27. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2
+ 28. altsyncram Parameter Settings by Entity Instance
+ 29. lpm_mult Parameter Settings by Entity Instance
+ 30. Port Connectivity Checks: "i2c:i2c_master"
+ 31. Port Connectivity Checks: "fifo:fifo_i2c"
+ 32. Port Connectivity Checks: "vga:vga_output"
+ 33. Port Connectivity Checks: "adv7180:decoder"
+ 34. Post-Synthesis Netlist Statistics for Top Partition
+ 35. Elapsed Time Per Partition
+ 36. Analysis & Synthesis Messages
 
 
 
@@ -61,16 +68,16 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Jun  7 16:23:43 2015      ;
+; Analysis & Synthesis Status        ; Successful - Mon Jun  8 18:27:16 2015      ;
 ; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Web Edition ;
 ; Revision Name                      ; video_display                              ;
 ; Top-level Entity Name              ; video_display                              ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 847                                        ;
-;     Total combinational functions  ; 792                                        ;
-;     Dedicated logic registers      ; 405                                        ;
-; Total registers                    ; 405                                        ;
-; Total pins                         ; 52                                         ;
+; Total logic elements               ; 1,043                                      ;
+;     Total combinational functions  ; 986                                        ;
+;     Dedicated logic registers      ; 480                                        ;
+; Total registers                    ; 480                                        ;
+; Total pins                         ; 55                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 1,228,800                                  ;
 ; Embedded Multiplier 9-bit elements ; 0                                          ;
@@ -181,6 +188,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------+---------+
 ; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                 ; Library ;
 +----------------------------------+-----------------+------------------------------+----------------------------------------------------------------------------------------------+---------+
+; ../../src/tristate.vhdl          ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tristate.vhdl                            ;         ;
+; ../../src/fifo.vhdl              ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/fifo.vhdl                                ;         ;
+; ../../src/i2c.vhdl               ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/i2c.vhdl                                 ;         ;
 ; ../../src/leddcd.vhd             ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/leddcd.vhd                               ;         ;
 ; ../../src/vga.vhd                ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/vga.vhd                                  ;         ;
 ; ../../src/video_display.vhdl     ; yes             ; User VHDL File               ; /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/video_display.vhdl                       ;         ;
@@ -234,31 +244,31 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 847            ;
+; Estimated Total logic elements              ; 1,043          ;
 ;                                             ;                ;
-; Total combinational functions               ; 792            ;
+; Total combinational functions               ; 986            ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 277            ;
-;     -- 3 input functions                    ; 113            ;
-;     -- <=2 input functions                  ; 402            ;
+;     -- 4 input functions                    ; 348            ;
+;     -- 3 input functions                    ; 134            ;
+;     -- <=2 input functions                  ; 504            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 453            ;
-;     -- arithmetic mode                      ; 339            ;
+;     -- normal mode                          ; 587            ;
+;     -- arithmetic mode                      ; 399            ;
 ;                                             ;                ;
-; Total registers                             ; 405            ;
-;     -- Dedicated logic registers            ; 405            ;
+; Total registers                             ; 480            ;
+;     -- Dedicated logic registers            ; 480            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
-; I/O pins                                    ; 52             ;
+; I/O pins                                    ; 55             ;
 ; Total memory bits                           ; 1228800        ;
 ;                                             ;                ;
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ;                                             ;                ;
 ; Maximum fan-out node                        ; td_clk27~input ;
 ; Maximum fan-out                             ; 479            ;
-; Total fan-out                               ; 8332           ;
-; Average fan-out                             ; 5.70           ;
+; Total fan-out                               ; 9143           ;
+; Average fan-out                             ; 5.26           ;
 +---------------------------------------------+----------------+
 
 
@@ -267,8 +277,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                     ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                        ; Library Name ;
 +------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |video_display                                 ; 792 (96)          ; 405 (76)     ; 1228800     ; 0            ; 0       ; 0         ; 52   ; 0            ; |video_display                                                                                                                             ; work         ;
+; |video_display                                 ; 986 (98)          ; 480 (80)     ; 1228800     ; 0            ; 0       ; 0         ; 55   ; 0            ; |video_display                                                                                                                             ; work         ;
 ;    |adv7180:decoder|                           ; 320 (320)         ; 257 (257)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|adv7180:decoder                                                                                                             ; work         ;
+;    |i2c:i2c_master|                            ; 192 (192)         ; 71 (71)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|i2c:i2c_master                                                                                                              ; work         ;
 ;    |leddcd:led_output|                         ; 8 (8)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:led_output                                                                                                           ; work         ;
 ;    |sram:ram_block|                            ; 87 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block                                                                                                              ; work         ;
 ;       |altsyncram:ram_block_rtl_0|             ; 87 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0                                                                                   ; work         ;
@@ -311,6 +322,32 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 Encoding Type:  One-Hot
++---------------------------------------------------------------------------------------------------+
+; State Machine - |video_display|i2c_config_state                                                   ;
++-------------------------+-----------------------+-------------------------+-----------------------+
+; Name                    ; i2c_config_state.DONE ; i2c_config_state.CONFIG ; i2c_config_state.INIT ;
++-------------------------+-----------------------+-------------------------+-----------------------+
+; i2c_config_state.INIT   ; 0                     ; 0                       ; 0                     ;
+; i2c_config_state.CONFIG ; 0                     ; 1                       ; 1                     ;
+; i2c_config_state.DONE   ; 1                     ; 0                       ; 1                     ;
++-------------------------+-----------------------+-------------------------+-----------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------+
+; State Machine - |video_display|i2c:i2c_master|i2c_s                                ;
++---------------+------------+------------+---------------+-------------+------------+
+; Name          ; i2c_s.STOP ; i2c_s.DATA ; i2c_s.ADDRESS ; i2c_s.START ; i2c_s.INIT ;
++---------------+------------+------------+---------------+-------------+------------+
+; i2c_s.INIT    ; 0          ; 0          ; 0             ; 0           ; 0          ;
+; i2c_s.START   ; 0          ; 0          ; 0             ; 1           ; 1          ;
+; i2c_s.ADDRESS ; 0          ; 0          ; 1             ; 0           ; 1          ;
+; i2c_s.DATA    ; 0          ; 1          ; 0             ; 0           ; 1          ;
+; i2c_s.STOP    ; 1          ; 0          ; 0             ; 0           ; 1          ;
++---------------+------------+------------+---------------+-------------+------------+
+
+
+Encoding Type:  One-Hot
 +---------------------------------------------------------------+
 ; State Machine - |video_display|adv7180:decoder|state          ;
 +----------------+------------+----------------+----------------+
@@ -322,47 +359,87 @@ Encoding Type:  One-Hot
 +----------------+------------+----------------+----------------+
 
 
-+---------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                              ;
-+----------------------------------------+----------------------------------------+
-; Register name                          ; Reason for Removal                     ;
-+----------------------------------------+----------------------------------------+
-; sram:ram_block|data_out[0]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[1]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[2]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[3]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[4]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[5]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[6]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[7]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[8]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[9]~en          ; Lost fanout                            ;
-; sram:ram_block|data_out[10]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[11]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[12]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[13]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[14]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[15]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[16]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[17]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[18]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[19]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[20]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[21]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[22]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[23]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[24]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[25]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[26]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[27]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[28]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[29]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[30]~en         ; Lost fanout                            ;
-; sram:ram_block|data_out[31]~en         ; Lost fanout                            ;
-; vga:vga_output|pixel_row[9]            ; Stuck at GND due to stuck port data_in ;
-; adv7180:decoder|state.HS_RESET         ; Lost fanout                            ;
-; Total Number of Removed Registers = 34 ;                                        ;
-+----------------------------------------+----------------------------------------+
++-------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                          ;
++----------------------------------------------------+--------------------------------------------------------+
+; Register name                                      ; Reason for Removal                                     ;
++----------------------------------------------------+--------------------------------------------------------+
+; sram:ram_block|data_out[0]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[1]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[2]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[3]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[4]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[5]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[6]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[7]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[8]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[9]~en                      ; Lost fanout                                            ;
+; sram:ram_block|data_out[10]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[11]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[12]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[13]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[14]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[15]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[16]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[17]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[18]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[19]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[20]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[21]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[22]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[23]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[24]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[25]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[26]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[27]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[28]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[29]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[30]~en                     ; Lost fanout                                            ;
+; sram:ram_block|data_out[31]~en                     ; Lost fanout                                            ;
+; i2c_write_en                                       ; Stuck at VCC due to stuck port data_in                 ;
+; i2c_read_en                                        ; Stuck at GND due to stuck port data_in                 ;
+; i2c_daddr[6]                                       ; Stuck at VCC due to stuck port data_in                 ;
+; i2c_daddr[0..5]                                    ; Stuck at GND due to stuck port data_in                 ;
+; i2c_din[7]                                         ; Stuck at GND due to stuck port data_in                 ;
+; i2c_din[6]                                         ; Stuck at VCC due to stuck port data_in                 ;
+; i2c_din[5]                                         ; Stuck at GND due to stuck port data_in                 ;
+; i2c_din[4]                                         ; Stuck at VCC due to stuck port data_in                 ;
+; i2c_din[0..3]                                      ; Stuck at GND due to stuck port data_in                 ;
+; i2c:i2c_master|\i2c_manager:reading                ; Stuck at GND due to stuck port data_in                 ;
+; i2c:i2c_master|\i2c_manager:data_addr_buffer[6]    ; Stuck at VCC due to stuck port data_in                 ;
+; i2c:i2c_master|\i2c_manager:data_addr_buffer[0..5] ; Stuck at GND due to stuck port data_in                 ;
+; i2c:i2c_master|scl_enable                          ; Stuck at VCC due to stuck port data_in                 ;
+; i2c:i2c_master|\i2c_manager:data_buffer[1..3,5,7]  ; Merged with i2c:i2c_master|\i2c_manager:data_buffer[0] ;
+; i2c:i2c_master|\i2c_manager:data_buffer[6]         ; Merged with i2c:i2c_master|\i2c_manager:data_buffer[4] ;
+; i2c:i2c_master|\i2c_manager:er                     ; Stuck at GND due to stuck port clock_enable            ;
+; i2c:i2c_master|error                               ; Stuck at GND due to stuck port data_in                 ;
+; i2c:i2c_master|available                           ; Stuck at GND due to stuck port data_in                 ;
+; i2c:i2c_master|\i2c_manager:data_buffer[4]         ; Stuck at VCC due to stuck port data_in                 ;
+; i2c:i2c_master|\i2c_manager:data_buffer[0]         ; Stuck at GND due to stuck port data_in                 ;
+; vga:vga_output|pixel_row[9]                        ; Stuck at GND due to stuck port data_in                 ;
+; adv7180:decoder|state.HS_RESET                     ; Lost fanout                                            ;
+; Total Number of Removed Registers = 71             ;                                                        ;
++----------------------------------------------------+--------------------------------------------------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                   ;
++--------------------------------+--------------------------------+-----------------------------------------------------------------------------+
+; Register name                  ; Reason for Removal             ; Registers Removed due to This Register                                      ;
++--------------------------------+--------------------------------+-----------------------------------------------------------------------------+
+; i2c_write_en                   ; Stuck at VCC                   ; i2c:i2c_master|\i2c_manager:reading,                                        ;
+;                                ; due to stuck port data_in      ; i2c:i2c_master|\i2c_manager:data_addr_buffer[6],                            ;
+;                                ;                                ; i2c:i2c_master|\i2c_manager:data_addr_buffer[5],                            ;
+;                                ;                                ; i2c:i2c_master|\i2c_manager:data_addr_buffer[4],                            ;
+;                                ;                                ; i2c:i2c_master|\i2c_manager:data_addr_buffer[3],                            ;
+;                                ;                                ; i2c:i2c_master|\i2c_manager:data_addr_buffer[2],                            ;
+;                                ;                                ; i2c:i2c_master|\i2c_manager:data_addr_buffer[1],                            ;
+;                                ;                                ; i2c:i2c_master|\i2c_manager:data_addr_buffer[0], i2c:i2c_master|scl_enable, ;
+;                                ;                                ; i2c:i2c_master|available, i2c:i2c_master|\i2c_manager:data_buffer[4],       ;
+;                                ;                                ; i2c:i2c_master|\i2c_manager:data_buffer[0]                                  ;
+; i2c:i2c_master|\i2c_manager:er ; Stuck at GND                   ; i2c:i2c_master|error                                                        ;
+;                                ; due to stuck port clock_enable ;                                                                             ;
++--------------------------------+--------------------------------+-----------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -370,12 +447,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 405   ;
-; Number of registers using Synchronous Clear  ; 125   ;
+; Total registers                              ; 480   ;
+; Number of registers using Synchronous Clear  ; 156   ;
 ; Number of registers using Synchronous Load   ; 31    ;
-; Number of registers using Asynchronous Clear ; 82    ;
+; Number of registers using Asynchronous Clear ; 92    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 297   ;
+; Number of registers using Clock Enable       ; 362   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -437,14 +514,18 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |video_display|vga:vga_output|v_count[9]                                  ;
-; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_rows[15] ;
-; 5:1                ; 31 bits   ; 93 LEs        ; 31 LEs               ; 62 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:clock_count[11]           ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:data_buffer[10]           ;
-; 7:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:buffer_index[24]          ;
-; 8:1                ; 31 bits   ; 155 LEs       ; 31 LEs               ; 124 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_cols[13] ;
-; 10:1               ; 62 bits   ; 372 LEs       ; 62 LEs               ; 310 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:next_data_address[10]     ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |video_display|vga:vga_output|v_count[3]                                  ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_rows[24] ;
+; 5:1                ; 31 bits   ; 93 LEs        ; 31 LEs               ; 62 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:clock_count[5]            ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:data_buffer[4]            ;
+; 7:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:buffer_index[1]           ;
+; 8:1                ; 31 bits   ; 155 LEs       ; 31 LEs               ; 124 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_cols[21] ;
+; 10:1               ; 62 bits   ; 372 LEs       ; 62 LEs               ; 310 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:next_data_address[9]      ;
+; 19:1               ; 30 bits   ; 360 LEs       ; 30 LEs               ; 330 LEs                ; Yes        ; |video_display|i2c:i2c_master|\i2c_manager:data_count[14]                 ;
+; 21:1               ; 31 bits   ; 434 LEs       ; 31 LEs               ; 403 LEs                ; Yes        ; |video_display|i2c:i2c_master|\i2c_manager:clock_count[15]                ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |video_display|adv7180:decoder|state                                      ;
+; 24:1               ; 3 bits    ; 48 LEs        ; 12 LEs               ; 36 LEs                 ; No         ; |video_display|i2c:i2c_master|Selector75                                  ;
+; 24:1               ; 2 bits    ; 32 LEs        ; 6 LEs                ; 26 LEs                 ; No         ; |video_display|i2c:i2c_master|Selector73                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
 
 
@@ -476,6 +557,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; decimation_rows ; 1     ; Signed Integer                     ;
 ; decimation_cols ; 1     ; Signed Integer                     ;
 +-----------------+-------+------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: fifo:fifo_i2c ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; buffer_size    ; 128   ; Signed Integer                    ;
+; data_width     ; 8     ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i2c:i2c_master ;
++----------------+--------+-----------------------------------+
+; Parameter Name ; Value  ; Type                              ;
++----------------+--------+-----------------------------------+
+; frequency      ; 100000 ; Signed Integer                    ;
++----------------+--------+-----------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -753,6 +855,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +---------------------------------------+------------------------------------------+
 
 
++--------------------------------------------+
+; Port Connectivity Checks: "i2c:i2c_master" ;
++-------+-------+----------+-----------------+
+; Port  ; Type  ; Severity ; Details         ;
++-------+-------+----------+-----------------+
+; write ; Input ; Info     ; Stuck at VCC    ;
++-------+-------+----------+-----------------+
+
+
++--------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "fifo:fifo_i2c"                                                                          ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; Port     ; Type   ; Severity ; Details                                                                             ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+; data_out ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; full     ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; empty    ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
++----------+--------+----------+-------------------------------------------------------------------------------------+
+
+
 +------------------------------------------------------------------------------------------------------------------------+
 ; Port Connectivity Checks: "vga:vga_output"                                                                             ;
 +--------------+--------+----------+-------------------------------------------------------------------------------------+
@@ -776,28 +898,29 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
-; boundary_port         ; 52                          ;
-; cycloneiii_ff         ; 405                         ;
-;     CLR               ; 80                          ;
-;     ENA               ; 139                         ;
+; boundary_port         ; 55                          ;
+; cycloneiii_ff         ; 480                         ;
+;     CLR               ; 90                          ;
+;     ENA               ; 173                         ;
 ;     ENA CLR           ; 2                           ;
-;     ENA SCLR          ; 125                         ;
+;     ENA SCLR          ; 156                         ;
 ;     ENA SLD           ; 31                          ;
 ;     plain             ; 28                          ;
-; cycloneiii_lcell_comb ; 794                         ;
-;     arith             ; 339                         ;
-;         2 data inputs ; 246                         ;
+; cycloneiii_io_obuf    ; 2                           ;
+; cycloneiii_lcell_comb ; 988                         ;
+;     arith             ; 399                         ;
+;         2 data inputs ; 306                         ;
 ;         3 data inputs ; 93                          ;
-;     normal            ; 455                         ;
+;     normal            ; 589                         ;
 ;         0 data inputs ; 3                           ;
-;         1 data inputs ; 19                          ;
-;         2 data inputs ; 136                         ;
-;         3 data inputs ; 20                          ;
-;         4 data inputs ; 277                         ;
+;         1 data inputs ; 23                          ;
+;         2 data inputs ; 174                         ;
+;         3 data inputs ; 41                          ;
+;         4 data inputs ; 348                         ;
 ; cycloneiii_ram_block  ; 160                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 11.10                       ;
-; Average LUT depth     ; 5.57                        ;
+; Average LUT depth     ; 5.68                        ;
 +-----------------------+-----------------------------+
 
 
@@ -806,7 +929,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:05     ;
 +----------------+--------------+
 
 
@@ -816,9 +939,18 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
-    Info: Processing started: Sun Jun  7 16:23:24 2015
+    Info: Processing started: Mon Jun  8 18:26:58 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off video_display -c video_display
 Warning (20028): Parallel compilation is not licensed and has been disabled
+Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tristate.vhdl
+    Info (12022): Found design unit 1: tristate-tristate
+    Info (12023): Found entity 1: tristate
+Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/fifo.vhdl
+    Info (12022): Found design unit 1: fifo-fifo
+    Info (12023): Found entity 1: fifo
+Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/i2c.vhdl
+    Info (12022): Found design unit 1: i2c-i2c
+    Info (12023): Found entity 1: i2c
 Info (12021): Found 2 design units, including 1 entities, in source file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/leddcd.vhd
     Info (12022): Found design unit 1: leddcd-data_flow
     Info (12023): Found entity 1: leddcd
@@ -840,13 +972,29 @@ Info (12021): Found 2 design units, including 1 entities, in source file /home/t
     Info (12022): Found design unit 1: adv7180-adv7180
     Info (12023): Found entity 1: adv7180
 Info (12127): Elaborating entity "video_display" for the top level hierarchy
-Warning (10542): VHDL Variable Declaration warning at video_display.vhdl(171): used initial value expression for variable "decimation" because variable was never assigned a value
-Warning (10492): VHDL Process Statement warning at video_display.vhdl(173): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10541): VHDL Signal Declaration warning at video_display.vhdl(144): used implicit default value for signal "fifo_read_clk" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at video_display.vhdl(144): used implicit default value for signal "fifo_write_clk" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at video_display.vhdl(144): used implicit default value for signal "fifo_read_en" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10541): VHDL Signal Declaration warning at video_display.vhdl(144): used implicit default value for signal "fifo_write_en" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10036): Verilog HDL or VHDL warning at video_display.vhdl(145): object "fifo_dout" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at video_display.vhdl(146): object "fifo_full" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at video_display.vhdl(146): object "fifo_empty" assigned a value but never read
+Warning (10541): VHDL Signal Declaration warning at video_display.vhdl(152): used implicit default value for signal "i2c_dout" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(238): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(242): signal "i2c_config_clk" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10542): VHDL Variable Declaration warning at video_display.vhdl(268): used initial value expression for variable "decimation" because variable was never assigned a value
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(270): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "sram" for hierarchy "sram:ram_block"
 Warning (10492): VHDL Process Statement warning at sram.vhd(26): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Info (12128): Elaborating entity "adv7180" for hierarchy "adv7180:decoder"
 Info (12128): Elaborating entity "ycc2rgb" for hierarchy "ycc2rgb:ycc2rgb_converter"
 Info (12128): Elaborating entity "vga" for hierarchy "vga:vga_output"
+Info (12128): Elaborating entity "fifo" for hierarchy "fifo:fifo_i2c"
+Warning (10492): VHDL Process Statement warning at fifo.vhdl(60): signal "temp_empty" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (12128): Elaborating entity "i2c" for hierarchy "i2c:i2c_master"
+Warning (10036): Verilog HDL or VHDL warning at i2c.vhdl(62): object "clock_ct" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at i2c.vhdl(63): object "data_ct" assigned a value but never read
+Info (12128): Elaborating entity "tristate" for hierarchy "i2c:i2c_master|tristate:sda_map"
 Info (12128): Elaborating entity "leddcd" for hierarchy "leddcd:led_output"
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
     Warning (13049): Converted tri-state buffer "sram:ram_block|data_out[0]" feeding internal logic into a wire
@@ -1000,24 +1148,28 @@ Info (12131): Elaborated megafunction instantiation "ycc2rgb:ycc2rgb_converter|l
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_gkh.tdf
     Info (12023): Found entity 1: add_sub_gkh
 Info (12131): Elaborated megafunction instantiation "ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2|altshift:external_latency_ffs", which is child of megafunction instantiation "ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2"
+Info (13060): One or more bidirectional pins are fed by always enabled tri-state buffers
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidirectional pin "i2c_clk" is moved to its source
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
+Warning (13009): TRI or OPNDRN buffers permanently enabled
+    Warning (13010): Node "i2c:i2c_master|tristate:scl_map|dout"
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "i2c_error" is stuck at GND
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 33 registers lost all their fanouts during netlist optimizations.
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "i2c_clk"
-    Warning (15610): No output dependent on input pin "i2c_data"
-Info (21057): Implemented 1110 device resources after synthesis - the final resource count might be different
-    Info (21058): Implemented 15 input pins
-    Info (21059): Implemented 37 output pins
-    Info (21061): Implemented 898 logic cells
+Info (21057): Implemented 1309 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 14 input pins
+    Info (21059): Implemented 39 output pins
+    Info (21060): Implemented 2 bidirectional pins
+    Info (21061): Implemented 1094 logic cells
     Info (21064): Implemented 160 RAM segments
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 40 warnings
-    Info: Peak virtual memory: 1074 megabytes
-    Info: Processing ended: Sun Jun  7 16:23:43 2015
-    Info: Elapsed time: 00:00:19
-    Info: Total CPU time (on all processors): 00:00:45
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 54 warnings
+    Info: Peak virtual memory: 1071 megabytes
+    Info: Processing ended: Mon Jun  8 18:27:16 2015
+    Info: Elapsed time: 00:00:18
+    Info: Total CPU time (on all processors): 00:00:33
 
 

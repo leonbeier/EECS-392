@@ -21,10 +21,7 @@ entity video_display is
     td_reset : out std_logic;
     
     -- i2c -------------------------------------------------------------------------
-    i2c_clk, i2c_data : inout std_logic;
-    i2c_error : out std_logic;
-    i2c_config_clk : in std_logic;
-    i2c_status_led : out std_logic;
+    i2c_clk, i2c_data : in std_logic;
     
     -- TESTING -------------------------------------------------------------------------
     segments_out : out std_logic_vector(6 downto 0);
@@ -83,14 +80,6 @@ architecture video_display of video_display is
       red, green, blue                 : out std_logic_vector(7 downto 0)
     );                  
   end component vga;
-
-  component ycc2rgb is
-    port (
-      clk, reset : in std_logic;
-      y, cb, cr : in std_logic_vector(7 downto 0);
-      r, g, b : out std_logic_vector(7 downto 0)
-    ); 
-  end component ycc2rgb;
   
   component fifo is
     generic(
@@ -110,47 +99,16 @@ architecture video_display of video_display is
     );
   end component fifo;
 
-  component i2c is
-    generic (
-      FREQUENCY : natural := 12_500_000 --10,000
-    );
-
+  component ycc2rgb is
     port (
-      -- clocks
-      clock_50 : in std_logic;
-      reset : in std_logic;
-      error : out std_logic;
+      clk, reset : in std_logic;
+      y, cb, cr : in std_logic_vector(7 downto 0);
+      r, g, b : out std_logic_vector(7 downto 0)
+    ); 
+  end component ycc2rgb;
 
-      -- i2c communications
-      sda : inout std_logic;
-      scl : inout std_logic;
-      data_clk : in std_logic;
-      data_addr : in std_logic_vector(I2C_ADDR_WIDTH-1 downto 0);
-      data_in : in std_logic_vector(I2C_DATA_WIDTH-1 downto 0);
-      write_en, read_en : in std_logic; -- writing takes prescedence over reading
-      available : out std_logic;
-
-      -- fifo control
-      write : in std_logic;
-      odata : out std_logic_vector(7 downto 0);
-      idata : in std_logic_vector(7 downto 0)
-    );
-  end component i2c;
-  
   -- constants
   constant IMAGE_SIZE : natural := 38400;
-  
-  -- fifo signals -------------------------------------------------------------------------
-  signal fifo_read_clk, fifo_write_clk, fifo_read_en, fifo_write_en : std_logic;
-  signal fifo_din, fifo_dout : std_logic_vector(7 downto 0);
-  signal fifo_full, fifo_empty : std_logic;
-
-  -- i2c signals -------------------------------------------------------------------------
-  signal i2c_write_en, i2c_read_en, i2c_available, i2c_data_clk : std_logic;
-  signal i2c_daddr : std_logic_vector(I2C_ADDR_WIDTH-1 downto 0);
-  signal i2c_write : std_logic;
-  signal i2c_din, i2c_dout : std_logic_vector(I2C_DATA_WIDTH-1 downto 0);
-  signal i2c_config_state : config_state;
 
   -- ram signals -------------------------------------------------------------------------
   signal ram_clk, ram_we : std_logic;
@@ -180,7 +138,8 @@ architecture video_display of video_display is
 		  data_in : in std_logic_vector(3 downto 0);
 		  segments_out : out std_logic_vector(6 downto 0)
     );
-  end component leddcd;
+  end component leddcd;		 
+
 
 begin
   
@@ -195,8 +154,6 @@ begin
   vga_col_int <= to_integer(unsigned(vga_pixel_col));
   
   td_reset <= reset;
-
-  i2c_write <= '1';
   
   -- structural port maps -------------------------------------------------------------------------
   ram_block: sram generic map(DATA_WIDTH => 32, RAM_SIZE => IMAGE_SIZE)
@@ -209,11 +166,7 @@ begin
   
   vga_output: vga port map(clk50, reset, vga_pixel, vga_pixel_clk, vga_pixel_row, vga_pixel_col, vga_hs, vga_vs, vga_blank, vga_red, vga_green, vga_blue);
 
-  fifo_i2c: fifo port map(fifo_read_clk, fifo_write_clk, reset, fifo_read_en, fifo_write_en, fifo_din, fifo_dout, fifo_full, fifo_empty);
-
-  i2c_master: i2c generic map(FREQUENCY => 100000)
-                  port map(clk50, reset, i2c_error, i2c_data, i2c_clk, i2c_data_clk, i2c_daddr, i2c_din, 
-                           i2c_write_en, i2c_read_en, i2c_available, i2c_write, fifo_din, i2c_dout);
+  fifo_i2c: fifo 
   
   -- ram address update -------------------------------------------------------------------------
   ram_read_manager: process(vga_pixel_clk, reset) is
@@ -231,41 +184,11 @@ begin
       vga_pixel <= red_out & green_out & blue_out;
     end if;
   end process;
-
-  -- decoder configuration -------------------------------------------------------------------------
-  decoder_config: process(i2c_clk, i2c_data) is
-  begin
-    if(reset = '0') then
-      i2c_data_clk <= '0';
-      i2c_config_state <= INIT;
-      i2c_status_led <= '0';
-    elsif(falling_edge(i2c_config_clk)) then
-      case(i2c_config_state) is
-        when INIT =>
-          i2c_status_led <= '0';
-          i2c_data_clk <= '1';
-          i2c_write_en <= '1';
-          i2c_read_en <= '0';
-          i2c_daddr <= std_logic_vector(to_unsigned(16#40#, 7));
-          i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
-          i2c_config_state <= CONFIG;
-        when CONFIG =>
-          if(i2c_available = '0') then
-            i2c_config_state <= DONE;
-          end if;
-        when DONE =>
-          i2c_status_led <= '1';
-          i2c_config_state <= DONE;
-        when others =>
-          i2c_config_state <= INIT;
-      end case;
-    end if;
-  end process;
   
   -- TESTING -------------------------------------------------------------------------
   decoder_clock: process(td_clk27) is
-    variable clock_count : natural := 0;
-    variable decimation : natural := 27000000;
+	variable clock_count : natural := 0;
+	variable decimation : natural := 27000000;
   begin
     if(reset = '0') then
       clock_count := 0;
