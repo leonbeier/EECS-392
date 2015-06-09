@@ -23,14 +23,15 @@ begin
   
   process(clk) is
   begin
-    if(reset = '0') then
-      -- active low reset
-      data_out <= (others => 'Z');
-    elsif(rising_edge(clk)) then
-      if(we = '1') then
+    if(rising_edge(clk)) then
+      
+      data_out <= ram_block(read_addr);
+      if (reset = '0') then
+        data_out <= (others => 'Z');
+      elsif(we = '1') then
         ram_block(write_addr) <= data_in;
       end if;
-      data_out <= ram_block(read_addr);
+      
     end if;
   end process;
   
