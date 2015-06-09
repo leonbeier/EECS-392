@@ -34,14 +34,13 @@ component sram is
     DATA_WIDTH : natural := 32 
   );
   port(
-    clk: in std_logic;
-    we : in std_logic;
-    write_addr: in natural range 0 to RAM_SIZE-1;
-    data_in: in std_logic_vector(DATA_WIDTH-1 downto 0);
-    read_addr: in natural range 0 to RAM_SIZE-1;
-    data_out: out std_logic_vector(DATA_WIDTH-1 downto 0)
+    clk, reset, we : in std_logic;
+    write_addr : in natural range 0 to RAM_SIZE-1;
+    data_in : in std_logic_vector(DATA_WIDTH-1 downto 0);
+    read_addr : in natural range 0 to RAM_SIZE-1;
+    data_out : out std_logic_vector(DATA_WIDTH-1 downto 0)
   );
-end component sram;
+end component;
 
 component ycc2rgb is
   port (
@@ -102,12 +101,26 @@ component centroid is
   port(
     clk : in std_logic;
     reset : in std_logic;
-    pixel_buffer : in std_logic_vector(7 downto 0);
+    enable : in std_logic;
+    pixel : in std_logic;
     
     center_row : out natural;
     center_col : out natural
-    --complete : out std_logic
   );
 end component centroid;
+
+component input_buffer is
+  generic(
+    DATA_WIDTH : natural := 8;
+    BUFFER_WIDTH : natural := 32
+  );
+  port(
+    clk, reset : std_logic;
+    enable : std_logic;
+    data_in : in std_logic_vector(DATA_WIDTH-1 downto 0);
+    data_out : out std_logic_vector(BUFFER_WIDTH-1 downto 0);
+    ready : out std_logic
+  );
+end component;
   
 end package;

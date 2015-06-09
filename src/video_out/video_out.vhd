@@ -24,6 +24,7 @@ signal pixel_col : std_logic_vector(9 downto 0);
 signal pixel_row_int, pixel_col_int : natural;
 
 signal ycc_store, ycc_load : std_logic_vector(YCC_WIDTH-1 downto 0);
+signal ycc_store_temp : std_logic_vector(YCC_WIDTH-1 downto 0);
 signal y, y1, y2, cb, cr : std_logic_vector(SAMPLE_WIDTH-1 downto 0);
 signal y1_filter, y2_filter, cb_filter, cr_filter : std_logic_vector(SAMPLE_WIDTH-1 downto 0);
 signal y_int, cb_int, cr_int : natural;
@@ -60,6 +61,11 @@ signal color_temp : std_logic_vector(31 downto 0);
 signal addr_temp : natural;
 signal init_temp : natural;
 
+signal ycc_ready, buffer_latch : std_logic := '0';
+signal centroid_enable : std_logic := '0';
+
+signal hori_sync, vert_sync : std_logic;
+
 begin
 
   input_stream : fifo
@@ -78,6 +84,29 @@ begin
     full => full,
     empty => empty
   );
+  
+  buffer_control : process(clk, clk_27, empty, ycc_ready)
+  begin
+    if rising_edge(clk) then
+      buffer_latch <= not empty;
+      
+      --if (ycc_ready = '1')
+    end if;
+  end process;
+  
+  in_buffer : input_buffer
+  generic map(
+    DATA_WIDTH => SAMPLE_WIDTH,
+    BUFFER_WIDTH => SAMPLE_WIDTH * 4
+  )
+  port map(
+    clk => clk,
+    reset => reset,
+    enable => buffer_latch,
+    data_in => camera_load,
+    data_out => ycc_store_temp,
+    ready => ycc_ready
+  );
 
   video : vga 
   port map(
@@ -87,8 +116,8 @@ begin
     pixel_clock_out => pixel_clk, 
     pixel_row => pixel_row, 
     pixel_col => pixel_col, 
-    horiz_sync_out => h_sync, 
-    vert_sync_out => v_sync, 
+    horiz_sync_out => hori_sync, 
+    vert_sync_out => vert_sync, 
     vga_blank => blank, 
     red => red, 
     green => green, 
@@ -96,6 +125,8 @@ begin
   );
   
   vga_clk <= pixel_clk;
+  h_sync <= hori_sync;
+  v_sync <= vert_sync;
   
   ycc_mem : sram
   generic map(
@@ -104,7 +135,8 @@ begin
   )
   port map(
     clk => clk,
-    we => '1',
+    reset => reset,
+    we => ycc_ready,
     write_addr => ycc_write_addr,
     data_in => ycc_store,
     read_addr => ycc_read_addr,
@@ -180,12 +212,15 @@ begin
   
   get_center : centroid
   port map(
-    clk => clk, 
-    reset => reset, 
-    pixel_buffer => bw_store, 
+    clk => pixel_clk, 
+    reset => reset,
+    enable => centroid_enable,
+    pixel => filter_result_first, 
     center_row => center_row,
     center_col => center_col
   );
+  
+  centroid_enable <= (hori_sync and vert_sync); -- active low signals
   
   get_bw_pixel : process(row, col)
   begin
@@ -312,12 +347,10 @@ begin
   
   end process; 
   
-  
   y1_filter_int <= to_integer(unsigned(y1_filter));
   y2_filter_int <= to_integer(unsigned(y2_filter));
   cb_filter_int <= to_integer(unsigned(cb_filter));
   cr_filter_int <= to_integer(unsigned(cr_filter));
-  
   
   filter_first : ycc_filter
   port map(
@@ -350,6 +383,7 @@ begin
   )
   port map(
     clk => clk,
+    reset => reset, 
     we => '1',
     write_addr => bw_write_addr,
     data_in => bw_store,
