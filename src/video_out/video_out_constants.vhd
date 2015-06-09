@@ -34,7 +34,7 @@ component sram is
     DATA_WIDTH : natural := 32 
   );
   port(
-    clk, reset, we : in std_logic;
+    clk, we : in std_logic;
     write_addr : in natural range 0 to RAM_SIZE-1;
     data_in : in std_logic_vector(DATA_WIDTH-1 downto 0);
     read_addr : in natural range 0 to RAM_SIZE-1;

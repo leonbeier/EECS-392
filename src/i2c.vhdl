@@ -78,54 +78,47 @@ begin
     variable active : std_logic := '0';
     variable er : std_logic := '0';
   begin
-    --if ( reset = '1' ) then
-    --clock_ct <= '0';
-    --data_ct <= '0';
-    --error <= '0';
-    if(rising_edge(clock_50)) then
-    clock_ct <= clock_count;
-    data_ct <= data_count;
-    error <= er;
+    if(reset = '1') then
+      -- active low reset
+      er := '0';
+      reading := '0';
+      writing := '0';
+      i2c_s <= INIT;
+    elsif(rising_edge(clock_50)) then
+      clock_ct <= clock_count;
+      data_ct <= data_count;
+      error <= er;
       case(i2c_s) is
         when INIT =>
           -- wait until the user sets a mode
           --  modes: write, read where write has the higher priority
           clock_count := 0;
-	  clock_ct <= 0;
+          clock_ct <= 0;
           sda_enable <= '0';
           scl_enable <= '1';
           data_buffer := data_in;
           data_addr_buffer := data_addr;
-	  clock_count := 0;
-	  data_count := 0;
+          clock_count := 0;
+          data_count := 0;
+          available <= '1';
           if(write_en = '1' and er = '0') then
             sda_enable <= '1';
             writing := '1';
             reading := '0';
+            available <= '0';
             available <= '0';
             i2c_s <= START;
           elsif(read_en = '1' and er = '0') then
             sda_enable <= '0';
             reading := '1';
             writing := '0';
+            available <= '0';
             i2c_s <= START;
-	  elsif(er = '1') then
-	    if(reset = '1') then
-		er := '0';
-		reading := '0';
-		writing := '0';
-	    end if;
           else
             reading := '0';
             writing := '0';
           end if;
           
-          if(rising_edge(data_clk)) then
-            available <= '0';
-            i2c_s <= START;
-          else
-            available <= '1';
-          end if;
 ------------------------------------------------------------------------
         when START =>
           -- send out the start signal

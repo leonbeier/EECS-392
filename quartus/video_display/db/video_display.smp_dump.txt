@@ -1,4 +1,19 @@
 
+State Machine - |video_display|i2c_config_state
+Name i2c_config_state.DONE_CONFIG i2c_config_state.I2C_DATA_CONFIG i2c_config_state.I2C_ADDR_CONFIG i2c_config_state.INIT_CONFIG 
+i2c_config_state.INIT_CONFIG 0 0 0 0 
+i2c_config_state.I2C_ADDR_CONFIG 0 0 1 1 
+i2c_config_state.I2C_DATA_CONFIG 0 1 0 1 
+i2c_config_state.DONE_CONFIG 1 0 0 1 
+
+State Machine - |video_display|i2c:i2c_master|i2c_s
+Name i2c_s.STOP i2c_s.DATA i2c_s.ADDRESS i2c_s.START i2c_s.INIT 
+i2c_s.INIT 0 0 0 0 0 
+i2c_s.START 0 0 0 1 1 
+i2c_s.ADDRESS 0 0 1 0 1 
+i2c_s.DATA 0 1 0 0 1 
+i2c_s.STOP 1 0 0 0 1 
+
 State Machine - |video_display|adv7180:decoder|state
 Name state.READ state.HS_RESET state.VS_RESET 
 state.VS_RESET 0 0 0 

@@ -135,7 +135,7 @@ begin
   )
   port map(
     clk => clk,
-    reset => reset,
+    --reset => reset,
     we => ycc_ready,
     write_addr => ycc_write_addr,
     data_in => ycc_store,
@@ -214,7 +214,7 @@ begin
   port map(
     clk => pixel_clk, 
     reset => reset,
-    enable => centroid_enable,
+    enable => '1', --centroid_enable,
     pixel => filter_result_first, 
     center_row => center_row,
     center_col => center_col
@@ -383,7 +383,7 @@ begin
   )
   port map(
     clk => clk,
-    reset => reset, 
+    --reset => reset, 
     we => '1',
     write_addr => bw_write_addr,
     data_in => bw_store,
