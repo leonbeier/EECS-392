@@ -28,6 +28,7 @@ entity video_display is
     
     -- TESTING -------------------------------------------------------------------------
     segments_out : out std_logic_vector(6 downto 0);
+    i2c_state_segments : out std_logic_vector(6 downto 0);
     reset_led : out std_logic
   );
   
@@ -150,6 +151,7 @@ architecture video_display of video_display is
   signal i2c_daddr : std_logic_vector(I2C_ADDR_WIDTH-1 downto 0);
   signal i2c_write : std_logic;
   signal i2c_din, i2c_dout : std_logic_vector(I2C_DATA_WIDTH-1 downto 0);
+  type config_state is (INIT_CONFIG, I2C_ADDR_CONFIG, I2C_DATA_CONFIG, DONE_CONFIG);
   signal i2c_config_state : config_state;
 
   -- ram signals -------------------------------------------------------------------------
@@ -174,6 +176,7 @@ architecture video_display of video_display is
   
   -- TESTING -------------------------------------------------------------------------
   signal led_count : std_logic_vector(3 downto 0);
+  signal i2c_state_count : std_logic_vector(3 downto 0);
   
   component leddcd is
     port(
@@ -237,27 +240,34 @@ begin
   begin
     if(reset = '0') then
       i2c_data_clk <= '0';
-      i2c_config_state <= INIT;
+      i2c_config_state <= INIT_CONFIG;
       i2c_status_led <= '0';
     elsif(falling_edge(i2c_config_clk)) then
       case(i2c_config_state) is
-        when INIT =>
+        when INIT_CONFIG =>
           i2c_status_led <= '0';
-          i2c_data_clk <= '1';
           i2c_write_en <= '1';
           i2c_read_en <= '0';
           i2c_daddr <= std_logic_vector(to_unsigned(16#40#, 7));
-          i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
-          i2c_config_state <= CONFIG;
-        when CONFIG =>
-          if(i2c_available = '0') then
-            i2c_config_state <= DONE;
+          i2c_din <= x"00";
+
+          i2c_config_state <= I2C_ADDR_CONFIG;
+        when I2C_ADDR_CONFIG =>
+          i2c_write_en <= '0';
+          if(i2c_available ='0') then
+            i2c_write_en <= '1';
+            i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
+            i2c_config_state <= I2C_DATA_CONFIG;
           end if;
-        when DONE =>
+        when I2C_DATA_CONFIG =>
+          if(i2c_available = '0') then
+            i2c_config_state <= DONE_CONFIG;
+          end if;
+        when DONE_CONFIG =>
           i2c_status_led <= '1';
-          i2c_config_state <= DONE;
+          i2c_config_state <= DONE_CONFIG;
         when others =>
-          i2c_config_state <= INIT;
+          i2c_config_state <= INIT_CONFIG;
       end case;
     end if;
   end process;
@@ -279,7 +289,14 @@ begin
     end if;
   end process;
   
+  i2c_state_count <= "0000" when (i2c_config_state = INIT_CONFIG) else
+                     "0001" when (i2c_config_state = I2C_ADDR_CONFIG) else
+                     "0010" when (i2c_config_state = I2C_DATA_CONFIG) else
+                     "0011" when (i2c_config_state = DONE_CONFIG) else
+                     "0100";
+
   led_output: leddcd port map(led_count, segments_out);
+  i2c_state_output : leddcd port map(i2c_state_count, i2c_state_segments);
   
   reset_led <= reset;
   

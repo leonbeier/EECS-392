@@ -27,7 +27,6 @@ reset => ram_read_addr[13].ACLR
 reset => ram_read_addr[14].ACLR
 reset => ram_read_addr[15].ACLR
 reset => i2c_status_led~reg0.ACLR
-reset => i2c_data_clk.ACLR
 reset => led_count[0].ACLR
 reset => led_count[1].ACLR
 reset => led_count[2].ACLR
@@ -63,7 +62,7 @@ reset => \decoder_clock:clock_count[27].ACLR
 reset => \decoder_clock:clock_count[28].ACLR
 reset => \decoder_clock:clock_count[29].ACLR
 reset => \decoder_clock:clock_count[30].ACLR
-reset => i2c_config_state~6.DATAIN
+reset => i2c_config_state~7.DATAIN
 reset => vga_pixel[23].ENA
 reset => vga_pixel[22].ENA
 reset => vga_pixel[21].ENA
@@ -202,8 +201,7 @@ i2c_config_clk => i2c_daddr[6].CLK
 i2c_config_clk => i2c_read_en.CLK
 i2c_config_clk => i2c_write_en.CLK
 i2c_config_clk => i2c_status_led~reg0.CLK
-i2c_config_clk => i2c_data_clk.CLK
-i2c_config_clk => i2c_config_state~4.DATAIN
+i2c_config_clk => i2c_config_state~5.DATAIN
 i2c_status_led << i2c_status_led~reg0.DB_MAX_OUTPUT_PORT_TYPE
 segments_out[0] << leddcd:led_output.segments_out[0]
 segments_out[1] << leddcd:led_output.segments_out[1]
@@ -212,6 +210,13 @@ segments_out[3] << leddcd:led_output.segments_out[3]
 segments_out[4] << leddcd:led_output.segments_out[4]
 segments_out[5] << leddcd:led_output.segments_out[5]
 segments_out[6] << leddcd:led_output.segments_out[6]
+i2c_state_segments[0] << leddcd:i2c_state_output.segments_out[0]
+i2c_state_segments[1] << leddcd:i2c_state_output.segments_out[1]
+i2c_state_segments[2] << leddcd:i2c_state_output.segments_out[2]
+i2c_state_segments[3] << leddcd:i2c_state_output.segments_out[3]
+i2c_state_segments[4] << leddcd:i2c_state_output.segments_out[4]
+i2c_state_segments[5] << leddcd:i2c_state_output.segments_out[5]
+i2c_state_segments[6] << leddcd:i2c_state_output.segments_out[6]
 reset_led << reset.DB_MAX_OUTPUT_PORT_TYPE
 
 
@@ -1760,6 +1765,76 @@ en => dout.OE
 
 
 |video_display|leddcd:led_output
+data_in[0] => Equal0.IN0
+data_in[0] => Equal1.IN3
+data_in[0] => Equal2.IN1
+data_in[0] => Equal3.IN3
+data_in[0] => Equal4.IN1
+data_in[0] => Equal5.IN3
+data_in[0] => Equal6.IN2
+data_in[0] => Equal7.IN3
+data_in[0] => Equal8.IN1
+data_in[0] => Equal9.IN3
+data_in[0] => Equal10.IN2
+data_in[0] => Equal11.IN3
+data_in[0] => Equal12.IN2
+data_in[0] => Equal13.IN3
+data_in[0] => Equal14.IN3
+data_in[1] => Equal0.IN3
+data_in[1] => Equal1.IN0
+data_in[1] => Equal2.IN0
+data_in[1] => Equal3.IN2
+data_in[1] => Equal4.IN3
+data_in[1] => Equal5.IN1
+data_in[1] => Equal6.IN1
+data_in[1] => Equal7.IN2
+data_in[1] => Equal8.IN3
+data_in[1] => Equal9.IN1
+data_in[1] => Equal10.IN1
+data_in[1] => Equal11.IN2
+data_in[1] => Equal12.IN3
+data_in[1] => Equal13.IN2
+data_in[1] => Equal14.IN2
+data_in[2] => Equal0.IN2
+data_in[2] => Equal1.IN2
+data_in[2] => Equal2.IN3
+data_in[2] => Equal3.IN0
+data_in[2] => Equal4.IN0
+data_in[2] => Equal5.IN0
+data_in[2] => Equal6.IN0
+data_in[2] => Equal7.IN1
+data_in[2] => Equal8.IN2
+data_in[2] => Equal9.IN2
+data_in[2] => Equal10.IN3
+data_in[2] => Equal11.IN1
+data_in[2] => Equal12.IN1
+data_in[2] => Equal13.IN1
+data_in[2] => Equal14.IN1
+data_in[3] => Equal0.IN1
+data_in[3] => Equal1.IN1
+data_in[3] => Equal2.IN2
+data_in[3] => Equal3.IN1
+data_in[3] => Equal4.IN2
+data_in[3] => Equal5.IN2
+data_in[3] => Equal6.IN3
+data_in[3] => Equal7.IN0
+data_in[3] => Equal8.IN0
+data_in[3] => Equal9.IN0
+data_in[3] => Equal10.IN0
+data_in[3] => Equal11.IN0
+data_in[3] => Equal12.IN0
+data_in[3] => Equal13.IN0
+data_in[3] => Equal14.IN0
+segments_out[0] <= segments_out.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[1] <= segments_out.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[2] <= segments_out.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[3] <= segments_out.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[4] <= segments_out.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[5] <= segments_out.DB_MAX_OUTPUT_PORT_TYPE
+segments_out[6] <= segments_out.DB_MAX_OUTPUT_PORT_TYPE
+
+
+|video_display|leddcd:i2c_state_output
 data_in[0] => Equal0.IN0
 data_in[0] => Equal1.IN3
 data_in[0] => Equal2.IN1
