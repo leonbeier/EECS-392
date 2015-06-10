@@ -8,7 +8,7 @@ entity sram is
     DATA_WIDTH : natural := 32 
   );
   port(
-    clk, reset : in std_logic;
+    clk : in std_logic;
     we : in std_logic;
     write_addr : in natural range 0 to RAM_SIZE-1;
     data_in : in std_logic_vector(DATA_WIDTH-1 downto 0);
@@ -24,14 +24,11 @@ begin
   
   process(clk) is
   begin
-    if(reset = '0') then
-      data_out <= (others => 'Z');
-    elsif(rising_edge(clk)) then
+    if(rising_edge(clk)) then
       
       data_out <= ram_block(read_addr);
-      if (reset = '0') then
-        data_out <= (others => 'Z');
-      elsif(we = '1') then
+      
+      if(we = '1') then
         ram_block(write_addr) <= data_in;
       end if;
       
