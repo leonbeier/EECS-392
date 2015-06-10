@@ -106,7 +106,6 @@ begin
             writing := '1';
             reading := '0';
             available <= '0';
-            available <= '0';
             i2c_s <= START;
           elsif(read_en = '1' and er = '0') then
             sda_enable <= '0';
@@ -118,17 +117,16 @@ begin
             reading := '0';
             writing := '0';
           end if;
-          
 ------------------------------------------------------------------------
         when START =>
           -- send out the start signal
-          if(scl /= '0') then
+          -- if(scl /= '0') then
             sda_enable <= '1';
             sda_write <= '0';
             i2c_s <= ADDRESS;
-          else
-            i2c_s <= INIT; 
-          end if;
+          -- else
+          --   i2c_s <= INIT; 
+          -- end if;
 ------------------------------------------------------------------------
         when ADDRESS =>
           -- inactive if write or read were set but not data latched

@@ -1,0 +1,61 @@
+# Project file /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/modelsim/adv7180/i2c.mpf was not found.
+# Unable to open project.
+# Loading project i2c
+# Compile of i2c_tb.vhd failed with 1 errors.
+# Compile of fifo.vhdl was successful.
+# Compile of i2c.vhdl failed with 1 errors.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of tristate.vhdl was successful.
+# 5 compiles, 2 failed with 2 errors.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of fifo.vhdl was successful.
+# Compile of i2c.vhdl was successful.
+# Compile of tristate.vhdl was successful.
+# Compile of i2c_tb.vhd was successful.
+# 5 compiles, 0 failed with no errors.
+vsim work.i2c_tb
+# vsim 
+# Start time: 16:26:44 on Jun 10,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tracker_constants
+# Loading work.i2c_tb(behavioral)
+# Loading work.i2c(i2c)
+# Loading work.tristate(tristate)
+add wave -position insertpoint sim:/i2c_tb/*
+run
+add wave -position insertpoint sim:/i2c_tb/test/i2c_manager/*
+restart -f
+run
+add wave -position insertpoint  \
+sim:/i2c_tb/test/i2c_s
+restart -f
+run
+quit -sim
+# Compile of tracker_constants.vhdl was successful.
+# Compile of fifo.vhdl was successful.
+# Compile of i2c.vhdl was successful.
+# Compile of tristate.vhdl was successful.
+# Compile of i2c_tb.vhd was successful.
+# 5 compiles, 0 failed with no errors.
+vsim work.i2c_tb
+# vsim 
+# Start time: 17:03:50 on Jun 10,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.tracker_constants
+# Loading work.i2c_tb(behavioral)
+# Loading work.i2c(i2c)
+# Loading work.tristate(tristate)
+run
+add wave -position insertpoint sim:/i2c_tb/*
+add wave -position insertpoint sim:/i2c_tb/test/i2c_manager/*
+add wave -position insertpoint  \
+sim:/i2c_tb/test/i2c_s
+run
+restart -f
+run

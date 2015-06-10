@@ -1,0 +1,35 @@
+/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tristate.vhdl {1 {vcom -work work -2002 -explicit -stats=none /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tristate.vhdl
+Model Technology ModelSim ALTERA vcom 10.3d Compiler 2014.10 Oct  7 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity tristate
+-- Compiling architecture tristate of tristate
+
+} {} {}} /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl {1 {vcom -work work -2002 -explicit -stats=none /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl
+Model Technology ModelSim ALTERA vcom 10.3d Compiler 2014.10 Oct  7 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Compiling package tracker_constants
+
+} {} {}} /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/fifo.vhdl {1 {vcom -work work -2002 -explicit -stats=none /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/fifo.vhdl
+Model Technology ModelSim ALTERA vcom 10.3d Compiler 2014.10 Oct  7 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Compiling entity fifo
+-- Compiling architecture fifo of fifo
+
+} {} {}} /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/testbench/i2c_tb.vhd {1 {vcom -work work -2002 -explicit -stats=none /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/testbench/i2c_tb.vhd
+Model Technology ModelSim ALTERA vcom 10.3d Compiler 2014.10 Oct  7 2014
+-- Loading package STANDARD
+-- Loading package TEXTIO
+-- Loading package std_logic_1164
+-- Loading package NUMERIC_STD
+-- Loading package tracker_constants
+-- Compiling entity i2c_tb
+-- Compiling architecture behavioral of i2c_tb
+
+} {} {}}
