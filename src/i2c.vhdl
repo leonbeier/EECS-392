@@ -90,14 +90,12 @@ begin
   begin
     if(reset = '1') then
       -- active low reset
-      er := '0';
       reading := '0';
       writing := '0';
       i2c_s <= INIT;
     elsif(rising_edge(clock_50)) then
       clock_ct <= clock_count;
       data_ct <= data_count;
-      error <= er;
       case(i2c_s) is
         when INIT =>
           -- wait until the user sets a mode
@@ -148,7 +146,7 @@ begin
               if(data_count = I2C_ADDR_WIDTH+1) then
 		sda_enable <= '0';
               	if(sda = '1') then
-                  --er := '1';
+                  error <= '1';
                   --i2c_s <= INIT;
               	end if;
 	      end if;
@@ -210,7 +208,7 @@ begin
                   sda_write <= '0';
                 elsif(reading = '0' and writing = '1') then
                   if(sda = '1') then
-                    er := '1';
+                    error <= '1';
                     i2c_s <= INIT;
                   end if;
                 end if;
@@ -278,6 +276,7 @@ begin
           elsif(clock_count = i2c_period_count) then
             clock_count := 0;
             data_count := 0;
+            error <= '0';
             i2c_s <= INIT;
           end if;
         when OTHERS =>

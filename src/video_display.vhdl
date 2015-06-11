@@ -261,18 +261,22 @@ begin
 			
           i2c_config_state <= I2C_ADDR_CONFIG;
         when I2C_ADDR_CONFIG =>
-			 i2c_write_en <= '1';
-			 i2c_din <= "00000000";
+          i2c_write_en <= '1';
+          i2c_din <= "00000000";
           if(i2c_available ='0') then
-				i2c_write_en <= '0';
-            i2c_config_state <= I2C_DATA_CONFIG;
+            i2c_write_en <= '0';
+            if(i2c_available = '1') then
+              i2c_config_state <= I2C_DATA_CONFIG;
+            end if;
           end if;
         when I2C_DATA_CONFIG =>
-			 i2c_write_en <= '1';
-			 i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
+          i2c_write_en <= '1';
+          i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
           if(i2c_available = '0') then
-				i2c_write_en <= '0';
-            i2c_config_state <= DONE_CONFIG;
+            i2c_write_en <= '0';
+            if(i2c_available = '1') then
+              i2c_config_state <= DONE_CONFIG;
+            end if;
           end if;
         when DONE_CONFIG =>
           i2c_status_led <= '1';
