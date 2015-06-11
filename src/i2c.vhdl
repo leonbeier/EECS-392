@@ -73,7 +73,7 @@ begin
   i2c_period_count <= 50_000_000 / FREQUENCY;
   sda_map: tristate generic map(MODE => PULL_UP)
                     port map(din => sda_write, dout => sda, en => sda_enable);
-  scl_map: tristate generic map(MODE => PULL_DOWN)
+  scl_map: tristate generic map(MODE => PULL_UP)
                     port map(din => scl_write, dout => scl, en => scl_enable);
 
   state <= "0000" when (i2c_s = INIT) else
@@ -192,7 +192,7 @@ begin
               if(data_count = I2C_ADDR_WIDTH+1) then
                 if(sda = '1') then
                   error <= '1';
-                  i2c_s <= INIT;
+                  -- i2c_s <= INIT;
                 end if;
               end if;
               clock_count := clock_count + 1;
@@ -238,7 +238,7 @@ begin
               sda_enable <= '0';
               if(sda = '1') then
                 error <= '1';
-                i2c_s <= INIT;
+                -- i2c_s <= INIT;
               end if;
               clock_count := clock_count +1;
             elsif(clock_count < i2c_period_count-1) then
@@ -259,22 +259,24 @@ begin
               odata <= data_buffer;
             end if; 
             scl_write <= '0';
-            clock_count := clock_count +1;
+            clock_count := clock_count + 1;
           elsif(clock_count = i2c_period_count/2) then
             sda_enable <= '1';
             sda_write <= '0';
             scl_write <= '1';
             clock_count := clock_count +1;
           elsif(clock_count < (3*i2c_period_count)/4) then
+            clock_count := clock_count + 1;
+          elsif(clock_count = (3*i2c_period_count)/4) then
             sda_write <= '1';
+            clock_count := clock_count + 1;
+          elsif(clock_count < i2c_period_count-1) then
             clock_count := clock_count +1;
-          elsif(clock_count < i2c_period_count) then
-            clock_count := clock_count +1;
-          elsif(clock_count = i2c_period_count) then
+          elsif(clock_count = i2c_period_count-1) then
             clock_count := 0;
             data_count := 0;
             error <= '0';
-            i2c_s <= INIT;
+            -- i2c_s <= INIT;
           end if;
         when OTHERS =>
           i2c_s <= INIT;
