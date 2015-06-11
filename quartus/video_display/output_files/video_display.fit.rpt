@@ -1,5 +1,5 @@
 Fitter report for video_display
-Wed Jun 10 21:08:38 2015
+Wed Jun 10 22:03:13 2015
 Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
 
 
@@ -71,15 +71,15 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Fitter Summary                                                                  ;
 +------------------------------------+--------------------------------------------+
-; Fitter Status                      ; Successful - Wed Jun 10 21:08:38 2015      ;
+; Fitter Status                      ; Successful - Wed Jun 10 22:03:12 2015      ;
 ; Quartus II 64-Bit Version          ; 14.0.0 Build 200 06/17/2014 SJ Web Edition ;
 ; Revision Name                      ; video_display                              ;
 ; Top-level Entity Name              ; video_display                              ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE115F29C7                              ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 1,047 / 114,480 ( < 1 % )                  ;
-;     Total combinational functions  ; 1,024 / 114,480 ( < 1 % )                  ;
+; Total logic elements               ; 1,052 / 114,480 ( < 1 % )                  ;
+;     Total combinational functions  ; 1,023 / 114,480 ( < 1 % )                  ;
 ;     Dedicated logic registers      ; 481 / 114,480 ( < 1 % )                    ;
 ; Total registers                    ; 481                                        ;
 ; Total pins                         ; 72 / 529 ( 14 % )                          ;
@@ -232,8 +232,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Type                ; Total [A + B]       ; From Design Partitions [A] ; From Rapid Recompile [B] ;
 +---------------------+---------------------+----------------------------+--------------------------+
 ; Placement (by node) ;                     ;                            ;                          ;
-;     -- Requested    ; 0.00 % ( 0 / 1825 ) ; 0.00 % ( 0 / 1825 )        ; 0.00 % ( 0 / 1825 )      ;
-;     -- Achieved     ; 0.00 % ( 0 / 1825 ) ; 0.00 % ( 0 / 1825 )        ; 0.00 % ( 0 / 1825 )      ;
+;     -- Requested    ; 0.00 % ( 0 / 1824 ) ; 0.00 % ( 0 / 1824 )        ; 0.00 % ( 0 / 1824 )      ;
+;     -- Achieved     ; 0.00 % ( 0 / 1824 ) ; 0.00 % ( 0 / 1824 )        ; 0.00 % ( 0 / 1824 )      ;
 ;                     ;                     ;                            ;                          ;
 ; Routing (by net)    ;                     ;                            ;                          ;
 ;     -- Requested    ; 0.00 % ( 0 / 0 )    ; 0.00 % ( 0 / 0 )           ; 0.00 % ( 0 / 0 )         ;
@@ -256,7 +256,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 ; Partition Name                 ; Preservation Achieved ; Preservation Level Used ; Netlist Type Used ; Preservation Method ; Notes ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
-; Top                            ; 0.00 % ( 0 / 1815 )   ; N/A                     ; Source File       ; N/A                 ;       ;
+; Top                            ; 0.00 % ( 0 / 1814 )   ; N/A                     ; Source File       ; N/A                 ;       ;
 ; hard_block:auto_generated_inst ; 0.00 % ( 0 / 10 )     ; N/A                     ; Source File       ; N/A                 ;       ;
 +--------------------------------+-----------------------+-------------------------+-------------------+---------------------+-------+
 
@@ -272,19 +272,19 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 +---------------------------------------------+--------------------------------+
 ; Resource                                    ; Usage                          ;
 +---------------------------------------------+--------------------------------+
-; Total logic elements                        ; 1,047 / 114,480 ( < 1 % )      ;
-;     -- Combinational with no register       ; 566                            ;
-;     -- Register only                        ; 23                             ;
-;     -- Combinational with a register        ; 458                            ;
+; Total logic elements                        ; 1,052 / 114,480 ( < 1 % )      ;
+;     -- Combinational with no register       ; 571                            ;
+;     -- Register only                        ; 29                             ;
+;     -- Combinational with a register        ; 452                            ;
 ;                                             ;                                ;
 ; Logic element usage by number of LUT inputs ;                                ;
-;     -- 4 input functions                    ; 378                            ;
-;     -- 3 input functions                    ; 140                            ;
-;     -- <=2 input functions                  ; 506                            ;
-;     -- Register only                        ; 23                             ;
+;     -- 4 input functions                    ; 379                            ;
+;     -- 3 input functions                    ; 132                            ;
+;     -- <=2 input functions                  ; 512                            ;
+;     -- Register only                        ; 29                             ;
 ;                                             ;                                ;
 ; Logic elements by mode                      ;                                ;
-;     -- normal mode                          ; 625                            ;
+;     -- normal mode                          ; 624                            ;
 ;     -- arithmetic mode                      ; 399                            ;
 ;                                             ;                                ;
 ; Total registers*                            ; 481 / 117,053 ( < 1 % )        ;
@@ -308,12 +308,12 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 ; CRC blocks                                  ; 0 / 1 ( 0 % )                  ;
 ; ASMI blocks                                 ; 0 / 1 ( 0 % )                  ;
 ; Impedance control blocks                    ; 0 / 4 ( 0 % )                  ;
-; Average interconnect usage (total/H/V)      ; 2.0% / 2.0% / 2.0%             ;
-; Peak interconnect usage (total/H/V)         ; 13.0% / 12.3% / 14.1%          ;
+; Average interconnect usage (total/H/V)      ; 1.9% / 1.9% / 2.0%             ;
+; Peak interconnect usage (total/H/V)         ; 15.4% / 15.1% / 16.0%          ;
 ; Maximum fan-out                             ; 479                            ;
 ; Highest non-global fan-out                  ; 161                            ;
 ; Total fan-out                               ; 9347                           ;
-; Average fan-out                             ; 5.07                           ;
+; Average fan-out                             ; 5.05                           ;
 +---------------------------------------------+--------------------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -326,19 +326,19 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 +---------------------------------------------+-------------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                     ; Low                            ;
 ;                                             ;                         ;                                ;
-; Total logic elements                        ; 1047 / 114480 ( < 1 % ) ; 0 / 114480 ( 0 % )             ;
-;     -- Combinational with no register       ; 566                     ; 0                              ;
-;     -- Register only                        ; 23                      ; 0                              ;
-;     -- Combinational with a register        ; 458                     ; 0                              ;
+; Total logic elements                        ; 1052 / 114480 ( < 1 % ) ; 0 / 114480 ( 0 % )             ;
+;     -- Combinational with no register       ; 571                     ; 0                              ;
+;     -- Register only                        ; 29                      ; 0                              ;
+;     -- Combinational with a register        ; 452                     ; 0                              ;
 ;                                             ;                         ;                                ;
 ; Logic element usage by number of LUT inputs ;                         ;                                ;
-;     -- 4 input functions                    ; 378                     ; 0                              ;
-;     -- 3 input functions                    ; 140                     ; 0                              ;
-;     -- <=2 input functions                  ; 506                     ; 0                              ;
-;     -- Register only                        ; 23                      ; 0                              ;
+;     -- 4 input functions                    ; 379                     ; 0                              ;
+;     -- 3 input functions                    ; 132                     ; 0                              ;
+;     -- <=2 input functions                  ; 512                     ; 0                              ;
+;     -- Register only                        ; 29                      ; 0                              ;
 ;                                             ;                         ;                                ;
 ; Logic elements by mode                      ;                         ;                                ;
-;     -- normal mode                          ; 625                     ; 0                              ;
+;     -- normal mode                          ; 624                     ; 0                              ;
 ;     -- arithmetic mode                      ; 399                     ; 0                              ;
 ;                                             ;                         ;                                ;
 ; Total registers                             ; 481                     ; 0                              ;
@@ -363,7 +363,7 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 ;                                             ;                         ;                                ;
 ; Internal Connections                        ;                         ;                                ;
 ;     -- Total Connections                    ; 9342                    ; 5                              ;
-;     -- Registered Connections               ; 5646                    ; 0                              ;
+;     -- Registered Connections               ; 5642                    ; 0                              ;
 ;                                             ;                         ;                                ;
 ; External Connections                        ;                         ;                                ;
 ;     -- Top                                  ; 8                       ; 0                              ;
@@ -397,7 +397,7 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 +----------------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
 ; clk50          ; Y2    ; 2        ; 0            ; 36           ; 14           ; 77                    ; 0                  ; yes    ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ;
 ; i2c_config_clk ; M21   ; 6        ; 115          ; 53           ; 14           ; 0                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ;
-; reset          ; M23   ; 6        ; 115          ; 40           ; 7            ; 134                   ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ;
+; reset          ; M23   ; 6        ; 115          ; 40           ; 7            ; 135                   ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ;
 ; td_clk27       ; B14   ; 8        ; 56           ; 73           ; 21           ; 479                   ; 0                  ; yes    ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ;
 ; td_data[0]     ; E8    ; 8        ; 11           ; 73           ; 0            ; 4                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ;
 ; td_data[1]     ; A7    ; 8        ; 29           ; 73           ; 0            ; 4                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ;
@@ -417,8 +417,8 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 +--------------------------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
 ; Name                     ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Output Register ; Output Enable Register ; Power Up High ; Slew Rate ; PCI I/O Enabled ; Open Drain ; TRI Primitive ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Termination                       ; Termination Control Block ; Output Buffer Pre-emphasis ; Voltage Output Differential ; Location assigned by ; Output Enable Source ; Output Enable Group ;
 +--------------------------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
-; i2c_availability         ; E19   ; 7        ; 94           ; 73           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; i2c_error                ; AC28  ; 5        ; 115          ; 14           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; i2c_availability         ; F21   ; 7        ; 107          ; 73           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; i2c_error                ; E19   ; 7        ; 94           ; 73           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; i2c_internal_segments[0] ; AA25  ; 5        ; 115          ; 17           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; i2c_internal_segments[1] ; AA26  ; 5        ; 115          ; 16           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; i2c_internal_segments[2] ; Y25   ; 5        ; 115          ; 19           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
@@ -530,9 +530,9 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 ; 2        ; 1 / 63 ( 2 % )   ; 2.5V          ; --           ;
 ; 3        ; 0 / 73 ( 0 % )   ; 2.5V          ; --           ;
 ; 4        ; 2 / 71 ( 3 % )   ; 2.5V          ; --           ;
-; 5        ; 14 / 65 ( 22 % ) ; 2.5V          ; --           ;
+; 5        ; 13 / 65 ( 20 % ) ; 2.5V          ; --           ;
 ; 6        ; 8 / 58 ( 14 % )  ; 2.5V          ; --           ;
-; 7        ; 6 / 72 ( 8 % )   ; 2.5V          ; --           ;
+; 7        ; 7 / 72 ( 10 % )  ; 2.5V          ; --           ;
 ; 8        ; 42 / 71 ( 59 % ) ; 2.5V          ; --           ;
 +----------+------------------+---------------+--------------+
 
@@ -651,7 +651,7 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 ; AC25     ; 272        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; AC26     ; 282        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; AC27     ; 290        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
-; AC28     ; 289        ; 5        ; i2c_error                                                 ; output ; 2.5 V        ;         ; Row I/O    ; Y               ; no       ; Off          ;
+; AC28     ; 289        ; 5        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; AD1      ; 98         ; 2        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; AD2      ; 97         ; 2        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; AD3      ; 96         ; 2        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
@@ -892,7 +892,7 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 ; E16      ;            ; 7        ; VCCIO7                                                    ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
 ; E17      ; 456        ; 7        ; segments_out[2]                                           ; output ; 2.5 V        ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; E18      ; 427        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
-; E19      ; 421        ; 7        ; i2c_availability                                          ; output ; 2.5 V        ;         ; Column I/O ; Y               ; no       ; Off          ;
+; E19      ; 421        ; 7        ; i2c_error                                                 ; output ; 2.5 V        ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; E20      ;            ; 7        ; VCCIO7                                                    ; power  ;              ; 2.5V    ; --         ;                 ; --       ; --           ;
 ; E21      ; 407        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; E22      ; 403        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
@@ -922,7 +922,7 @@ The pin-out file can be found in X:/nu/current/ece392/EECS-392/quartus/video_dis
 ; F18      ; 428        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
 ; F19      ; 420        ; 7        ; i2c_status_led                                            ; output ; 2.5 V        ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; F20      ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
-; F21      ; 408        ; 7        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Column I/O ;                 ; no       ; On           ;
+; F21      ; 408        ; 7        ; i2c_availability                                          ; output ; 2.5 V        ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; F22      ; 409        ; 7        ; segments_out[1]                                           ; output ; 2.5 V        ;         ; Column I/O ; Y               ; no       ; Off          ;
 ; F23      ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
 ; F24      ; 396        ; 6        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
@@ -1331,19 +1331,19 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +------------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                     ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                                                                                                                        ; Library Name ;
 +------------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |video_display                                 ; 1047 (115)  ; 481 (79)                  ; 0 (0)         ; 1228800     ; 160  ; 0            ; 0       ; 0         ; 72   ; 0            ; 566 (46)     ; 23 (12)           ; 458 (58)         ; |video_display                                                                                                                             ; work         ;
+; |video_display                                 ; 1052 (113)  ; 481 (79)                  ; 0 (0)         ; 1228800     ; 160  ; 0            ; 0       ; 0         ; 72   ; 0            ; 571 (46)     ; 29 (13)           ; 452 (54)         ; |video_display                                                                                                                             ; work         ;
 ;    |adv7180:decoder|                           ; 322 (322)   ; 257 (257)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 65 (65)      ; 2 (2)             ; 255 (255)        ; |video_display|adv7180:decoder                                                                                                             ; work         ;
-;    |i2c:i2c_master|                            ; 225 (225)   ; 73 (73)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 152 (152)    ; 2 (2)             ; 71 (71)          ; |video_display|i2c:i2c_master                                                                                                              ; work         ;
+;    |i2c:i2c_master|                            ; 223 (223)   ; 73 (73)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 150 (150)    ; 1 (1)             ; 72 (72)          ; |video_display|i2c:i2c_master                                                                                                              ; work         ;
 ;    |leddcd:i2c_internal_output|                ; 5 (5)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 5 (5)        ; 0 (0)             ; 0 (0)            ; |video_display|leddcd:i2c_internal_output                                                                                                  ; work         ;
 ;    |leddcd:i2c_state_output|                   ; 1 (1)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 1 (1)        ; 0 (0)             ; 0 (0)            ; |video_display|leddcd:i2c_state_output                                                                                                     ; work         ;
 ;    |leddcd:led_output|                         ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; |video_display|leddcd:led_output                                                                                                           ; work         ;
-;    |sram:ram_block|                            ; 84 (0)      ; 3 (0)                     ; 0 (0)         ; 1228800     ; 160  ; 0            ; 0       ; 0         ; 0    ; 0            ; 81 (0)       ; 0 (0)             ; 3 (0)            ; |video_display|sram:ram_block                                                                                                              ; work         ;
-;       |altsyncram:ram_block_rtl_0|             ; 84 (0)      ; 3 (0)                     ; 0 (0)         ; 1228800     ; 160  ; 0            ; 0       ; 0         ; 0    ; 0            ; 81 (0)       ; 0 (0)             ; 3 (0)            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0                                                                                   ; work         ;
-;          |altsyncram_69h1:auto_generated|      ; 84 (3)      ; 3 (3)                     ; 0 (0)         ; 1228800     ; 160  ; 0            ; 0       ; 0         ; 0    ; 0            ; 81 (0)       ; 0 (0)             ; 3 (1)            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated                                                    ; work         ;
+;    |sram:ram_block|                            ; 90 (0)      ; 3 (0)                     ; 0 (0)         ; 1228800     ; 160  ; 0            ; 0       ; 0         ; 0    ; 0            ; 87 (0)       ; 3 (0)             ; 0 (0)            ; |video_display|sram:ram_block                                                                                                              ; work         ;
+;       |altsyncram:ram_block_rtl_0|             ; 90 (0)      ; 3 (0)                     ; 0 (0)         ; 1228800     ; 160  ; 0            ; 0       ; 0         ; 0    ; 0            ; 87 (0)       ; 3 (0)             ; 0 (0)            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0                                                                                   ; work         ;
+;          |altsyncram_69h1:auto_generated|      ; 90 (3)      ; 3 (3)                     ; 0 (0)         ; 1228800     ; 160  ; 0            ; 0       ; 0         ; 0    ; 0            ; 87 (0)       ; 3 (3)             ; 0 (0)            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated                                                    ; work         ;
 ;             |decode_osa:decode2|               ; 7 (7)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 7 (7)        ; 0 (0)             ; 0 (0)            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2                                 ; work         ;
-;             |mux_lob:mux3|                     ; 76 (76)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 74 (74)      ; 0 (0)             ; 2 (2)            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3                                       ; work         ;
-;    |vga:vga_output|                            ; 74 (74)     ; 45 (45)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 29 (29)      ; 7 (7)             ; 38 (38)          ; |video_display|vga:vga_output                                                                                                              ; work         ;
-;    |ycc2rgb:ycc2rgb_converter|                 ; 222 (115)   ; 24 (24)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 180 (73)     ; 0 (0)             ; 42 (42)          ; |video_display|ycc2rgb:ycc2rgb_converter                                                                                                   ; work         ;
+;             |mux_lob:mux3|                     ; 80 (80)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 80 (80)      ; 0 (0)             ; 0 (0)            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3                                       ; work         ;
+;    |vga:vga_output|                            ; 73 (73)     ; 45 (45)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 28 (28)      ; 10 (10)           ; 35 (35)          ; |video_display|vga:vga_output                                                                                                              ; work         ;
+;    |ycc2rgb:ycc2rgb_converter|                 ; 222 (115)   ; 24 (24)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 182 (75)     ; 0 (0)             ; 40 (40)          ; |video_display|ycc2rgb:ycc2rgb_converter                                                                                                   ; work         ;
 ;       |lpm_mult:Mult0|                         ; 33 (0)      ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 33 (0)       ; 0 (0)             ; 0 (0)            ; |video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0                                                                                    ; work         ;
 ;          |multcore:mult_core|                  ; 33 (21)     ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 33 (21)      ; 0 (0)             ; 0 (0)            ; |video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core                                                                 ; work         ;
 ;             |mpar_add:padder|                  ; 12 (0)      ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 12 (0)       ; 0 (0)             ; 0 (0)            ; |video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder                                                 ; work         ;
@@ -1437,11 +1437,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; td_clk27                 ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 ; td_data[5]               ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; td_data[7]               ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; td_data[4]               ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; td_data[4]               ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; td_data[6]               ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; td_data[3]               ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; td_data[3]               ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; td_data[0]               ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; td_data[2]               ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; td_data[2]               ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; td_data[1]               ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; td_vs                    ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; td_hs                    ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
@@ -1457,7 +1457,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; i2c_clk                                                                                                              ;                   ;         ;
 ; i2c_data                                                                                                             ;                   ;         ;
 ;      - gpio_i2c_data~output                                                                                          ; 0                 ; 6       ;
-;      - i2c:i2c_master|Selector77~2                                                                                   ; 0                 ; 6       ;
+;      - i2c:i2c_master|Selector77~1                                                                                   ; 0                 ; 6       ;
 ; gpio_i2c_clk                                                                                                         ;                   ;         ;
 ; gpio_i2c_data                                                                                                        ;                   ;         ;
 ; reset                                                                                                                ;                   ;         ;
@@ -1569,7 +1569,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - \decoder_clock:clock_count[30]                                                                                ; 1                 ; 6       ;
 ;      - i2c:i2c_master|\i2c_manager:writing                                                                           ; 1                 ; 6       ;
 ;      - ycc_even                                                                                                      ; 1                 ; 6       ;
-;      - i2c:i2c_master|\i2c_manager:data_count[29]~0                                                                  ; 1                 ; 6       ;
 ;      - i2c:i2c_master|scl_write                                                                                      ; 1                 ; 6       ;
 ;      - i2c:i2c_master|sda_write                                                                                      ; 1                 ; 6       ;
 ;      - i2c:i2c_master|sda_enable                                                                                     ; 1                 ; 6       ;
@@ -1592,7 +1591,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - adv7180:decoder|\adv7180_decoder:clock_count[30]~2                                                            ; 1                 ; 6       ;
 ;      - adv7180:decoder|\adv7180_decoder:decimation_count_cols[30]~1                                                  ; 1                 ; 6       ;
 ;      - adv7180:decoder|\adv7180_decoder:buffer_index[30]~1                                                           ; 1                 ; 6       ;
+;      - i2c:i2c_master|\i2c_manager:clock_count[30]~9                                                                 ; 1                 ; 6       ;
 ;      - sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1329w[3]~5 ; 1                 ; 6       ;
+;      - i2c:i2c_master|\i2c_manager:data_count[29]~7                                                                  ; 1                 ; 6       ;
 ;      - td_reset~output                                                                                               ; 1                 ; 6       ;
 ;      - reset_led~output                                                                                              ; 1                 ; 6       ;
 ; clk50                                                                                                                ;                   ;         ;
@@ -1608,30 +1609,30 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ;      - adv7180:decoder|data_buffer~17                                                                                ; 1                 ; 6       ;
 ;      - adv7180:decoder|data_buffer~31                                                                                ; 1                 ; 6       ;
 ; td_data[4]                                                                                                           ;                   ;         ;
-;      - adv7180:decoder|data_buffer~4                                                                                 ; 0                 ; 6       ;
-;      - adv7180:decoder|data_buffer~5                                                                                 ; 0                 ; 6       ;
-;      - adv7180:decoder|data_buffer~18                                                                                ; 0                 ; 6       ;
-;      - adv7180:decoder|data_buffer~30                                                                                ; 0                 ; 6       ;
+;      - adv7180:decoder|data_buffer~4                                                                                 ; 1                 ; 6       ;
+;      - adv7180:decoder|data_buffer~5                                                                                 ; 1                 ; 6       ;
+;      - adv7180:decoder|data_buffer~18                                                                                ; 1                 ; 6       ;
+;      - adv7180:decoder|data_buffer~30                                                                                ; 1                 ; 6       ;
 ; td_data[6]                                                                                                           ;                   ;         ;
 ;      - adv7180:decoder|data_buffer~6                                                                                 ; 0                 ; 6       ;
 ;      - adv7180:decoder|data_buffer~7                                                                                 ; 0                 ; 6       ;
 ;      - adv7180:decoder|data_buffer~23                                                                                ; 0                 ; 6       ;
 ;      - adv7180:decoder|data_buffer~24                                                                                ; 0                 ; 6       ;
 ; td_data[3]                                                                                                           ;                   ;         ;
-;      - adv7180:decoder|data_buffer~8                                                                                 ; 1                 ; 6       ;
-;      - adv7180:decoder|data_buffer~9                                                                                 ; 1                 ; 6       ;
-;      - adv7180:decoder|data_buffer~22                                                                                ; 1                 ; 6       ;
-;      - adv7180:decoder|data_buffer~25                                                                                ; 1                 ; 6       ;
+;      - adv7180:decoder|data_buffer~8                                                                                 ; 0                 ; 6       ;
+;      - adv7180:decoder|data_buffer~9                                                                                 ; 0                 ; 6       ;
+;      - adv7180:decoder|data_buffer~22                                                                                ; 0                 ; 6       ;
+;      - adv7180:decoder|data_buffer~25                                                                                ; 0                 ; 6       ;
 ; td_data[0]                                                                                                           ;                   ;         ;
 ;      - adv7180:decoder|data_buffer~10                                                                                ; 1                 ; 6       ;
 ;      - adv7180:decoder|data_buffer~11                                                                                ; 1                 ; 6       ;
 ;      - adv7180:decoder|data_buffer~20                                                                                ; 1                 ; 6       ;
 ;      - adv7180:decoder|data_buffer~27                                                                                ; 1                 ; 6       ;
 ; td_data[2]                                                                                                           ;                   ;         ;
-;      - adv7180:decoder|data_buffer~12                                                                                ; 0                 ; 6       ;
-;      - adv7180:decoder|data_buffer~13                                                                                ; 0                 ; 6       ;
-;      - adv7180:decoder|data_buffer~21                                                                                ; 0                 ; 6       ;
-;      - adv7180:decoder|data_buffer~26                                                                                ; 0                 ; 6       ;
+;      - adv7180:decoder|data_buffer~12                                                                                ; 1                 ; 6       ;
+;      - adv7180:decoder|data_buffer~13                                                                                ; 1                 ; 6       ;
+;      - adv7180:decoder|data_buffer~21                                                                                ; 1                 ; 6       ;
+;      - adv7180:decoder|data_buffer~26                                                                                ; 1                 ; 6       ;
 ; td_data[1]                                                                                                           ;                   ;         ;
 ;      - adv7180:decoder|data_buffer~14                                                                                ; 0                 ; 6       ;
 ;      - adv7180:decoder|data_buffer~15                                                                                ; 0                 ; 6       ;
@@ -1651,33 +1652,33 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------------------------------------------------------------------------------------------------------+--------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
 ; Name                                                                                                          ; Location           ; Fan-Out ; Usage                      ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +---------------------------------------------------------------------------------------------------------------+--------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
-; Equal0~9                                                                                                      ; LCCOMB_X102_Y58_N2 ; 18      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|\adv7180_decoder:buffer_index[14]~1                                                           ; LCCOMB_X41_Y45_N2  ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|\adv7180_decoder:buffer_index[30]~1                                                           ; LCCOMB_X42_Y48_N26 ; 63      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|\adv7180_decoder:clock_count[30]~2                                                            ; LCCOMB_X39_Y52_N28 ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|\adv7180_decoder:decimation_count_cols[0]~3                                                   ; LCCOMB_X40_Y50_N26 ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|\adv7180_decoder:decimation_count_cols[30]~1                                                  ; LCCOMB_X40_Y51_N28 ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|\adv7180_decoder:decimation_count_rows[12]~1                                                  ; LCCOMB_X39_Y52_N24 ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|\adv7180_decoder:decimation_count_rows[30]~1                                                  ; LCCOMB_X39_Y52_N2  ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|data_address[0]~1                                                                             ; LCCOMB_X39_Y52_N30 ; 62      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|ram_din[0]~15                                                                                 ; LCCOMB_X42_Y48_N2  ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; adv7180:decoder|state.READ                                                                                    ; FF_X39_Y52_N1      ; 136     ; Sync. clear, Sync. load    ; no     ; --                   ; --               ; --                        ;
+; Equal0~9                                                                                                      ; LCCOMB_X67_Y71_N2  ; 18      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|\adv7180_decoder:buffer_index[14]~1                                                           ; LCCOMB_X57_Y45_N18 ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|\adv7180_decoder:buffer_index[30]~1                                                           ; LCCOMB_X57_Y45_N0  ; 63      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|\adv7180_decoder:clock_count[30]~2                                                            ; LCCOMB_X57_Y43_N20 ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|\adv7180_decoder:decimation_count_cols[0]~3                                                   ; LCCOMB_X59_Y44_N2  ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|\adv7180_decoder:decimation_count_cols[30]~1                                                  ; LCCOMB_X57_Y45_N4  ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|\adv7180_decoder:decimation_count_rows[12]~1                                                  ; LCCOMB_X57_Y42_N30 ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|\adv7180_decoder:decimation_count_rows[30]~1                                                  ; LCCOMB_X57_Y43_N18 ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|data_address[0]~1                                                                             ; LCCOMB_X56_Y45_N28 ; 62      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|ram_din[0]~15                                                                                 ; LCCOMB_X56_Y45_N26 ; 32      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; adv7180:decoder|state.READ                                                                                    ; FF_X56_Y45_N15     ; 136     ; Sync. clear, Sync. load    ; no     ; --                   ; --               ; --                        ;
 ; clk50                                                                                                         ; PIN_Y2             ; 77      ; Clock                      ; yes    ; Global Clock         ; GCLK4            ; --                        ;
-; i2c:i2c_master|Selector0~5                                                                                    ; LCCOMB_X75_Y33_N18 ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
-; i2c:i2c_master|\i2c_manager:clock_count[30]~4                                                                 ; LCCOMB_X72_Y33_N0  ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; i2c:i2c_master|\i2c_manager:data_count[29]~5                                                                  ; LCCOMB_X75_Y35_N0  ; 30      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; i2c:i2c_master|sda_enable                                                                                     ; FF_X79_Y33_N5      ; 4       ; Output enable              ; no     ; --                   ; --               ; --                        ;
-; reset                                                                                                         ; PIN_M23            ; 134     ; Async. clear, Clock enable ; no     ; --                   ; --               ; --                        ;
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1329w[3]~5 ; LCCOMB_X40_Y51_N10 ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1346w[3]~1 ; LCCOMB_X40_Y51_N8  ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1356w[3]~0 ; LCCOMB_X40_Y51_N20 ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1366w[3]~0 ; LCCOMB_X40_Y51_N2  ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1376w[3]~0 ; LCCOMB_X40_Y51_N14 ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
+; i2c:i2c_master|Selector0~0                                                                                    ; LCCOMB_X69_Y38_N20 ; 31      ; Sync. clear                ; no     ; --                   ; --               ; --                        ;
+; i2c:i2c_master|\i2c_manager:clock_count[30]~9                                                                 ; LCCOMB_X69_Y38_N30 ; 31      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; i2c:i2c_master|\i2c_manager:data_count[29]~4                                                                  ; LCCOMB_X69_Y39_N6  ; 30      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; i2c:i2c_master|sda_enable                                                                                     ; FF_X66_Y38_N3      ; 4       ; Output enable              ; no     ; --                   ; --               ; --                        ;
+; reset                                                                                                         ; PIN_M23            ; 135     ; Async. clear, Clock enable ; no     ; --                   ; --               ; --                        ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1329w[3]~5 ; LCCOMB_X57_Y45_N2  ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1346w[3]~1 ; LCCOMB_X57_Y45_N8  ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1356w[3]~0 ; LCCOMB_X57_Y45_N16 ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1366w[3]~0 ; LCCOMB_X57_Y45_N14 ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1376w[3]~0 ; LCCOMB_X57_Y45_N10 ; 32      ; Write enable               ; no     ; --                   ; --               ; --                        ;
 ; td_clk27                                                                                                      ; PIN_B14            ; 479     ; Clock                      ; yes    ; Global Clock         ; GCLK13           ; --                        ;
-; vga:vga_output|LessThan5~0                                                                                    ; LCCOMB_X56_Y36_N20 ; 10      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; vga:vga_output|LessThan6~2                                                                                    ; LCCOMB_X54_Y35_N8  ; 10      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
-; vga:vga_output|pixel_clock                                                                                    ; FF_X55_Y72_N3      ; 85      ; Clock                      ; yes    ; Global Clock         ; GCLK11           ; --                        ;
-; vga:vga_output|v_count[3]~1                                                                                   ; LCCOMB_X56_Y36_N4  ; 10      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; vga:vga_output|LessThan5~0                                                                                    ; LCCOMB_X52_Y40_N22 ; 10      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; vga:vga_output|LessThan6~2                                                                                    ; LCCOMB_X54_Y40_N20 ; 10      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
+; vga:vga_output|pixel_clock                                                                                    ; FF_X55_Y72_N3      ; 85      ; Clock                      ; yes    ; Global Clock         ; GCLK10           ; --                        ;
+; vga:vga_output|v_count[3]~1                                                                                   ; LCCOMB_X46_Y40_N16 ; 10      ; Clock enable               ; no     ; --                   ; --               ; --                        ;
 +---------------------------------------------------------------------------------------------------------------+--------------------+---------+----------------------------+--------+----------------------+------------------+---------------------------+
 
 
@@ -1686,9 +1687,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------+---------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 ; Name                       ; Location      ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +----------------------------+---------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; clk50                      ; PIN_Y2        ; 77      ; 19                                   ; Global Clock         ; GCLK4            ; --                        ;
-; td_clk27                   ; PIN_B14       ; 479     ; 64                                   ; Global Clock         ; GCLK13           ; --                        ;
-; vga:vga_output|pixel_clock ; FF_X55_Y72_N3 ; 85      ; 4                                    ; Global Clock         ; GCLK11           ; --                        ;
+; clk50                      ; PIN_Y2        ; 77      ; 47                                   ; Global Clock         ; GCLK4            ; --                        ;
+; td_clk27                   ; PIN_B14       ; 479     ; 112                                  ; Global Clock         ; GCLK13           ; --                        ;
+; vga:vga_output|pixel_clock ; FF_X55_Y72_N3 ; 85      ; 3                                    ; Global Clock         ; GCLK10           ; --                        ;
 +----------------------------+---------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 
 
@@ -1724,11 +1725,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ram_read_addr[6]                                                                                                                    ; 160     ;
 ; ram_read_addr[5]                                                                                                                    ; 160     ;
 ; adv7180:decoder|state.READ                                                                                                          ; 136     ;
-; reset~input                                                                                                                         ; 134     ;
+; reset~input                                                                                                                         ; 135     ;
 ; adv7180:decoder|\adv7180_decoder:buffer_index[30]~1                                                                                 ; 63      ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|address_reg_b[1]                                           ; 63      ;
 ; adv7180:decoder|data_address[0]~1                                                                                                   ; 62      ;
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|address_reg_b[1]                                           ; 60      ;
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|address_reg_b[0]                                           ; 52      ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|address_reg_b[0]                                           ; 49      ;
 ; adv7180:decoder|\adv7180_decoder:buffer_index[1]                                                                                    ; 34      ;
 ; adv7180:decoder|\adv7180_decoder:buffer_index[0]                                                                                    ; 34      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1329w[3]~5                       ; 32      ;
@@ -1737,85 +1738,88 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1356w[3]~0                       ; 32      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1366w[3]~0                       ; 32      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1346w[3]~1                       ; 32      ;
+; i2c:i2c_master|\i2c_manager:clock_count[30]~9                                                                                       ; 31      ;
 ; adv7180:decoder|\adv7180_decoder:buffer_index[14]~1                                                                                 ; 31      ;
 ; adv7180:decoder|\adv7180_decoder:decimation_count_cols[30]~1                                                                        ; 31      ;
 ; adv7180:decoder|\adv7180_decoder:decimation_count_cols[0]~3                                                                         ; 31      ;
 ; adv7180:decoder|\adv7180_decoder:clock_count[30]~2                                                                                  ; 31      ;
 ; adv7180:decoder|\adv7180_decoder:decimation_count_rows[30]~1                                                                        ; 31      ;
 ; adv7180:decoder|\adv7180_decoder:decimation_count_rows[12]~1                                                                        ; 31      ;
-; i2c:i2c_master|\i2c_manager:clock_count[30]~4                                                                                       ; 31      ;
-; i2c:i2c_master|Selector0~5                                                                                                          ; 31      ;
+; i2c:i2c_master|Selector0~0                                                                                                          ; 31      ;
 ; ~GND                                                                                                                                ; 30      ;
-; i2c:i2c_master|\i2c_manager:data_count[29]~5                                                                                        ; 30      ;
-; i2c:i2c_master|\i2c_manager:data_count[14]~3                                                                                        ; 30      ;
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|address_reg_b[2]                                           ; 25      ;
-; i2c:i2c_master|i2c_s.ADDRESS                                                                                                        ; 20      ;
+; i2c:i2c_master|\i2c_manager:data_count[29]~4                                                                                        ; 30      ;
+; i2c:i2c_master|\i2c_manager:data_count[14]~2                                                                                        ; 30      ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|address_reg_b[2]                                           ; 24      ;
+; i2c:i2c_master|i2c_s.ADDRESS                                                                                                        ; 19      ;
 ; Equal0~9                                                                                                                            ; 18      ;
-; i2c:i2c_master|i2c_s.DATA                                                                                                           ; 18      ;
+; i2c:i2c_master|i2c_s.STOP                                                                                                           ; 18      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result12w~1                            ; 16      ;
+; ycc_even                                                                                                                            ; 16      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result8w~1                             ; 15      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result9w~1                             ; 15      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result13w~1                            ; 15      ;
-; ycc_even                                                                                                                            ; 15      ;
-; i2c:i2c_master|i2c_s.STOP                                                                                                           ; 15      ;
-; i2c:i2c_master|i2c_s.INIT                                                                                                           ; 15      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result14w~1                            ; 14      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result11w~1                            ; 14      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result10w~1                            ; 14      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result15w~1                            ; 14      ;
-; ycc_y[1]~19                                                                                                                         ; 12      ;
+; i2c:i2c_master|\i2c_manager:data_count[30]                                                                                          ; 13      ;
+; ycc_y[1]~15                                                                                                                         ; 12      ;
 ; ycc_y[4]~5                                                                                                                          ; 12      ;
-; i2c:i2c_master|\i2c_manager:data_count[30]                                                                                          ; 12      ;
+; i2c:i2c_master|sda_write~1                                                                                                          ; 12      ;
+; i2c:i2c_master|i2c_s.DATA                                                                                                           ; 12      ;
+; i2c:i2c_master|\i2c_manager:clock_count[8]                                                                                          ; 12      ;
 ; ycc_y[6]~7                                                                                                                          ; 11      ;
 ; ycc_y[5]~1                                                                                                                          ; 11      ;
-; i2c:i2c_master|Equal0~8                                                                                                             ; 11      ;
+; i2c:i2c_master|Equal0~0                                                                                                             ; 11      ;
+; i2c:i2c_master|i2c_s.INIT                                                                                                           ; 11      ;
 ; led_count[0]                                                                                                                        ; 11      ;
+; i2c:i2c_master|\i2c_manager:clock_count[7]                                                                                          ; 11      ;
 ; vga:vga_output|v_count[3]~1                                                                                                         ; 10      ;
-; ycc_y[2]~17                                                                                                                         ; 10      ;
-; ycc_y[0]~15                                                                                                                         ; 10      ;
+; ycc_y[2]~13                                                                                                                         ; 10      ;
+; ycc_y[0]~11                                                                                                                         ; 10      ;
 ; ycc_y[7]~3                                                                                                                          ; 10      ;
-; i2c:i2c_master|LessThan2~4                                                                                                          ; 10      ;
+; i2c:i2c_master|LessThan0~6                                                                                                          ; 10      ;
 ; vga:vga_output|LessThan5~0                                                                                                          ; 10      ;
 ; vga:vga_output|LessThan6~2                                                                                                          ; 10      ;
 ; led_count[1]                                                                                                                        ; 10      ;
-; i2c:i2c_master|\i2c_manager:clock_count[29]                                                                                         ; 10      ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result28w~1                            ; 9       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result24w~1                            ; 9       ;
-; ycc_y[3]~13                                                                                                                         ; 9       ;
-; i2c:i2c_master|LessThan0~6                                                                                                          ; 9       ;
+; ycc_y[3]~9                                                                                                                          ; 9       ;
+; i2c:i2c_master|Equal0~5                                                                                                             ; 9       ;
 ; i2c:i2c_master|i2c_s.START                                                                                                          ; 9       ;
 ; led_count[2]                                                                                                                        ; 9       ;
-; i2c:i2c_master|\i2c_manager:clock_count[8]                                                                                          ; 9       ;
-; i2c:i2c_master|\i2c_manager:clock_count[7]                                                                                          ; 9       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[2]                                                                                          ; 9       ;
 ; vga:vga_output|v_count[4]~0                                                                                                         ; 8       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result31w~1                            ; 8       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result29w~1                            ; 8       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result25w~1                            ; 8       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result27w~1                            ; 8       ;
-; i2c:i2c_master|sda_write~0                                                                                                          ; 8       ;
-; i2c:i2c_master|LessThan0~7                                                                                                          ; 8       ;
 ; led_count[3]                                                                                                                        ; 8       ;
 ; ycc2rgb:ycc2rgb_converter|Add7~16                                                                                                   ; 8       ;
 ; ycc2rgb:ycc2rgb_converter|Add4~10                                                                                                   ; 8       ;
 ; ycc2rgb:ycc2rgb_converter|Add1~16                                                                                                   ; 8       ;
-; i2c:i2c_master|\i2c_manager:clock_count[30]                                                                                         ; 8       ;
+; i2c:i2c_master|\i2c_manager:clock_count[29]                                                                                         ; 8       ;
 ; i2c:i2c_master|scl_write                                                                                                            ; 7       ;
 ; vga:vga_output|h_count[5]                                                                                                           ; 7       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result26w~1                            ; 7       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|muxlut_result30w~1                            ; 7       ;
-; i2c:i2c_master|LessThan1~2                                                                                                          ; 7       ;
+; i2c:i2c_master|Equal2~0                                                                                                             ; 7       ;
+; i2c:i2c_master|Equal0~1                                                                                                             ; 7       ;
 ; vga:vga_output|h_count[9]                                                                                                           ; 7       ;
 ; vga:vga_output|h_count[8]                                                                                                           ; 7       ;
 ; vga:vga_output|h_count[7]                                                                                                           ; 7       ;
-; i2c:i2c_master|Selector71~2                                                                                                         ; 7       ;
+; i2c:i2c_master|state[2]~4                                                                                                           ; 7       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[1]                                                                                          ; 7       ;
-; i2c:i2c_master|Selector76~11                                                                                                        ; 6       ;
+; i2c:i2c_master|\i2c_manager:clock_count[30]                                                                                         ; 7       ;
 ; vga:vga_output|h_count[4]                                                                                                           ; 6       ;
 ; vga:vga_output|h_count[3]                                                                                                           ; 6       ;
+; i2c:i2c_master|LessThan0~7                                                                                                          ; 6       ;
 ; vga:vga_output|v_count[3]                                                                                                           ; 6       ;
 ; vga:vga_output|v_count[2]                                                                                                           ; 6       ;
 ; vga:vga_output|v_count[4]                                                                                                           ; 6       ;
+; i2c:i2c_master|state[0]~6                                                                                                           ; 6       ;
+; i2c:i2c_master|state[1]~5                                                                                                           ; 6       ;
+; i2c:i2c_master|Selector76~0                                                                                                         ; 5       ;
 ; adv7180:decoder|ram_din[31]                                                                                                         ; 5       ;
 ; adv7180:decoder|ram_din[28]                                                                                                         ; 5       ;
 ; adv7180:decoder|ram_din[29]                                                                                                         ; 5       ;
@@ -1848,18 +1852,14 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; adv7180:decoder|ram_din[23]                                                                                                         ; 5       ;
 ; adv7180:decoder|ram_din[5]                                                                                                          ; 5       ;
 ; adv7180:decoder|ram_din[21]                                                                                                         ; 5       ;
+; i2c:i2c_master|LessThan1~8                                                                                                          ; 5       ;
 ; vga:vga_output|h_count[6]                                                                                                           ; 5       ;
 ; i2c:i2c_master|\i2c_manager:writing                                                                                                 ; 5       ;
-; i2c_write_en                                                                                                                        ; 5       ;
-; i2c:i2c_master|Equal1~3                                                                                                             ; 5       ;
+; i2c:i2c_master|LessThan1~5                                                                                                          ; 5       ;
 ; i2c:i2c_master|\i2c_manager:data_count[0]                                                                                           ; 5       ;
 ; i2c:i2c_master|\i2c_manager:data_count[1]                                                                                           ; 5       ;
 ; i2c:i2c_master|\i2c_manager:data_count[2]                                                                                           ; 5       ;
 ; i2c:i2c_master|\i2c_manager:data_count[3]                                                                                           ; 5       ;
-; i2c:i2c_master|LessThan2~0                                                                                                          ; 5       ;
-; i2c:i2c_master|LessThan1~0                                                                                                          ; 5       ;
-; i2c:i2c_master|Equal0~4                                                                                                             ; 5       ;
-; i2c:i2c_master|Equal0~0                                                                                                             ; 5       ;
 ; vga:vga_output|v_count[1]                                                                                                           ; 5       ;
 ; vga:vga_output|v_count[0]                                                                                                           ; 5       ;
 ; vga:vga_output|v_count[8]                                                                                                           ; 5       ;
@@ -1867,7 +1867,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; vga:vga_output|v_count[6]                                                                                                           ; 5       ;
 ; vga:vga_output|v_count[5]                                                                                                           ; 5       ;
 ; vga:vga_output|v_count[9]                                                                                                           ; 5       ;
-; i2c:i2c_master|state[0]~5                                                                                                           ; 5       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[0]                                                                                          ; 5       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[3]                                                                                          ; 5       ;
 ; td_data[1]~input                                                                                                                    ; 4       ;
@@ -1883,20 +1882,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; adv7180:decoder|data_address[15]                                                                                                    ; 4       ;
 ; adv7180:decoder|data_address[13]                                                                                                    ; 4       ;
 ; i2c:i2c_master|sda_enable                                                                                                           ; 4       ;
-; i2c:i2c_master|Selector78~3                                                                                                         ; 4       ;
+; i2c:i2c_master|Selector78~1                                                                                                         ; 4       ;
+; i2c:i2c_master|sda_write~2                                                                                                          ; 4       ;
 ; vga:vga_output|Equal0~3                                                                                                             ; 4       ;
 ; vga:vga_output|process_1~9                                                                                                          ; 4       ;
 ; vga:vga_output|h_count[2]                                                                                                           ; 4       ;
 ; vga:vga_output|h_count[1]                                                                                                           ; 4       ;
-; i2c:i2c_master|Selector71~9                                                                                                         ; 4       ;
-; i2c:i2c_master|i2c_manager~0                                                                                                        ; 4       ;
-; i2c:i2c_master|Equal2~0                                                                                                             ; 4       ;
-; i2c:i2c_master|Equal1~1                                                                                                             ; 4       ;
-; i2c:i2c_master|LessThan2~1                                                                                                          ; 4       ;
-; i2c:i2c_master|Equal4~2                                                                                                             ; 4       ;
+; i2c:i2c_master|Selector71~6                                                                                                         ; 4       ;
+; i2c:i2c_master|Equal2~1                                                                                                             ; 4       ;
+; i2c_write_en                                                                                                                        ; 4       ;
+; i2c:i2c_master|LessThan8~2                                                                                                          ; 4       ;
 ; i2c:i2c_master|LessThan6~1                                                                                                          ; 4       ;
-; i2c:i2c_master|LessThan7~1                                                                                                          ; 4       ;
-; i2c:i2c_master|state[1]~4                                                                                                           ; 4       ;
+; i2c:i2c_master|Equal1~3                                                                                                             ; 4       ;
+; i2c:i2c_master|Equal1~1                                                                                                             ; 4       ;
 ; leddcd:i2c_state_output|segments_out[0]~0                                                                                           ; 4       ;
 ; adv7180:decoder|ram_we                                                                                                              ; 4       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[6]                                                                                          ; 4       ;
@@ -1908,16 +1906,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; adv7180:decoder|hs_flag                                                                                                             ; 3       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1329w[3]~4                       ; 3       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2|w_anode1346w[3]~0                       ; 3       ;
-; i2c:i2c_master|\i2c_manager:data_count[14]~2                                                                                        ; 3       ;
-; i2c:i2c_master|Selector78~2                                                                                                         ; 3       ;
+; i2c:i2c_master|sda_enable~0                                                                                                         ; 3       ;
+; i2c:i2c_master|\i2c_manager:data_count[14]~1                                                                                        ; 3       ;
+; i2c:i2c_master|i2c_manager~0                                                                                                        ; 3       ;
 ; vga:vga_output|h_count[0]                                                                                                           ; 3       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|romout[0][3]~4                                                          ; 3       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|romout[0][4]                                                            ; 3       ;
-; i2c:i2c_master|Selector71~10                                                                                                        ; 3       ;
-; i2c:i2c_master|LessThan2~3                                                                                                          ; 3       ;
+; i2c:i2c_master|Selector71~7                                                                                                         ; 3       ;
+; i2c:i2c_master|Equal4~2                                                                                                             ; 3       ;
+; i2c:i2c_master|LessThan7~1                                                                                                          ; 3       ;
+; i2c:i2c_master|LessThan7~0                                                                                                          ; 3       ;
 ; i2c:i2c_master|LessThan0~5                                                                                                          ; 3       ;
-; i2c:i2c_master|LessThan8~1                                                                                                          ; 3       ;
-; i2c:i2c_master|Equal0~5                                                                                                             ; 3       ;
 ; i2c_config_state.I2C_ADDR_CONFIG                                                                                                    ; 3       ;
 ; i2c:i2c_master|available                                                                                                            ; 3       ;
 ; adv7180:decoder|\adv7180_decoder:clock_count[10]                                                                                    ; 3       ;
@@ -1939,12 +1938,12 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_k9h:auto_generated|op_1~4  ; 3       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_k9h:auto_generated|op_1~2  ; 3       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]|add_sub_k9h:auto_generated|op_1~0  ; 3       ;
+; i2c:i2c_master|\i2c_manager:clock_count[28]                                                                                         ; 3       ;
+; i2c:i2c_master|\i2c_manager:clock_count[27]                                                                                         ; 3       ;
 ; td_hs~input                                                                                                                         ; 2       ;
 ; td_vs~input                                                                                                                         ; 2       ;
 ; i2c_data~input                                                                                                                      ; 2       ;
-; i2c:i2c_master|Selector31~6                                                                                                         ; 2       ;
-; i2c:i2c_master|Selector71~13                                                                                                        ; 2       ;
-; i2c:i2c_master|LessThan9~3                                                                                                          ; 2       ;
+; i2c:i2c_master|Selector71~9                                                                                                         ; 2       ;
 ; adv7180:decoder|data_buffer~31                                                                                                      ; 2       ;
 ; adv7180:decoder|data_buffer~30                                                                                                      ; 2       ;
 ; adv7180:decoder|data_buffer~29                                                                                                      ; 2       ;
@@ -1992,24 +1991,29 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; adv7180:decoder|Equal0~9                                                                                                            ; 2       ;
 ; adv7180:decoder|Equal0~7                                                                                                            ; 2       ;
 ; adv7180:decoder|Equal0~4                                                                                                            ; 2       ;
-; i2c:i2c_master|Selector31~2                                                                                                         ; 2       ;
-; i2c:i2c_master|sda_write~2                                                                                                          ; 2       ;
+; i2c:i2c_master|Selector31~0                                                                                                         ; 2       ;
 ; i2c:i2c_master|sda_write                                                                                                            ; 2       ;
-; i2c:i2c_master|Selector40~0                                                                                                         ; 2       ;
-; i2c:i2c_master|\i2c_manager:data_count[29]~0                                                                                        ; 2       ;
-; i2c:i2c_master|Selector0~3                                                                                                          ; 2       ;
-; i2c:i2c_master|i2c_manager~1                                                                                                        ; 2       ;
-; i2c:i2c_master|\i2c_manager:clock_count[19]~3                                                                                       ; 2       ;
-; i2c:i2c_master|\i2c_manager:data_count[14]~1                                                                                        ; 2       ;
+; i2c:i2c_master|Selector40~1                                                                                                         ; 2       ;
+; i2c:i2c_master|\i2c_manager:clock_count[30]~5                                                                                       ; 2       ;
+; i2c:i2c_master|LessThan6~2                                                                                                          ; 2       ;
 ; vga:vga_output|Equal1~0                                                                                                             ; 2       ;
 ; vga:vga_output|Equal0~1                                                                                                             ; 2       ;
 ; vga:vga_output|Equal0~0                                                                                                             ; 2       ;
 ; vga:vga_output|process_1~0                                                                                                          ; 2       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult1|multcore:mult_core|romout[1][10]                                                           ; 2       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult1|multcore:mult_core|romout[0][6]                                                            ; 2       ;
-; i2c:i2c_master|LessThan1~1                                                                                                          ; 2       ;
-; i2c:i2c_master|Selector71~3                                                                                                         ; 2       ;
+; i2c:i2c_master|Selector71~5                                                                                                         ; 2       ;
+; i2c:i2c_master|LessThan1~7                                                                                                          ; 2       ;
+; i2c:i2c_master|LessThan1~6                                                                                                          ; 2       ;
+; i2c:i2c_master|Selector77~2                                                                                                         ; 2       ;
+; i2c:i2c_master|LessThan8~1                                                                                                          ; 2       ;
+; i2c:i2c_master|LessThan9~1                                                                                                          ; 2       ;
+; i2c:i2c_master|Equal4~1                                                                                                             ; 2       ;
+; i2c:i2c_master|Equal4~0                                                                                                             ; 2       ;
+; i2c:i2c_master|LessThan6~0                                                                                                          ; 2       ;
+; i2c:i2c_master|sda_write~0                                                                                                          ; 2       ;
 ; i2c:i2c_master|Equal1~4                                                                                                             ; 2       ;
+; i2c:i2c_master|Selector77~0                                                                                                         ; 2       ;
 ; i2c:i2c_master|\i2c_manager:data_count[4]                                                                                           ; 2       ;
 ; i2c:i2c_master|\i2c_manager:data_count[5]                                                                                           ; 2       ;
 ; i2c:i2c_master|\i2c_manager:data_count[6]                                                                                           ; 2       ;
@@ -2036,15 +2040,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; i2c:i2c_master|\i2c_manager:data_count[27]                                                                                          ; 2       ;
 ; i2c:i2c_master|\i2c_manager:data_count[28]                                                                                          ; 2       ;
 ; i2c:i2c_master|\i2c_manager:data_count[29]                                                                                          ; 2       ;
-; i2c:i2c_master|Selector77~0                                                                                                         ; 2       ;
-; i2c:i2c_master|Equal0~6                                                                                                             ; 2       ;
-; i2c:i2c_master|LessThan6~2                                                                                                          ; 2       ;
-; i2c:i2c_master|LessThan7~0                                                                                                          ; 2       ;
-; i2c:i2c_master|LessThan8~2                                                                                                          ; 2       ;
-; i2c:i2c_master|LessThan9~2                                                                                                          ; 2       ;
-; i2c:i2c_master|Equal4~1                                                                                                             ; 2       ;
-; i2c:i2c_master|Equal4~0                                                                                                             ; 2       ;
+; i2c:i2c_master|Equal0~4                                                                                                             ; 2       ;
+; i2c:i2c_master|Equal0~2                                                                                                             ; 2       ;
+; i2c:i2c_master|LessThan1~4                                                                                                          ; 2       ;
 ; i2c:i2c_master|\i2c_manager:data_count[14]~0                                                                                        ; 2       ;
+; i2c:i2c_master|LessThan1~0                                                                                                          ; 2       ;
 ; vga:vga_output|LessThan6~0                                                                                                          ; 2       ;
 ; i2c_config_state.INIT_CONFIG                                                                                                        ; 2       ;
 ; i2c:i2c_master|error                                                                                                                ; 2       ;
@@ -2239,25 +2239,17 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; i2c:i2c_master|\i2c_manager:clock_count[11]                                                                                         ; 2       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[10]                                                                                         ; 2       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[9]                                                                                          ; 2       ;
-; i2c:i2c_master|\i2c_manager:clock_count[28]                                                                                         ; 2       ;
-; i2c:i2c_master|\i2c_manager:clock_count[27]                                                                                         ; 2       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[26]                                                                                         ; 2       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[25]                                                                                         ; 2       ;
 ; i2c_config_state.INIT_CONFIG~feeder                                                                                                 ; 1       ;
 ; led_count[0]~5                                                                                                                      ; 1       ;
 ; vga:vga_output|pixel_clock~0                                                                                                        ; 1       ;
-; i2c:i2c_master|Selector31~10                                                                                                        ; 1       ;
-; i2c:i2c_master|Selector31~9                                                                                                         ; 1       ;
-; i2c:i2c_master|Selector31~8                                                                                                         ; 1       ;
-; i2c:i2c_master|Selector31~7                                                                                                         ; 1       ;
+; i2c:i2c_master|\i2c_manager:data_count[29]~7                                                                                        ; 1       ;
+; i2c:i2c_master|\i2c_manager:data_count[29]~6                                                                                        ; 1       ;
 ; adv7180:decoder|ram_we~3                                                                                                            ; 1       ;
-; i2c:i2c_master|Selector78~8                                                                                                         ; 1       ;
+; i2c:i2c_master|\i2c_manager:data_count[29]~5                                                                                        ; 1       ;
+; i2c:i2c_master|Selector71~10                                                                                                        ; 1       ;
 ; led_count[2]~4                                                                                                                      ; 1       ;
-; leddcd:i2c_internal_output|segments_out[5]~24                                                                                       ; 1       ;
-; leddcd:i2c_internal_output|segments_out[2]~23                                                                                       ; 1       ;
-; leddcd:i2c_internal_output|segments_out[3]~22                                                                                       ; 1       ;
-; leddcd:i2c_internal_output|segments_out[2]~21                                                                                       ; 1       ;
-; leddcd:i2c_internal_output|segments_out[0]~20                                                                                       ; 1       ;
 ; adv7180:decoder|data_buffer~63                                                                                                      ; 1       ;
 ; adv7180:decoder|data_buffer~62                                                                                                      ; 1       ;
 ; adv7180:decoder|data_buffer~61                                                                                                      ; 1       ;
@@ -2431,24 +2423,33 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; adv7180:decoder|Equal0~0                                                                                                            ; 1       ;
 ; adv7180:decoder|ram_we~2                                                                                                            ; 1       ;
 ; adv7180:decoder|data_address~0                                                                                                      ; 1       ;
+; i2c:i2c_master|Selector31~8                                                                                                         ; 1       ;
+; i2c:i2c_master|Selector31~7                                                                                                         ; 1       ;
+; i2c:i2c_master|Selector31~6                                                                                                         ; 1       ;
+; i2c:i2c_master|sda_enable~1                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector31~5                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector31~4                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector31~3                                                                                                         ; 1       ;
-; i2c:i2c_master|Selector76~10                                                                                                        ; 1       ;
+; i2c:i2c_master|Selector31~2                                                                                                         ; 1       ;
+; i2c:i2c_master|sda_write~4                                                                                                          ; 1       ;
+; i2c:i2c_master|Selector31~1                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector76~9                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector76~8                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector76~7                                                                                                         ; 1       ;
-; i2c:i2c_master|i2c_manager~2                                                                                                        ; 1       ;
 ; i2c:i2c_master|Selector76~6                                                                                                         ; 1       ;
+; i2c:i2c_master|i2c_manager~1                                                                                                        ; 1       ;
 ; i2c:i2c_master|Selector76~5                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector76~4                                                                                                         ; 1       ;
-; i2c:i2c_master|sda_write~1                                                                                                          ; 1       ;
 ; i2c:i2c_master|Selector76~3                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector76~2                                                                                                         ; 1       ;
+; i2c:i2c_master|sda_write~3                                                                                                          ; 1       ;
+; i2c:i2c_master|Selector76~1                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector78~7                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector78~6                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector78~5                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector78~4                                                                                                         ; 1       ;
+; i2c:i2c_master|Selector78~3                                                                                                         ; 1       ;
+; i2c:i2c_master|Selector78~2                                                                                                         ; 1       ;
 ; vga:vga_output|h_count~3                                                                                                            ; 1       ;
 ; vga:vga_output|h_count~2                                                                                                            ; 1       ;
 ; i2c:i2c_master|\i2c_manager:writing~0                                                                                               ; 1       ;
@@ -2467,10 +2468,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; clock_count~1                                                                                                                       ; 1       ;
 ; clock_count~0                                                                                                                       ; 1       ;
 ; Selector1~0                                                                                                                         ; 1       ;
-; i2c:i2c_master|Selector40~4                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector40~3                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector40~2                                                                                                         ; 1       ;
-; i2c:i2c_master|Selector40~1                                                                                                         ; 1       ;
+; i2c:i2c_master|Selector40~0                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector70~0                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector69~0                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector68~0                                                                                                         ; 1       ;
@@ -2500,21 +2500,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; i2c:i2c_master|Selector44~0                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector43~0                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector42~0                                                                                                         ; 1       ;
-; i2c:i2c_master|\i2c_manager:data_count[29]~4                                                                                        ; 1       ;
 ; i2c:i2c_master|\i2c_manager:data_count[29]~3                                                                                        ; 1       ;
-; i2c:i2c_master|\i2c_manager:data_count[14]~5                                                                                        ; 1       ;
 ; i2c:i2c_master|\i2c_manager:data_count[29]~2                                                                                        ; 1       ;
-; i2c:i2c_master|\i2c_manager:data_count[29]~1                                                                                        ; 1       ;
 ; i2c:i2c_master|\i2c_manager:data_count[14]~4                                                                                        ; 1       ;
+; i2c:i2c_master|\i2c_manager:data_count[14]~3                                                                                        ; 1       ;
 ; i2c:i2c_master|Selector41~0                                                                                                         ; 1       ;
+; i2c:i2c_master|\i2c_manager:clock_count[30]~6                                                                                       ; 1       ;
+; i2c:i2c_master|Selector78~0                                                                                                         ; 1       ;
+; i2c:i2c_master|\i2c_manager:clock_count[19]~8                                                                                       ; 1       ;
+; i2c:i2c_master|\i2c_manager:clock_count[19]~7                                                                                       ; 1       ;
+; i2c:i2c_master|\i2c_manager:clock_count[30]~4                                                                                       ; 1       ;
+; i2c:i2c_master|\i2c_manager:clock_count[19]~6                                                                                       ; 1       ;
+; i2c:i2c_master|\i2c_manager:clock_count[19]~5                                                                                       ; 1       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[30]~3                                                                                       ; 1       ;
-; i2c:i2c_master|\i2c_manager:clock_count[30]~2                                                                                       ; 1       ;
-; i2c:i2c_master|\i2c_manager:clock_count[30]~1                                                                                       ; 1       ;
-; i2c:i2c_master|Selector0~4                                                                                                          ; 1       ;
 ; i2c:i2c_master|\i2c_manager:clock_count[19]~4                                                                                       ; 1       ;
-; i2c:i2c_master|Selector0~2                                                                                                          ; 1       ;
-; i2c:i2c_master|Selector0~1                                                                                                          ; 1       ;
-; i2c:i2c_master|Selector0~0                                                                                                          ; 1       ;
+; i2c:i2c_master|\i2c_manager:clock_count[19]~3                                                                                       ; 1       ;
 ; vga:vga_output|h_count~1                                                                                                            ; 1       ;
 ; vga:vga_output|h_count~0                                                                                                            ; 1       ;
 ; vga:vga_output|Equal0~2                                                                                                             ; 1       ;
@@ -2652,26 +2652,26 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|romout[0][7]                                                            ; 1       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|romout[1][3]~1                                                          ; 1       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|romout[0][8]                                                            ; 1       ;
-; ycc_y[1]~18                                                                                                                         ; 1       ;
+; ycc_y[1]~14                                                                                                                         ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1487w[0]~1                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1487w[0]~0                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2255w[0]~1                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2255w[0]~0                       ; 1       ;
-; ycc_y[2]~16                                                                                                                         ; 1       ;
+; ycc_y[2]~12                                                                                                                         ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1535w[0]~1                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1535w[0]~0                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2303w[0]~1                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2303w[0]~0                       ; 1       ;
-; ycc_y[0]~14                                                                                                                         ; 1       ;
+; ycc_y[0]~10                                                                                                                         ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1439w[0]~1                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1439w[0]~0                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2207w[0]~1                       ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2207w[0]~0                       ; 1       ;
-; ycc_y[3]~12                                                                                                                         ; 1       ;
-; ycc_y[3]~11                                                                                                                         ; 1       ;
-; ycc_y[3]~10                                                                                                                         ; 1       ;
-; ycc_y[3]~9                                                                                                                          ; 1       ;
 ; ycc_y[3]~8                                                                                                                          ; 1       ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1583w[0]~1                       ; 1       ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1583w[0]~0                       ; 1       ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2351w[0]~1                       ; 1       ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2351w[0]~0                       ; 1       ;
 ; ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|romout[1][4]~0                                                          ; 1       ;
 ; ycc_y[6]~6                                                                                                                          ; 1       ;
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs1727w[0]~1                       ; 1       ;
@@ -2695,8 +2695,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3|w_mux_outputs2447w[0]~0                       ; 1       ;
 ; i2c:i2c_master|i2c_s.STOP~0                                                                                                         ; 1       ;
 ; i2c:i2c_master|Selector72~0                                                                                                         ; 1       ;
-; i2c:i2c_master|Selector71~12                                                                                                        ; 1       ;
-; i2c:i2c_master|Selector71~11                                                                                                        ; 1       ;
+; i2c:i2c_master|Selector71~8                                                                                                         ; 1       ;
+; i2c:i2c_master|Selector74~0                                                                                                         ; 1       ;
+; i2c:i2c_master|Selector73~0                                                                                                         ; 1       ;
 +-------------------------------------------------------------------------------------------------------------------------------------+---------+
 
 
@@ -2705,7 +2706,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+---------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+---------------+
 ; Name                                                                                ; Type ; Mode             ; Clock Mode   ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Port A Input Registers ; Port A Output Registers ; Port B Input Registers ; Port B Output Registers ; Size    ; Implementation Port A Depth ; Implementation Port A Width ; Implementation Port B Depth ; Implementation Port B Width ; Implementation Bits ; M9Ks ; MIF  ; Location                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ; Mixed Width RDW Mode ; Port A RDW Mode ; Port B RDW Mode ; Fits in MLABs ;
 +-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+---------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+---------------+
-; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; Single Clock ; 38400        ; 32           ; 38400        ; 32           ; yes                    ; no                      ; yes                    ; no                      ; 1228800 ; 38400                       ; 32                          ; 38400                       ; 32                          ; 1228800             ; 160  ; None ; M9K_X37_Y46_N0, M9K_X37_Y48_N0, M9K_X37_Y36_N0, M9K_X51_Y36_N0, M9K_X51_Y28_N0, M9K_X37_Y34_N0, M9K_X51_Y20_N0, M9K_X37_Y32_N0, M9K_X51_Y21_N0, M9K_X37_Y55_N0, M9K_X15_Y37_N0, M9K_X51_Y46_N0, M9K_X37_Y37_N0, M9K_X51_Y45_N0, M9K_X51_Y32_N0, M9K_X64_Y28_N0, M9K_X51_Y55_N0, M9K_X37_Y21_N0, M9K_X51_Y37_N0, M9K_X37_Y50_N0, M9K_X37_Y23_N0, M9K_X51_Y17_N0, M9K_X37_Y33_N0, M9K_X51_Y34_N0, M9K_X37_Y40_N0, M9K_X37_Y19_N0, M9K_X15_Y36_N0, M9K_X51_Y19_N0, M9K_X51_Y33_N0, M9K_X37_Y20_N0, M9K_X64_Y29_N0, M9K_X64_Y33_N0, M9K_X64_Y30_N0, M9K_X64_Y35_N0, M9K_X51_Y25_N0, M9K_X51_Y40_N0, M9K_X51_Y26_N0, M9K_X37_Y28_N0, M9K_X51_Y27_N0, M9K_X37_Y47_N0, M9K_X78_Y26_N0, M9K_X78_Y28_N0, M9K_X78_Y24_N0, M9K_X15_Y33_N0, M9K_X51_Y51_N0, M9K_X51_Y48_N0, M9K_X64_Y32_N0, M9K_X37_Y52_N0, M9K_X51_Y24_N0, M9K_X37_Y45_N0, M9K_X78_Y36_N0, M9K_X78_Y30_N0, M9K_X78_Y23_N0, M9K_X37_Y22_N0, M9K_X78_Y35_N0, M9K_X51_Y31_N0, M9K_X37_Y38_N0, M9K_X78_Y32_N0, M9K_X37_Y31_N0, M9K_X51_Y22_N0, M9K_X37_Y35_N0, M9K_X64_Y36_N0, M9K_X51_Y43_N0, M9K_X15_Y35_N0, M9K_X37_Y24_N0, M9K_X51_Y35_N0, M9K_X37_Y27_N0, M9K_X37_Y29_N0, M9K_X15_Y34_N0, M9K_X51_Y39_N0, M9K_X37_Y18_N0, M9K_X51_Y18_N0, M9K_X37_Y26_N0, M9K_X15_Y32_N0, M9K_X37_Y43_N0, M9K_X37_Y25_N0, M9K_X37_Y30_N0, M9K_X51_Y29_N0, M9K_X51_Y30_N0, M9K_X37_Y17_N0, M9K_X78_Y18_N0, M9K_X78_Y42_N0, M9K_X64_Y51_N0, M9K_X64_Y24_N0, M9K_X64_Y21_N0, M9K_X78_Y47_N0, M9K_X64_Y45_N0, M9K_X64_Y50_N0, M9K_X78_Y49_N0, M9K_X37_Y54_N0, M9K_X78_Y48_N0, M9K_X64_Y38_N0, M9K_X78_Y46_N0, M9K_X51_Y50_N0, M9K_X78_Y40_N0, M9K_X78_Y20_N0, M9K_X64_Y18_N0, M9K_X64_Y25_N0, M9K_X64_Y20_N0, M9K_X64_Y26_N0, M9K_X37_Y42_N0, M9K_X64_Y46_N0, M9K_X64_Y55_N0, M9K_X78_Y41_N0, M9K_X37_Y49_N0, M9K_X64_Y43_N0, M9K_X78_Y19_N0, M9K_X64_Y17_N0, M9K_X64_Y19_N0, M9K_X64_Y22_N0, M9K_X78_Y44_N0, M9K_X64_Y37_N0, M9K_X78_Y27_N0, M9K_X78_Y53_N0, M9K_X78_Y29_N0, M9K_X64_Y54_N0, M9K_X64_Y53_N0, M9K_X78_Y54_N0, M9K_X64_Y52_N0, M9K_X78_Y51_N0, M9K_X78_Y22_N0, M9K_X78_Y31_N0, M9K_X78_Y21_N0, M9K_X78_Y45_N0, M9K_X78_Y25_N0, M9K_X78_Y43_N0, M9K_X64_Y41_N0, M9K_X64_Y39_N0, M9K_X37_Y41_N0, M9K_X64_Y44_N0, M9K_X78_Y52_N0, M9K_X51_Y54_N0, M9K_X78_Y50_N0, M9K_X51_Y52_N0, M9K_X64_Y48_N0, M9K_X37_Y53_N0, M9K_X64_Y47_N0, M9K_X64_Y49_N0, M9K_X51_Y49_N0, M9K_X51_Y53_N0, M9K_X78_Y39_N0, M9K_X37_Y39_N0, M9K_X78_Y33_N0, M9K_X51_Y44_N0, M9K_X51_Y47_N0, M9K_X37_Y44_N0, M9K_X64_Y23_N0, M9K_X51_Y23_N0, M9K_X64_Y31_N0, M9K_X64_Y27_N0, M9K_X78_Y38_N0, M9K_X78_Y34_N0, M9K_X51_Y42_N0, M9K_X78_Y37_N0, M9K_X51_Y41_N0, M9K_X37_Y51_N0, M9K_X64_Y42_N0, M9K_X51_Y38_N0, M9K_X64_Y40_N0, M9K_X64_Y34_N0 ; Old data             ; Old data        ; Old data        ; No - Unknown  ;
+; sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; Single Clock ; 38400        ; 32           ; 38400        ; 32           ; yes                    ; no                      ; yes                    ; no                      ; 1228800 ; 38400                       ; 32                          ; 38400                       ; 32                          ; 1228800             ; 160  ; None ; M9K_X64_Y37_N0, M9K_X64_Y38_N0, M9K_X78_Y39_N0, M9K_X78_Y41_N0, M9K_X37_Y31_N0, M9K_X37_Y36_N0, M9K_X64_Y35_N0, M9K_X64_Y39_N0, M9K_X37_Y39_N0, M9K_X64_Y41_N0, M9K_X78_Y50_N0, M9K_X37_Y57_N0, M9K_X64_Y45_N0, M9K_X51_Y52_N0, M9K_X51_Y31_N0, M9K_X37_Y50_N0, M9K_X78_Y53_N0, M9K_X51_Y35_N0, M9K_X78_Y38_N0, M9K_X64_Y52_N0, M9K_X37_Y49_N0, M9K_X64_Y23_N0, M9K_X51_Y23_N0, M9K_X51_Y28_N0, M9K_X15_Y42_N0, M9K_X51_Y38_N0, M9K_X15_Y39_N0, M9K_X37_Y52_N0, M9K_X37_Y55_N0, M9K_X64_Y26_N0, M9K_X37_Y26_N0, M9K_X15_Y37_N0, M9K_X51_Y25_N0, M9K_X51_Y39_N0, M9K_X64_Y55_N0, M9K_X78_Y42_N0, M9K_X78_Y51_N0, M9K_X64_Y57_N0, M9K_X64_Y44_N0, M9K_X37_Y25_N0, M9K_X51_Y53_N0, M9K_X37_Y60_N0, M9K_X37_Y56_N0, M9K_X37_Y53_N0, M9K_X37_Y37_N0, M9K_X15_Y40_N0, M9K_X37_Y44_N0, M9K_X37_Y40_N0, M9K_X37_Y42_N0, M9K_X37_Y47_N0, M9K_X51_Y26_N0, M9K_X51_Y37_N0, M9K_X15_Y36_N0, M9K_X15_Y41_N0, M9K_X64_Y24_N0, M9K_X51_Y41_N0, M9K_X37_Y41_N0, M9K_X64_Y40_N0, M9K_X51_Y40_N0, M9K_X51_Y24_N0, M9K_X51_Y54_N0, M9K_X51_Y60_N0, M9K_X37_Y45_N0, M9K_X51_Y55_N0, M9K_X78_Y56_N0, M9K_X78_Y48_N0, M9K_X64_Y58_N0, M9K_X78_Y40_N0, M9K_X51_Y42_N0, M9K_X51_Y58_N0, M9K_X51_Y57_N0, M9K_X37_Y46_N0, M9K_X37_Y48_N0, M9K_X37_Y54_N0, M9K_X51_Y51_N0, M9K_X51_Y44_N0, M9K_X64_Y42_N0, M9K_X64_Y53_N0, M9K_X64_Y51_N0, M9K_X51_Y56_N0, M9K_X15_Y38_N0, M9K_X37_Y38_N0, M9K_X37_Y22_N0, M9K_X37_Y27_N0, M9K_X37_Y24_N0, M9K_X37_Y28_N0, M9K_X37_Y32_N0, M9K_X64_Y27_N0, M9K_X37_Y61_N0, M9K_X51_Y27_N0, M9K_X37_Y34_N0, M9K_X78_Y30_N0, M9K_X64_Y34_N0, M9K_X64_Y28_N0, M9K_X78_Y31_N0, M9K_X78_Y26_N0, M9K_X78_Y34_N0, M9K_X78_Y29_N0, M9K_X51_Y29_N0, M9K_X78_Y28_N0, M9K_X78_Y27_N0, M9K_X78_Y32_N0, M9K_X51_Y22_N0, M9K_X78_Y24_N0, M9K_X37_Y29_N0, M9K_X64_Y54_N0, M9K_X64_Y31_N0, M9K_X64_Y30_N0, M9K_X64_Y50_N0, M9K_X64_Y29_N0, M9K_X64_Y25_N0, M9K_X51_Y32_N0, M9K_X64_Y22_N0, M9K_X78_Y25_N0, M9K_X78_Y33_N0, M9K_X37_Y58_N0, M9K_X37_Y30_N0, M9K_X37_Y35_N0, M9K_X37_Y23_N0, M9K_X37_Y33_N0, M9K_X78_Y52_N0, M9K_X78_Y54_N0, M9K_X51_Y61_N0, M9K_X64_Y59_N0, M9K_X51_Y48_N0, M9K_X37_Y51_N0, M9K_X51_Y50_N0, M9K_X37_Y59_N0, M9K_X37_Y43_N0, M9K_X51_Y59_N0, M9K_X78_Y49_N0, M9K_X78_Y46_N0, M9K_X64_Y49_N0, M9K_X64_Y48_N0, M9K_X51_Y47_N0, M9K_X78_Y47_N0, M9K_X64_Y46_N0, M9K_X64_Y47_N0, M9K_X78_Y43_N0, M9K_X64_Y43_N0, M9K_X78_Y45_N0, M9K_X51_Y43_N0, M9K_X51_Y45_N0, M9K_X51_Y46_N0, M9K_X51_Y49_N0, M9K_X78_Y55_N0, M9K_X78_Y44_N0, M9K_X64_Y60_N0, M9K_X64_Y61_N0, M9K_X64_Y56_N0, M9K_X51_Y33_N0, M9K_X51_Y34_N0, M9K_X64_Y36_N0, M9K_X64_Y33_N0, M9K_X51_Y36_N0, M9K_X78_Y37_N0, M9K_X78_Y35_N0, M9K_X64_Y32_N0, M9K_X51_Y30_N0, M9K_X78_Y36_N0 ; Old data             ; Old data        ; Old data        ; No - Unknown  ;
 +-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+---------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------+----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+----------------------+-----------------+-----------------+---------------+
 Note: Fitter may spread logical memories into multiple blocks to improve timing. The actual required RAM blocks can be found in the Fitter Resource Usage section.
 
@@ -2715,118 +2716,118 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 +-----------------------+-------------------------+
 ; Routing Resource Type ; Usage                   ;
 +-----------------------+-------------------------+
-; Block interconnects   ; 5,796 / 342,891 ( 2 % ) ;
-; C16 interconnects     ; 527 / 10,120 ( 5 % )    ;
-; C4 interconnects      ; 2,653 / 209,544 ( 1 % ) ;
-; Direct links          ; 408 / 342,891 ( < 1 % ) ;
+; Block interconnects   ; 5,774 / 342,891 ( 2 % ) ;
+; C16 interconnects     ; 485 / 10,120 ( 5 % )    ;
+; C4 interconnects      ; 2,714 / 209,544 ( 1 % ) ;
+; Direct links          ; 377 / 342,891 ( < 1 % ) ;
 ; Global clocks         ; 3 / 20 ( 15 % )         ;
-; Local interconnects   ; 621 / 119,088 ( < 1 % ) ;
-; R24 interconnects     ; 557 / 9,963 ( 6 % )     ;
-; R4 interconnects      ; 3,360 / 289,782 ( 1 % ) ;
+; Local interconnects   ; 646 / 119,088 ( < 1 % ) ;
+; R24 interconnects     ; 521 / 9,963 ( 5 % )     ;
+; R4 interconnects      ; 3,243 / 289,782 ( 1 % ) ;
 +-----------------------+-------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 11.90) ; Number of LABs  (Total = 88) ;
+; Number of Logic Elements  (Average = 11.95) ; Number of LABs  (Total = 88) ;
 +---------------------------------------------+------------------------------+
 ; 1                                           ; 6                            ;
-; 2                                           ; 2                            ;
-; 3                                           ; 3                            ;
-; 4                                           ; 5                            ;
-; 5                                           ; 2                            ;
-; 6                                           ; 6                            ;
-; 7                                           ; 3                            ;
-; 8                                           ; 0                            ;
+; 2                                           ; 3                            ;
+; 3                                           ; 4                            ;
+; 4                                           ; 6                            ;
+; 5                                           ; 3                            ;
+; 6                                           ; 1                            ;
+; 7                                           ; 0                            ;
+; 8                                           ; 3                            ;
 ; 9                                           ; 0                            ;
-; 10                                          ; 1                            ;
+; 10                                          ; 2                            ;
 ; 11                                          ; 1                            ;
-; 12                                          ; 0                            ;
+; 12                                          ; 1                            ;
 ; 13                                          ; 1                            ;
-; 14                                          ; 7                            ;
+; 14                                          ; 1                            ;
 ; 15                                          ; 7                            ;
-; 16                                          ; 44                           ;
+; 16                                          ; 49                           ;
 +---------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.31) ; Number of LABs  (Total = 88) ;
+; LAB-wide Signals  (Average = 1.36) ; Number of LABs  (Total = 88) ;
 +------------------------------------+------------------------------+
-; 1 Async. clear                     ; 16                           ;
+; 1 Async. clear                     ; 19                           ;
 ; 1 Clock                            ; 49                           ;
-; 1 Clock enable                     ; 27                           ;
+; 1 Clock enable                     ; 26                           ;
 ; 1 Sync. clear                      ; 12                           ;
 ; 1 Sync. load                       ; 2                            ;
-; 2 Clock enables                    ; 3                            ;
-; 2 Clocks                           ; 6                            ;
+; 2 Clock enables                    ; 4                            ;
+; 2 Clocks                           ; 8                            ;
 +------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 17.10) ; Number of LABs  (Total = 88) ;
+; Number of Signals Sourced  (Average = 17.18) ; Number of LABs  (Total = 88) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
-; 1                                            ; 4                            ;
-; 2                                            ; 3                            ;
+; 1                                            ; 3                            ;
+; 2                                            ; 4                            ;
 ; 3                                            ; 3                            ;
-; 4                                            ; 3                            ;
-; 5                                            ; 1                            ;
-; 6                                            ; 6                            ;
-; 7                                            ; 2                            ;
-; 8                                            ; 1                            ;
+; 4                                            ; 4                            ;
+; 5                                            ; 4                            ;
+; 6                                            ; 1                            ;
+; 7                                            ; 1                            ;
+; 8                                            ; 3                            ;
 ; 9                                            ; 2                            ;
-; 10                                           ; 3                            ;
+; 10                                           ; 2                            ;
 ; 11                                           ; 1                            ;
 ; 12                                           ; 1                            ;
-; 13                                           ; 2                            ;
-; 14                                           ; 4                            ;
-; 15                                           ; 2                            ;
-; 16                                           ; 8                            ;
-; 17                                           ; 4                            ;
-; 18                                           ; 3                            ;
-; 19                                           ; 1                            ;
-; 20                                           ; 0                            ;
-; 21                                           ; 4                            ;
-; 22                                           ; 1                            ;
+; 13                                           ; 1                            ;
+; 14                                           ; 1                            ;
+; 15                                           ; 4                            ;
+; 16                                           ; 10                           ;
+; 17                                           ; 2                            ;
+; 18                                           ; 2                            ;
+; 19                                           ; 4                            ;
+; 20                                           ; 3                            ;
+; 21                                           ; 1                            ;
+; 22                                           ; 2                            ;
 ; 23                                           ; 1                            ;
-; 24                                           ; 0                            ;
-; 25                                           ; 4                            ;
-; 26                                           ; 1                            ;
-; 27                                           ; 1                            ;
-; 28                                           ; 4                            ;
+; 24                                           ; 3                            ;
+; 25                                           ; 2                            ;
+; 26                                           ; 0                            ;
+; 27                                           ; 2                            ;
+; 28                                           ; 5                            ;
 ; 29                                           ; 1                            ;
 ; 30                                           ; 2                            ;
 ; 31                                           ; 4                            ;
-; 32                                           ; 11                           ;
+; 32                                           ; 9                            ;
 +----------------------------------------------+------------------------------+
 
 
 +--------------------------------------------------------------------------------+
 ; LAB Signals Sourced Out                                                        ;
 +-------------------------------------------------+------------------------------+
-; Number of Signals Sourced Out  (Average = 8.36) ; Number of LABs  (Total = 88) ;
+; Number of Signals Sourced Out  (Average = 8.35) ; Number of LABs  (Total = 88) ;
 +-------------------------------------------------+------------------------------+
 ; 0                                               ; 0                            ;
-; 1                                               ; 14                           ;
-; 2                                               ; 4                            ;
+; 1                                               ; 15                           ;
+; 2                                               ; 6                            ;
 ; 3                                               ; 2                            ;
 ; 4                                               ; 3                            ;
-; 5                                               ; 3                            ;
-; 6                                               ; 5                            ;
-; 7                                               ; 5                            ;
-; 8                                               ; 8                            ;
-; 9                                               ; 10                           ;
-; 10                                              ; 3                            ;
+; 5                                               ; 1                            ;
+; 6                                               ; 2                            ;
+; 7                                               ; 1                            ;
+; 8                                               ; 14                           ;
+; 9                                               ; 7                            ;
+; 10                                              ; 6                            ;
 ; 11                                              ; 2                            ;
-; 12                                              ; 6                            ;
-; 13                                              ; 7                            ;
-; 14                                              ; 2                            ;
-; 15                                              ; 5                            ;
+; 12                                              ; 5                            ;
+; 13                                              ; 8                            ;
+; 14                                              ; 4                            ;
+; 15                                              ; 3                            ;
 ; 16                                              ; 9                            ;
 +-------------------------------------------------+------------------------------+
 
@@ -2834,42 +2835,42 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 +-----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 13.65) ; Number of LABs  (Total = 88) ;
+; Number of Distinct Inputs  (Average = 13.43) ; Number of LABs  (Total = 88) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
 ; 1                                            ; 1                            ;
-; 2                                            ; 0                            ;
-; 3                                            ; 3                            ;
-; 4                                            ; 14                           ;
-; 5                                            ; 1                            ;
-; 6                                            ; 4                            ;
-; 7                                            ; 3                            ;
-; 8                                            ; 6                            ;
-; 9                                            ; 3                            ;
-; 10                                           ; 2                            ;
+; 2                                            ; 2                            ;
+; 3                                            ; 5                            ;
+; 4                                            ; 11                           ;
+; 5                                            ; 4                            ;
+; 6                                            ; 3                            ;
+; 7                                            ; 1                            ;
+; 8                                            ; 7                            ;
+; 9                                            ; 1                            ;
+; 10                                           ; 5                            ;
 ; 11                                           ; 3                            ;
 ; 12                                           ; 4                            ;
 ; 13                                           ; 6                            ;
-; 14                                           ; 5                            ;
-; 15                                           ; 1                            ;
-; 16                                           ; 1                            ;
-; 17                                           ; 3                            ;
-; 18                                           ; 5                            ;
+; 14                                           ; 1                            ;
+; 15                                           ; 3                            ;
+; 16                                           ; 3                            ;
+; 17                                           ; 1                            ;
+; 18                                           ; 2                            ;
 ; 19                                           ; 1                            ;
-; 20                                           ; 0                            ;
+; 20                                           ; 3                            ;
 ; 21                                           ; 0                            ;
 ; 22                                           ; 2                            ;
 ; 23                                           ; 3                            ;
-; 24                                           ; 0                            ;
-; 25                                           ; 4                            ;
-; 26                                           ; 2                            ;
-; 27                                           ; 1                            ;
+; 24                                           ; 1                            ;
+; 25                                           ; 1                            ;
+; 26                                           ; 1                            ;
+; 27                                           ; 0                            ;
 ; 28                                           ; 2                            ;
-; 29                                           ; 0                            ;
-; 30                                           ; 2                            ;
-; 31                                           ; 1                            ;
+; 29                                           ; 1                            ;
+; 30                                           ; 1                            ;
+; 31                                           ; 3                            ;
 ; 32                                           ; 2                            ;
-; 33                                           ; 1                            ;
+; 33                                           ; 2                            ;
 ; 34                                           ; 1                            ;
 +----------------------------------------------+------------------------------+
 
@@ -3063,23 +3064,40 @@ This will disable optimization of problematic paths and expose them for further 
 ; Source Register                                  ; Destination Register                             ; Delay Added in ns ;
 +--------------------------------------------------+--------------------------------------------------+-------------------+
 ; vga:vga_output|pixel_clock                       ; vga:vga_output|pixel_clock                       ; 3.129             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[28] ; adv7180:decoder|\adv7180_decoder:data_buffer[28] ; 0.017             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[25] ; adv7180:decoder|\adv7180_decoder:data_buffer[25] ; 0.017             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[9]  ; adv7180:decoder|\adv7180_decoder:data_buffer[9]  ; 0.017             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[12] ; adv7180:decoder|\adv7180_decoder:data_buffer[12] ; 0.017             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[17] ; adv7180:decoder|\adv7180_decoder:data_buffer[17] ; 0.017             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[20] ; adv7180:decoder|\adv7180_decoder:data_buffer[20] ; 0.017             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[1]  ; adv7180:decoder|\adv7180_decoder:data_buffer[1]  ; 0.016             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[4]  ; adv7180:decoder|\adv7180_decoder:data_buffer[4]  ; 0.016             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[31] ; adv7180:decoder|\adv7180_decoder:data_buffer[31] ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[28] ; adv7180:decoder|\adv7180_decoder:data_buffer[28] ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[29] ; adv7180:decoder|\adv7180_decoder:data_buffer[29] ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[25] ; adv7180:decoder|\adv7180_decoder:data_buffer[25] ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[24] ; adv7180:decoder|\adv7180_decoder:data_buffer[24] ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[26] ; adv7180:decoder|\adv7180_decoder:data_buffer[26] ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[27] ; adv7180:decoder|\adv7180_decoder:data_buffer[27] ; 0.015             ;
 ; adv7180:decoder|\adv7180_decoder:data_buffer[30] ; adv7180:decoder|\adv7180_decoder:data_buffer[30] ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[1]  ; adv7180:decoder|\adv7180_decoder:data_buffer[1]  ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[2]  ; adv7180:decoder|\adv7180_decoder:data_buffer[2]  ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[0]  ; adv7180:decoder|\adv7180_decoder:data_buffer[0]  ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[3]  ; adv7180:decoder|\adv7180_decoder:data_buffer[3]  ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[6]  ; adv7180:decoder|\adv7180_decoder:data_buffer[6]  ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[4]  ; adv7180:decoder|\adv7180_decoder:data_buffer[4]  ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[7]  ; adv7180:decoder|\adv7180_decoder:data_buffer[7]  ; 0.015             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[5]  ; adv7180:decoder|\adv7180_decoder:data_buffer[5]  ; 0.015             ;
 ; adv7180:decoder|\adv7180_decoder:data_buffer[14] ; adv7180:decoder|\adv7180_decoder:data_buffer[14] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[11] ; adv7180:decoder|\adv7180_decoder:data_buffer[11] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[10] ; adv7180:decoder|\adv7180_decoder:data_buffer[10] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[8]  ; adv7180:decoder|\adv7180_decoder:data_buffer[8]  ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[9]  ; adv7180:decoder|\adv7180_decoder:data_buffer[9]  ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[12] ; adv7180:decoder|\adv7180_decoder:data_buffer[12] ; 0.014             ;
 ; adv7180:decoder|\adv7180_decoder:data_buffer[15] ; adv7180:decoder|\adv7180_decoder:data_buffer[15] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[13] ; adv7180:decoder|\adv7180_decoder:data_buffer[13] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[17] ; adv7180:decoder|\adv7180_decoder:data_buffer[17] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[18] ; adv7180:decoder|\adv7180_decoder:data_buffer[18] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[16] ; adv7180:decoder|\adv7180_decoder:data_buffer[16] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[19] ; adv7180:decoder|\adv7180_decoder:data_buffer[19] ; 0.014             ;
 ; adv7180:decoder|\adv7180_decoder:data_buffer[22] ; adv7180:decoder|\adv7180_decoder:data_buffer[22] ; 0.014             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[20] ; adv7180:decoder|\adv7180_decoder:data_buffer[20] ; 0.014             ;
 ; adv7180:decoder|\adv7180_decoder:data_buffer[23] ; adv7180:decoder|\adv7180_decoder:data_buffer[23] ; 0.014             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[6]  ; adv7180:decoder|\adv7180_decoder:data_buffer[6]  ; 0.013             ;
-; adv7180:decoder|\adv7180_decoder:data_buffer[7]  ; adv7180:decoder|\adv7180_decoder:data_buffer[7]  ; 0.013             ;
+; adv7180:decoder|\adv7180_decoder:data_buffer[21] ; adv7180:decoder|\adv7180_decoder:data_buffer[21] ; 0.014             ;
 +--------------------------------------------------+--------------------------------------------------+-------------------+
-Note: This table only shows the top 16 path(s) that have the largest delay added for hold.
+Note: This table only shows the top 33 path(s) that have the largest delay added for hold.
 
 
 +-----------------+
@@ -3126,35 +3144,35 @@ Info (176353): Automatically promoted node vga:vga_output|pixel_clock
 Info (176233): Starting register packing
 Info (176235): Finished register packing
     Extra Info (176219): No registers were packed into other blocks
-Info (171121): Fitter preparation operations ending: elapsed time is 00:00:03
+Info (171121): Fitter preparation operations ending: elapsed time is 00:00:04
 Info (14896): Fitter has disabled Advanced Physical Optimization because it is not supported for the current family.
 Info (170189): Fitter placement preparation operations beginning
 Info (170190): Fitter placement preparation operations ending: elapsed time is 00:00:01
 Info (170191): Fitter placement operations beginning
 Info (170137): Fitter placement was successful
-Info (170192): Fitter placement operations ending: elapsed time is 00:00:18
+Info (170192): Fitter placement operations ending: elapsed time is 00:00:19
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 1% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 11% of the available device resources in the region that extends from location X46_Y24 to location X57_Y36
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:13
+    Info (170196): Router estimated peak interconnect usage is 13% of the available device resources in the region that extends from location X46_Y37 to location X57_Y48
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:15
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 2.26 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 2.49 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:03
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:04
 Warning (169064): Following 3 pins have no output enable or a GND or VCC output enable - later changes to this connectivity may change fitting results
     Info (169065): Pin i2c_clk has a permanently enabled output enable
     Info (169065): Pin gpio_i2c_clk has a permanently enabled output enable
     Info (169065): Pin gpio_i2c_data has a permanently enabled output enable
 Info (144001): Generated suppressed messages file X:/nu/current/ece392/EECS-392/quartus/video_display/output_files/video_display.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 5 warnings
-    Info: Peak virtual memory: 953 megabytes
-    Info: Processing ended: Wed Jun 10 21:08:39 2015
-    Info: Elapsed time: 00:00:54
-    Info: Total CPU time (on all processors): 00:00:53
+    Info: Peak virtual memory: 957 megabytes
+    Info: Processing ended: Wed Jun 10 22:03:13 2015
+    Info: Elapsed time: 00:00:58
+    Info: Total CPU time (on all processors): 00:00:57
 
 
 +----------------------------+

@@ -3,23 +3,23 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'td_clk27'
-Slack : -14.746
-TNS   : -3393.373
+Slack : -14.909
+TNS   : -3290.545
 
 Type  : Slow 1200mV 85C Model Setup 'clk50'
-Slack : -6.126
-TNS   : -400.019
+Slack : -6.502
+TNS   : -419.512
 
 Type  : Slow 1200mV 85C Model Setup 'vga:vga_output|pixel_clock'
-Slack : -3.302
-TNS   : -134.951
+Slack : -3.067
+TNS   : -132.833
 
 Type  : Slow 1200mV 85C Model Hold 'clk50'
-Slack : 0.384
+Slack : 0.385
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'td_clk27'
-Slack : 0.386
+Slack : 0.385
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'vga:vga_output|pixel_clock'
@@ -39,23 +39,23 @@ Slack : -1.285
 TNS   : -109.225
 
 Type  : Slow 1200mV 0C Model Setup 'td_clk27'
-Slack : -13.284
-TNS   : -3035.918
+Slack : -13.578
+TNS   : -2943.550
 
 Type  : Slow 1200mV 0C Model Setup 'clk50'
-Slack : -5.553
-TNS   : -362.837
+Slack : -5.872
+TNS   : -376.870
 
 Type  : Slow 1200mV 0C Model Setup 'vga:vga_output|pixel_clock'
-Slack : -2.941
-TNS   : -117.272
+Slack : -2.729
+TNS   : -116.439
 
 Type  : Slow 1200mV 0C Model Hold 'clk50'
-Slack : 0.336
+Slack : 0.337
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'td_clk27'
-Slack : 0.339
+Slack : 0.338
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'vga:vga_output|pixel_clock'
@@ -75,23 +75,23 @@ Slack : -1.285
 TNS   : -109.225
 
 Type  : Fast 1200mV 0C Model Setup 'td_clk27'
-Slack : -6.440
-TNS   : -1610.546
+Slack : -6.535
+TNS   : -1568.117
 
 Type  : Fast 1200mV 0C Model Setup 'clk50'
-Slack : -2.417
-TNS   : -157.626
+Slack : -2.582
+TNS   : -164.099
 
 Type  : Fast 1200mV 0C Model Setup 'vga:vga_output|pixel_clock'
-Slack : -1.241
-TNS   : -35.425
+Slack : -1.188
+TNS   : -36.508
 
 Type  : Fast 1200mV 0C Model Hold 'clk50'
 Slack : 0.049
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'td_clk27'
-Slack : 0.174
+Slack : 0.173
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'vga:vga_output|pixel_clock'
@@ -100,11 +100,11 @@ TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'td_clk27'
 Slack : -3.000
-TNS   : -1069.522
+TNS   : -1070.741
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50'
 Slack : -3.000
-TNS   : -85.260
+TNS   : -86.028
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'vga:vga_output|pixel_clock'
 Slack : -1.000

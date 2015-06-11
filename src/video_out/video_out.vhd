@@ -22,6 +22,7 @@ signal pixel_clk : std_logic;
 signal pixel_row : std_logic_vector(9 downto 0);
 signal pixel_col : std_logic_vector(9 downto 0);
 signal pixel_row_int, pixel_col_int : natural;
+signal hori_sync, vert_sync : std_logic;
 
 signal ycc_store, ycc_load : std_logic_vector(YCC_WIDTH-1 downto 0);
 signal ycc_store_temp : std_logic_vector(YCC_WIDTH-1 downto 0);
@@ -29,8 +30,8 @@ signal y, y1, y2, cb, cr : std_logic_vector(SAMPLE_WIDTH-1 downto 0);
 signal y1_filter, y2_filter, cb_filter, cr_filter : std_logic_vector(SAMPLE_WIDTH-1 downto 0);
 signal y_int, cb_int, cr_int : natural;
 signal y1_filter_int, y2_filter_int, cb_filter_int, cr_filter_int : natural;
---signal filter_result : std_logic;
-signal filter_result_first, filter_result_last : std_logic;
+signal filter_result : std_logic_vector(1 downto 0);
+--signal filter_result_first, filter_result_last : std_logic;
 
 signal row, col : natural;
 --signal read_addr_full : signed(31 downto 0);
@@ -50,23 +51,14 @@ signal bw_wr_en : std_logic;
 
 signal camera_load : std_logic_vector(SAMPLE_WIDTH-1 downto 0);
 signal camera_store : std_logic_vector(SAMPLE_WIDTH-1 downto 0) := x"00";
---signal camera_load_latched : std_logic_vector(SAMPLE_WIDTH-1 downto 0);
 signal full, empty : std_logic;
-signal fifo_read_en, fifo_write_en : std_logic := '0';
+--signal fifo_read_en, fifo_write_en : std_logic := '0';
 
 signal center_row, center_col : natural;
-
-signal counter_read_fifo_temp : natural;
-signal color_temp : std_logic_vector(31 downto 0);
-signal addr_temp : natural;
-signal init_temp : natural;
-
-signal ycc_ready, buffer_latch : std_logic := '0';
+signal centroid_in : std_logic_vector(1  downto 0);
 signal centroid_enable : std_logic := '0';
 
-signal hori_sync, vert_sync : std_logic;
-signal centroid_in : std_logic_vector(1  downto 0);
-
+signal ycc_ready, buffer_latch : std_logic := '0';
 signal ycc_write_en : std_logic := '0';
 
 begin
@@ -252,7 +244,7 @@ begin
     center_col => center_col
   );
   
-  centroid_in <= filter_result_last & filter_result_first;
+  centroid_in <= filter_result;
   centroid_enable <= (hori_sync and vert_sync); -- active low signals
   
   get_bw_pixel : process(pixel_row, pixel_col)
@@ -340,7 +332,7 @@ begin
     y_key => 81,
     cb_key => 90,
     cr_key => 240,
-    result => filter_result_first
+    result => filter_result(0)
   );
   
   filter_last : ycc_filter
@@ -352,7 +344,7 @@ begin
     y_key => 81,
     cb_key => 90,
     cr_key => 240,
-    result => filter_result_last
+    result => filter_result(1)
   );
   
   bw_mem : sram
@@ -378,7 +370,7 @@ begin
     variable bw_buffer : std_logic_vector(BW_BUFFER_WIDTH-1 downto 0);
   begin  
     if rising_edge(clk) then
-      bw_buffer := bw_buffer(SAMPLE_WIDTH-3 downto 0) & filter_result_first & filter_result_last;
+      bw_buffer := bw_buffer(SAMPLE_WIDTH-3 downto 0) & filter_result(1) & filter_result(0);
       counter := counter + 1;
       if (counter >= SAMPLE_WIDTH/2) then
         counter := 0;

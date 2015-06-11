@@ -1,5 +1,5 @@
 Analysis & Synthesis report for video_display
-Wed Jun 10 21:07:43 2015
+Wed Jun 10 22:02:13 2015
 Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
 
 
@@ -69,13 +69,13 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Jun 10 21:07:43 2015      ;
+; Analysis & Synthesis Status        ; Successful - Wed Jun 10 22:02:13 2015      ;
 ; Quartus II 64-Bit Version          ; 14.0.0 Build 200 06/17/2014 SJ Web Edition ;
 ; Revision Name                      ; video_display                              ;
 ; Top-level Entity Name              ; video_display                              ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 1,079                                      ;
-;     Total combinational functions  ; 1,023                                      ;
+; Total logic elements               ; 1,078                                      ;
+;     Total combinational functions  ; 1,022                                      ;
 ;     Dedicated logic registers      ; 481                                        ;
 ; Total registers                    ; 481                                        ;
 ; Total pins                         ; 72                                         ;
@@ -245,16 +245,16 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 1,079          ;
+; Estimated Total logic elements              ; 1,078          ;
 ;                                             ;                ;
-; Total combinational functions               ; 1023           ;
+; Total combinational functions               ; 1022           ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 378            ;
-;     -- 3 input functions                    ; 140            ;
-;     -- <=2 input functions                  ; 505            ;
+;     -- 4 input functions                    ; 379            ;
+;     -- 3 input functions                    ; 132            ;
+;     -- <=2 input functions                  ; 511            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 624            ;
+;     -- normal mode                          ; 623            ;
 ;     -- arithmetic mode                      ; 399            ;
 ;                                             ;                ;
 ; Total registers                             ; 481            ;
@@ -266,7 +266,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ; Maximum fan-out node                        ; td_clk27~input ;
 ; Maximum fan-out                             ; 479            ;
-; Total fan-out                               ; 9319           ;
+; Total fan-out                               ; 9311           ;
 ; Average fan-out                             ; 5.14           ;
 +---------------------------------------------+----------------+
 
@@ -276,17 +276,17 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                     ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                        ; Library Name ;
 +------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |video_display                                 ; 1023 (103)        ; 481 (79)     ; 1228800     ; 0            ; 0       ; 0         ; 72   ; 0            ; |video_display                                                                                                                             ; work         ;
+; |video_display                                 ; 1022 (99)         ; 481 (79)     ; 1228800     ; 0            ; 0       ; 0         ; 72   ; 0            ; |video_display                                                                                                                             ; work         ;
 ;    |adv7180:decoder|                           ; 320 (320)         ; 257 (257)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|adv7180:decoder                                                                                                             ; work         ;
-;    |i2c:i2c_master|                            ; 223 (223)         ; 73 (73)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|i2c:i2c_master                                                                                                              ; work         ;
+;    |i2c:i2c_master|                            ; 222 (222)         ; 73 (73)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|i2c:i2c_master                                                                                                              ; work         ;
 ;    |leddcd:i2c_internal_output|                ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:i2c_internal_output                                                                                                  ; work         ;
 ;    |leddcd:i2c_state_output|                   ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:i2c_state_output                                                                                                     ; work         ;
 ;    |leddcd:led_output|                         ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:led_output                                                                                                           ; work         ;
-;    |sram:ram_block|                            ; 83 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block                                                                                                              ; work         ;
-;       |altsyncram:ram_block_rtl_0|             ; 83 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0                                                                                   ; work         ;
-;          |altsyncram_69h1:auto_generated|      ; 83 (0)            ; 3 (3)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated                                                    ; work         ;
+;    |sram:ram_block|                            ; 87 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block                                                                                                              ; work         ;
+;       |altsyncram:ram_block_rtl_0|             ; 87 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0                                                                                   ; work         ;
+;          |altsyncram_69h1:auto_generated|      ; 87 (0)            ; 3 (3)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated                                                    ; work         ;
 ;             |decode_osa:decode2|               ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|decode_osa:decode2                                 ; work         ;
-;             |mux_lob:mux3|                     ; 76 (76)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3                                       ; work         ;
+;             |mux_lob:mux3|                     ; 80 (80)           ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated|mux_lob:mux3                                       ; work         ;
 ;    |vga:vga_output|                            ; 59 (59)           ; 45 (45)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|vga:vga_output                                                                                                              ; work         ;
 ;    |ycc2rgb:ycc2rgb_converter|                 ; 222 (115)         ; 24 (24)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|ycc2rgb:ycc2rgb_converter                                                                                                   ; work         ;
 ;       |lpm_mult:Mult0|                         ; 33 (0)            ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0                                                                                    ; work         ;
@@ -449,9 +449,9 @@ Encoding Type:  One-Hot
 ; Total registers                              ; 481   ;
 ; Number of registers using Synchronous Clear  ; 156   ;
 ; Number of registers using Synchronous Load   ; 31    ;
-; Number of registers using Asynchronous Clear ; 90    ;
+; Number of registers using Asynchronous Clear ; 91    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 364   ;
+; Number of registers using Clock Enable       ; 363   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -461,7 +461,7 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; ycc_even                               ; 15      ;
+; ycc_even                               ; 16      ;
 ; adv7180:decoder|\vs_manager:vs_idle    ; 1       ;
 ; adv7180:decoder|\hs_manager:hs_idle    ; 1       ;
 ; Total number of inverted registers = 3 ;         ;
@@ -525,7 +525,7 @@ Encoding Type:  One-Hot
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |video_display|i2c_state_count[0]                                         ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |video_display|i2c:i2c_master|state[1]                                    ;
 ; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |video_display|adv7180:decoder|state                                      ;
-; 25:1               ; 5 bits    ; 80 LEs        ; 20 LEs               ; 60 LEs                 ; No         ; |video_display|i2c:i2c_master|Selector71                                  ;
+; 14:1               ; 5 bits    ; 45 LEs        ; 20 LEs               ; 25 LEs                 ; No         ; |video_display|i2c:i2c_master|Selector71                                  ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
 
 
@@ -910,27 +910,27 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-----------------------+-----------------------------+
 ; boundary_port         ; 72                          ;
 ; cycloneiii_ff         ; 481                         ;
-;     CLR               ; 88                          ;
-;     ENA               ; 175                         ;
+;     CLR               ; 89                          ;
+;     ENA               ; 174                         ;
 ;     ENA CLR           ; 2                           ;
 ;     ENA SCLR          ; 156                         ;
 ;     ENA SLD           ; 31                          ;
 ;     plain             ; 29                          ;
 ; cycloneiii_io_obuf    ; 4                           ;
-; cycloneiii_lcell_comb ; 1028                        ;
+; cycloneiii_lcell_comb ; 1027                        ;
 ;     arith             ; 399                         ;
 ;         2 data inputs ; 306                         ;
 ;         3 data inputs ; 93                          ;
-;     normal            ; 629                         ;
+;     normal            ; 628                         ;
 ;         0 data inputs ; 4                           ;
 ;         1 data inputs ; 23                          ;
-;         2 data inputs ; 177                         ;
-;         3 data inputs ; 47                          ;
-;         4 data inputs ; 378                         ;
+;         2 data inputs ; 183                         ;
+;         3 data inputs ; 39                          ;
+;         4 data inputs ; 379                         ;
 ; cycloneiii_ram_block  ; 160                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 11.10                       ;
-; Average LUT depth     ; 5.70                        ;
+; Average LUT depth     ; 5.67                        ;
 +-----------------------+-----------------------------+
 
 
@@ -949,7 +949,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
-    Info: Processing started: Wed Jun 10 21:07:32 2015
+    Info: Processing started: Wed Jun 10 22:02:03 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off video_display -c video_display
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file /nu/current/ece392/eecs-392/src/tristate.vhdl
@@ -1181,16 +1181,16 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "i2c_config_clk"
-Info (21057): Implemented 1362 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1361 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 14 input pins
     Info (21059): Implemented 54 output pins
     Info (21060): Implemented 4 bidirectional pins
-    Info (21061): Implemented 1130 logic cells
+    Info (21061): Implemented 1129 logic cells
     Info (21064): Implemented 160 RAM segments
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 64 warnings
-    Info: Peak virtual memory: 606 megabytes
-    Info: Processing ended: Wed Jun 10 21:07:43 2015
-    Info: Elapsed time: 00:00:11
-    Info: Total CPU time (on all processors): 00:00:09
+    Info: Peak virtual memory: 605 megabytes
+    Info: Processing ended: Wed Jun 10 22:02:13 2015
+    Info: Elapsed time: 00:00:10
+    Info: Total CPU time (on all processors): 00:00:10
 
 

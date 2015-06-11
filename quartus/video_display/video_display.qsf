@@ -163,12 +163,12 @@ set_location_assignment PIN_W22 -to i2c_state_segments[3]
 set_location_assignment PIN_W25 -to i2c_state_segments[4]
 set_location_assignment PIN_U23 -to i2c_state_segments[5]
 set_location_assignment PIN_U24 -to i2c_state_segments[6]
-set_location_assignment PIN_AC28 -to i2c_error
+set_location_assignment PIN_E19 -to i2c_error
 set_location_assignment PIN_M21 -to i2c_config_clk
 set_location_assignment PIN_F19 -to i2c_status_led
 set_location_assignment PIN_AB22 -to gpio_i2c_clk
 set_location_assignment PIN_AB21 -to gpio_i2c_data
-set_location_assignment PIN_E19 -to i2c_availability
+set_location_assignment PIN_F21 -to i2c_availability
 set_location_assignment PIN_AA25 -to i2c_internal_segments[0]
 set_location_assignment PIN_AA26 -to i2c_internal_segments[1]
 set_location_assignment PIN_Y25 -to i2c_internal_segments[2]
