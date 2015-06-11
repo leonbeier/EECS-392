@@ -314,7 +314,7 @@ begin
   
   gpio_i2c_clk <= i2c_clk;
   gpio_i2c_data <= i2c_data;
-  i2c_availability <= '1'; -- i2c_available;
+  i2c_availability <= i2c_available;
   
   i2c_state_count <= "0000" when (i2c_config_state = INIT_CONFIG) else
                      "0001" when (i2c_config_state = I2C_ADDR_CONFIG) else

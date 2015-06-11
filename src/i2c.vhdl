@@ -69,7 +69,7 @@ begin
   i2c_period_count <= 50_000_000 / FREQUENCY;
   sda_map: tristate generic map(MODE => PULL_UP)
                     port map(din => sda_write, dout => sda, en => sda_enable);
-  scl_map: tristate generic map(MODE => PULL_UP)
+  scl_map: tristate generic map(MODE => PULL_DOWN)
                     port map(din => scl_write, dout => scl, en => scl_enable);
 
   state <= "0000" when (i2c_s = INIT) else
