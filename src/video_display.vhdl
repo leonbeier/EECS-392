@@ -25,7 +25,7 @@ entity video_display is
     i2c_error : out std_logic;
     i2c_config_clk : in std_logic;
     i2c_status_led : out std_logic;
-	 i2c_availability : out std_logic;
+	  i2c_availability : out std_logic;
     
     -- TESTING -------------------------------------------------------------------------
     segments_out : out std_logic_vector(6 downto 0);
@@ -280,7 +280,7 @@ begin
           end if;
         when DONE_CONFIG =>
           i2c_status_led <= '1';
-          i2c_config_state <= INIT_CONFIG;
+          i2c_config_state <= DONE_CONFIG;
         when others =>
           i2c_config_state <= INIT_CONFIG;
       end case;
@@ -306,6 +306,7 @@ begin
   
   gpio_i2c_clk <= i2c_clk;
   gpio_i2c_data <= i2c_data;
+  i2c_availability <= i2c_available;
   
   i2c_state_count <= "0000" when (i2c_config_state = INIT_CONFIG) else
                      "0001" when (i2c_config_state = I2C_ADDR_CONFIG) else
