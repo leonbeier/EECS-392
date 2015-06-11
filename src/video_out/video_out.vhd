@@ -47,7 +47,6 @@ signal bw_pixel_sel : natural;
 
 signal bw_store, bw_load : std_logic_vector(BW_BUFFER_WIDTH-1 downto 0);
 signal bw_write_addr, bw_read_addr : natural;
-signal bw_wr_en : std_logic;
 
 signal camera_load : std_logic_vector(SAMPLE_WIDTH-1 downto 0);
 signal camera_store : std_logic_vector(SAMPLE_WIDTH-1 downto 0) := x"00";
@@ -59,7 +58,8 @@ signal centroid_in : std_logic_vector(1  downto 0);
 signal centroid_enable : std_logic := '0';
 
 signal ycc_ready, buffer_latch : std_logic := '0';
-signal ycc_write_en : std_logic := '0';
+signal ycc_write_en : std_logic := '1';
+signal bw_write_en : std_logic := '1';
 
 begin
 
@@ -86,15 +86,17 @@ begin
   begin
     if rising_edge(clk) then
       buffer_latch <= not empty;
-      ycc_write_en <= '0';
+      --ycc_write_en <= '0';
       
       if (ycc_ready = '1') then
-        ycc_write_en <= '1';
+        --ycc_write_en <= '1';
         ycc_store <= ycc_store_temp;
         addr := addr + 1;
         
-        if (addr >= YCC_RAM_SIZE) then
+        if (addr = YCC_RAM_SIZE) then
           addr := 0;
+          ycc_write_en <= '0';
+          bw_write_en <= '0';
         end if;
         
         if (init = '1') then
@@ -266,7 +268,7 @@ begin
 --  begin
 --    if rising_edge(clk) then
 --      addr := addr + 1;
---		  if (addr >= YCC_RAM_SIZE) then
+--		  if (addr = YCC_RAM_SIZE) then
 --		  	addr := 0;
 --		  end if; 
 --      if (addr < YCC_RAM_SIZE / 3) then
@@ -305,7 +307,7 @@ begin
       if (byte = 0) then
         byte := 3;
         addr := addr + 1;
-        if (addr >= YCC_RAM_SIZE) then
+        if (addr = YCC_RAM_SIZE) then
           addr := 0;
         end if;
       else
@@ -355,7 +357,7 @@ begin
   port map(
     clk => clk,
     --reset => reset, 
-    we => '1',
+    we => bw_write_en,
     write_addr => bw_write_addr,
     data_in => bw_store,
     read_addr => bw_read_addr,
@@ -372,10 +374,10 @@ begin
     if rising_edge(clk) then
       bw_buffer := bw_buffer(SAMPLE_WIDTH-3 downto 0) & filter_result(1) & filter_result(0);
       counter := counter + 1;
-      if (counter >= SAMPLE_WIDTH/2) then
+      if (counter = SAMPLE_WIDTH/2) then
         counter := 0;
         addr := addr + 1;
-        if (addr >= BW_RAM_SIZE) then
+        if (addr = BW_RAM_SIZE) then
           addr := 0;
           --bw_wr_en <= '0';
         end if;
