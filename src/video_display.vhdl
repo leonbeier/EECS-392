@@ -295,7 +295,7 @@ begin
     end if;
   end process;
   
-  gpio_i2c_clk <= '1';
+  gpio_i2c_clk <= i2c_clk;
   gpio_i2c_data <= i2c_data;
   
   i2c_state_count <= "0000" when (i2c_config_state = INIT_CONFIG) else
