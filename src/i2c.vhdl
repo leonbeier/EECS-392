@@ -38,6 +38,10 @@ architecture i2c of i2c is
 
   component tristate is
   
+  generic (
+    MODE : tristate_mode := PULL_DOWN
+  );
+  
   port (
     din : in std_logic;
     dout : out std_logic;

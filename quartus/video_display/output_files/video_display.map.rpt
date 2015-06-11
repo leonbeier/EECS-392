@@ -1,5 +1,5 @@
 Analysis & Synthesis report for video_display
-Wed Jun 10 22:02:13 2015
+Thu Jun 11 03:06:30 2015
 Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
 
 
@@ -14,35 +14,38 @@ Quartus II 64-Bit Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
   8. Analysis & Synthesis RAM Summary
-  9. State Machine - |video_display|i2c_config_state
- 10. State Machine - |video_display|i2c:i2c_master|i2c_s
- 11. State Machine - |video_display|adv7180:decoder|state
- 12. Registers Removed During Synthesis
- 13. Removed Registers Triggering Further Register Optimizations
- 14. General Register Statistics
- 15. Inverted Register Statistics
- 16. Registers Packed Into Inferred Megafunctions
- 17. Multiplexer Restructuring Statistics (Restructuring Performed)
- 18. Source assignments for sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated
- 19. Parameter Settings for User Entity Instance: sram:ram_block
- 20. Parameter Settings for User Entity Instance: adv7180:decoder
- 21. Parameter Settings for User Entity Instance: fifo:fifo_i2c
- 22. Parameter Settings for User Entity Instance: i2c:i2c_master
- 23. Parameter Settings for Inferred Entity Instance: sram:ram_block|altsyncram:ram_block_rtl_0
- 24. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult3
- 25. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0
- 26. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult1
- 27. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2
- 28. altsyncram Parameter Settings by Entity Instance
- 29. lpm_mult Parameter Settings by Entity Instance
- 30. Port Connectivity Checks: "leddcd:i2c_state_output"
- 31. Port Connectivity Checks: "i2c:i2c_master"
- 32. Port Connectivity Checks: "fifo:fifo_i2c"
- 33. Port Connectivity Checks: "vga:vga_output"
- 34. Port Connectivity Checks: "adv7180:decoder"
- 35. Post-Synthesis Netlist Statistics for Top Partition
- 36. Elapsed Time Per Partition
- 37. Analysis & Synthesis Messages
+  9. State Machine - |video_display|i2c:i2c_master|i2c_s
+ 10. State Machine - |video_display|adv7180:decoder|\vs_manager:state
+ 11. State Machine - |video_display|adv7180:decoder|\hs_manager:state
+ 12. State Machine - |video_display|adv7180:decoder|state
+ 13. User-Specified and Inferred Latches
+ 14. Registers Removed During Synthesis
+ 15. General Register Statistics
+ 16. Inverted Register Statistics
+ 17. Registers Packed Into Inferred Megafunctions
+ 18. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 19. Source assignments for sram:ram_block|altsyncram:ram_block_rtl_0|altsyncram_69h1:auto_generated
+ 20. Parameter Settings for User Entity Instance: sram:ram_block
+ 21. Parameter Settings for User Entity Instance: adv7180:decoder
+ 22. Parameter Settings for User Entity Instance: fifo:fifo_i2c
+ 23. Parameter Settings for User Entity Instance: i2c:i2c_master
+ 24. Parameter Settings for User Entity Instance: i2c:i2c_master|tristate:sda_map
+ 25. Parameter Settings for User Entity Instance: i2c:i2c_master|tristate:scl_map
+ 26. Parameter Settings for Inferred Entity Instance: sram:ram_block|altsyncram:ram_block_rtl_0
+ 27. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult3
+ 28. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0
+ 29. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult1
+ 30. Parameter Settings for Inferred Entity Instance: ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2
+ 31. altsyncram Parameter Settings by Entity Instance
+ 32. lpm_mult Parameter Settings by Entity Instance
+ 33. Port Connectivity Checks: "leddcd:i2c_state_output"
+ 34. Port Connectivity Checks: "i2c:i2c_master"
+ 35. Port Connectivity Checks: "fifo:fifo_i2c"
+ 36. Port Connectivity Checks: "vga:vga_output"
+ 37. Port Connectivity Checks: "adv7180:decoder"
+ 38. Post-Synthesis Netlist Statistics for Top Partition
+ 39. Elapsed Time Per Partition
+ 40. Analysis & Synthesis Messages
 
 
 
@@ -69,15 +72,15 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Jun 10 22:02:13 2015      ;
+; Analysis & Synthesis Status        ; Successful - Thu Jun 11 03:06:30 2015      ;
 ; Quartus II 64-Bit Version          ; 14.0.0 Build 200 06/17/2014 SJ Web Edition ;
 ; Revision Name                      ; video_display                              ;
 ; Top-level Entity Name              ; video_display                              ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 1,078                                      ;
-;     Total combinational functions  ; 1,022                                      ;
-;     Dedicated logic registers      ; 481                                        ;
-; Total registers                    ; 481                                        ;
+; Total logic elements               ; 1,114                                      ;
+;     Total combinational functions  ; 1,060                                      ;
+;     Dedicated logic registers      ; 484                                        ;
+; Total registers                    ; 484                                        ;
 ; Total pins                         ; 72                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 1,228,800                                  ;
@@ -245,29 +248,29 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+----------------+
 ; Resource                                    ; Usage          ;
 +---------------------------------------------+----------------+
-; Estimated Total logic elements              ; 1,078          ;
+; Estimated Total logic elements              ; 1,114          ;
 ;                                             ;                ;
-; Total combinational functions               ; 1022           ;
+; Total combinational functions               ; 1060           ;
 ; Logic element usage by number of LUT inputs ;                ;
-;     -- 4 input functions                    ; 379            ;
-;     -- 3 input functions                    ; 132            ;
-;     -- <=2 input functions                  ; 511            ;
+;     -- 4 input functions                    ; 398            ;
+;     -- 3 input functions                    ; 152            ;
+;     -- <=2 input functions                  ; 510            ;
 ;                                             ;                ;
 ; Logic elements by mode                      ;                ;
-;     -- normal mode                          ; 623            ;
+;     -- normal mode                          ; 661            ;
 ;     -- arithmetic mode                      ; 399            ;
 ;                                             ;                ;
-; Total registers                             ; 481            ;
-;     -- Dedicated logic registers            ; 481            ;
+; Total registers                             ; 484            ;
+;     -- Dedicated logic registers            ; 484            ;
 ;     -- I/O registers                        ; 0              ;
 ;                                             ;                ;
 ; I/O pins                                    ; 72             ;
 ; Total memory bits                           ; 1228800        ;
 ; Embedded Multiplier 9-bit elements          ; 0              ;
 ; Maximum fan-out node                        ; td_clk27~input ;
-; Maximum fan-out                             ; 479            ;
-; Total fan-out                               ; 9311           ;
-; Average fan-out                             ; 5.14           ;
+; Maximum fan-out                             ; 483            ;
+; Total fan-out                               ; 9455           ;
+; Average fan-out                             ; 5.11           ;
 +---------------------------------------------+----------------+
 
 
@@ -276,11 +279,12 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                     ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                                        ; Library Name ;
 +------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------------------------------------------------------------------+--------------+
-; |video_display                                 ; 1022 (99)         ; 481 (79)     ; 1228800     ; 0            ; 0       ; 0         ; 72   ; 0            ; |video_display                                                                                                                             ; work         ;
-;    |adv7180:decoder|                           ; 320 (320)         ; 257 (257)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|adv7180:decoder                                                                                                             ; work         ;
-;    |i2c:i2c_master|                            ; 222 (222)         ; 73 (73)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|i2c:i2c_master                                                                                                              ; work         ;
+; |video_display                                 ; 1060 (114)        ; 484 (76)     ; 1228800     ; 0            ; 0       ; 0         ; 72   ; 0            ; |video_display                                                                                                                             ; work         ;
+;    |adv7180:decoder|                           ; 328 (328)         ; 261 (261)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|adv7180:decoder                                                                                                             ; work         ;
+;    |i2c:i2c_master|                            ; 233 (232)         ; 75 (75)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|i2c:i2c_master                                                                                                              ; work         ;
+;       |tristate:sda_map|                       ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|i2c:i2c_master|tristate:sda_map                                                                                             ; work         ;
 ;    |leddcd:i2c_internal_output|                ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:i2c_internal_output                                                                                                  ; work         ;
-;    |leddcd:i2c_state_output|                   ; 1 (1)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:i2c_state_output                                                                                                     ; work         ;
+;    |leddcd:i2c_state_output|                   ; 5 (5)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:i2c_state_output                                                                                                     ; work         ;
 ;    |leddcd:led_output|                         ; 7 (7)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|leddcd:led_output                                                                                                           ; work         ;
 ;    |sram:ram_block|                            ; 87 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block                                                                                                              ; work         ;
 ;       |altsyncram:ram_block_rtl_0|             ; 87 (0)            ; 3 (0)        ; 1228800     ; 0            ; 0       ; 0         ; 0    ; 0            ; |video_display|sram:ram_block|altsyncram:ram_block_rtl_0                                                                                   ; work         ;
@@ -323,19 +327,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 
 
 Encoding Type:  One-Hot
-+----------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; State Machine - |video_display|i2c_config_state                                                                                                                      ;
-+----------------------------------+------------------------------+----------------------------------+----------------------------------+------------------------------+
-; Name                             ; i2c_config_state.DONE_CONFIG ; i2c_config_state.I2C_DATA_CONFIG ; i2c_config_state.I2C_ADDR_CONFIG ; i2c_config_state.INIT_CONFIG ;
-+----------------------------------+------------------------------+----------------------------------+----------------------------------+------------------------------+
-; i2c_config_state.INIT_CONFIG     ; 0                            ; 0                                ; 0                                ; 0                            ;
-; i2c_config_state.I2C_ADDR_CONFIG ; 0                            ; 0                                ; 1                                ; 1                            ;
-; i2c_config_state.I2C_DATA_CONFIG ; 0                            ; 1                                ; 0                                ; 1                            ;
-; i2c_config_state.DONE_CONFIG     ; 1                            ; 0                                ; 0                                ; 1                            ;
-+----------------------------------+------------------------------+----------------------------------+----------------------------------+------------------------------+
-
-
-Encoding Type:  One-Hot
 +------------------------------------------------------------------------------------+
 ; State Machine - |video_display|i2c:i2c_master|i2c_s                                ;
 +---------------+------------+------------+---------------+-------------+------------+
@@ -350,6 +341,30 @@ Encoding Type:  One-Hot
 
 
 Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------+
+; State Machine - |video_display|adv7180:decoder|\vs_manager:state                                                 ;
++------------------------------+------------------------------+---------------------------+------------------------+
+; Name                         ; \vs_manager:state.transition ; \vs_manager:state.waiting ; \vs_manager:state.idle ;
++------------------------------+------------------------------+---------------------------+------------------------+
+; \vs_manager:state.idle       ; 0                            ; 0                         ; 0                      ;
+; \vs_manager:state.waiting    ; 0                            ; 1                         ; 1                      ;
+; \vs_manager:state.transition ; 1                            ; 0                         ; 1                      ;
++------------------------------+------------------------------+---------------------------+------------------------+
+
+
+Encoding Type:  One-Hot
++------------------------------------------------------------------------------------------------------------------+
+; State Machine - |video_display|adv7180:decoder|\hs_manager:state                                                 ;
++------------------------------+------------------------------+---------------------------+------------------------+
+; Name                         ; \hs_manager:state.transition ; \hs_manager:state.waiting ; \hs_manager:state.idle ;
++------------------------------+------------------------------+---------------------------+------------------------+
+; \hs_manager:state.idle       ; 0                            ; 0                         ; 0                      ;
+; \hs_manager:state.waiting    ; 0                            ; 1                         ; 1                      ;
+; \hs_manager:state.transition ; 1                            ; 0                         ; 1                      ;
++------------------------------+------------------------------+---------------------------+------------------------+
+
+
+Encoding Type:  One-Hot
 +---------------------------------------------------------------+
 ; State Machine - |video_display|adv7180:decoder|state          ;
 +----------------+------------+----------------+----------------+
@@ -361,11 +376,34 @@ Encoding Type:  One-Hot
 +----------------+------------+----------------+----------------+
 
 
++----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                ;
++-----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal ; Free of Timing Hazards ;
++-----------------------------------------------------+---------------------+------------------------+
+; i2c_status_led$latch                                ; WideOr0             ; yes                    ;
+; i2c_config_state.DONE_CONFIG_1131                   ; Selector1           ; yes                    ;
+; i2c_config_state.I2C_DATA_CONFIG_1161               ; Selector1           ; yes                    ;
+; i2c_config_state.I2C_ADDR_CONFIG_1191               ; Selector1           ; yes                    ;
+; i2c_config_state.INIT_CONFIG_1201                   ; Selector1           ; yes                    ;
+; i2c_config_state.I2C_DATA_FREE_1141                 ; Selector1           ; yes                    ;
+; i2c_config_state.I2C_ADDR_FREE_1171                 ; Selector1           ; yes                    ;
+; i2c_config_state.I2C_ADDR_BUSY_1181                 ; Selector1           ; yes                    ;
+; i2c_config_state.I2C_DATA_BUSY_1151                 ; Selector1           ; yes                    ;
+; i2c_write_en                                        ; i2c_write_en        ; yes                    ;
+; i2c_din[6]                                          ; i2c_din[6]          ; yes                    ;
+; i2c_din[4]                                          ; i2c_din[6]          ; yes                    ;
+; Number of user-specified and inferred latches = 12  ;                     ;                        ;
++-----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
+
+
 +-------------------------------------------------------------------------------------------------------------+
 ; Registers Removed During Synthesis                                                                          ;
 +----------------------------------------------------+--------------------------------------------------------+
 ; Register name                                      ; Reason for Removal                                     ;
 +----------------------------------------------------+--------------------------------------------------------+
+; i2c:i2c_master|\i2c_manager:reading                ; Stuck at GND due to stuck port data_in                 ;
 ; sram:ram_block|data_out[0]~en                      ; Lost fanout                                            ;
 ; sram:ram_block|data_out[1]~en                      ; Lost fanout                                            ;
 ; sram:ram_block|data_out[2]~en                      ; Lost fanout                                            ;
@@ -398,47 +436,15 @@ Encoding Type:  One-Hot
 ; sram:ram_block|data_out[29]~en                     ; Lost fanout                                            ;
 ; sram:ram_block|data_out[30]~en                     ; Lost fanout                                            ;
 ; sram:ram_block|data_out[31]~en                     ; Lost fanout                                            ;
-; i2c_read_en                                        ; Stuck at GND due to stuck port data_in                 ;
-; i2c_daddr[6]                                       ; Stuck at VCC due to stuck port data_in                 ;
-; i2c_daddr[0..5]                                    ; Stuck at GND due to stuck port data_in                 ;
-; i2c_din[0..3,5,7]                                  ; Stuck at GND due to stuck port data_in                 ;
-; i2c:i2c_master|\i2c_manager:reading                ; Stuck at GND due to stuck port data_in                 ;
 ; i2c:i2c_master|\i2c_manager:data_addr_buffer[6]    ; Stuck at VCC due to stuck port data_in                 ;
 ; i2c:i2c_master|\i2c_manager:data_addr_buffer[0..5] ; Stuck at GND due to stuck port data_in                 ;
 ; i2c:i2c_master|scl_enable                          ; Stuck at VCC due to stuck port data_in                 ;
 ; i2c:i2c_master|\i2c_manager:data_buffer[1..3,5,7]  ; Merged with i2c:i2c_master|\i2c_manager:data_buffer[0] ;
-; i2c:i2c_master|\i2c_manager:data_buffer[6]         ; Merged with i2c:i2c_master|\i2c_manager:data_buffer[4] ;
-; i2c_din[6]                                         ; Merged with i2c_din[4]                                 ;
 ; i2c:i2c_master|\i2c_manager:data_buffer[0]         ; Stuck at GND due to stuck port data_in                 ;
 ; vga:vga_output|pixel_row[9]                        ; Stuck at GND due to stuck port data_in                 ;
 ; adv7180:decoder|state.HS_RESET                     ; Lost fanout                                            ;
-; i2c_config_state.I2C_DATA_CONFIG                   ; Merged with i2c_config_state.DONE_CONFIG               ;
-; i2c_config_state.DONE_CONFIG                       ; Stuck at GND due to stuck port data_in                 ;
-; i2c_status_led~reg0                                ; Stuck at GND due to stuck port data_in                 ;
-; i2c_din[4]                                         ; Stuck at GND due to stuck port data_in                 ;
-; i2c:i2c_master|\i2c_manager:data_buffer[4]         ; Stuck at GND due to stuck port data_in                 ;
-; Total Number of Removed Registers = 70             ;                                                        ;
+; Total Number of Removed Registers = 49             ;                                                        ;
 +----------------------------------------------------+--------------------------------------------------------+
-
-
-+----------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                            ;
-+------------------------------+---------------------------+-----------------------------------------------------------------------------+
-; Register name                ; Reason for Removal        ; Registers Removed due to This Register                                      ;
-+------------------------------+---------------------------+-----------------------------------------------------------------------------+
-; i2c_read_en                  ; Stuck at GND              ; i2c:i2c_master|\i2c_manager:reading,                                        ;
-;                              ; due to stuck port data_in ; i2c:i2c_master|\i2c_manager:data_addr_buffer[6],                            ;
-;                              ;                           ; i2c:i2c_master|\i2c_manager:data_addr_buffer[5],                            ;
-;                              ;                           ; i2c:i2c_master|\i2c_manager:data_addr_buffer[4],                            ;
-;                              ;                           ; i2c:i2c_master|\i2c_manager:data_addr_buffer[3],                            ;
-;                              ;                           ; i2c:i2c_master|\i2c_manager:data_addr_buffer[2],                            ;
-;                              ;                           ; i2c:i2c_master|\i2c_manager:data_addr_buffer[1],                            ;
-;                              ;                           ; i2c:i2c_master|\i2c_manager:data_addr_buffer[0], i2c:i2c_master|scl_enable, ;
-;                              ;                           ; i2c:i2c_master|\i2c_manager:data_buffer[0],                                 ;
-;                              ;                           ; i2c:i2c_master|\i2c_manager:data_buffer[4]                                  ;
-; i2c_config_state.DONE_CONFIG ; Stuck at GND              ; i2c_status_led~reg0, i2c_din[4]                                             ;
-;                              ; due to stuck port data_in ;                                                                             ;
-+------------------------------+---------------------------+-----------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -446,12 +452,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 481   ;
+; Total registers                              ; 484   ;
 ; Number of registers using Synchronous Clear  ; 156   ;
 ; Number of registers using Synchronous Load   ; 31    ;
-; Number of registers using Asynchronous Clear ; 91    ;
+; Number of registers using Asynchronous Clear ; 93    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 363   ;
+; Number of registers using Clock Enable       ; 369   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -462,9 +468,7 @@ Encoding Type:  One-Hot
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
 ; ycc_even                               ; 16      ;
-; adv7180:decoder|\vs_manager:vs_idle    ; 1       ;
-; adv7180:decoder|\hs_manager:hs_idle    ; 1       ;
-; Total number of inverted registers = 3 ;         ;
+; Total number of inverted registers = 1 ;         ;
 +----------------------------------------+---------+
 
 
@@ -508,25 +512,27 @@ Encoding Type:  One-Hot
 +----------------------------------+--------------------------------+------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                          ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |video_display|vga:vga_output|v_count[3]                                  ;
-; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_rows[12] ;
-; 5:1                ; 31 bits   ; 93 LEs        ; 31 LEs               ; 62 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:clock_count[2]            ;
-; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:data_buffer[9]            ;
-; 7:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:buffer_index[14]          ;
-; 8:1                ; 31 bits   ; 155 LEs       ; 31 LEs               ; 124 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_cols[0]  ;
-; 10:1               ; 62 bits   ; 372 LEs       ; 62 LEs               ; 310 LEs                ; Yes        ; |video_display|adv7180:decoder|data_address[11]                           ;
-; 19:1               ; 30 bits   ; 360 LEs       ; 30 LEs               ; 330 LEs                ; Yes        ; |video_display|i2c:i2c_master|\i2c_manager:data_count[14]                 ;
-; 21:1               ; 31 bits   ; 434 LEs       ; 31 LEs               ; 403 LEs                ; Yes        ; |video_display|i2c:i2c_master|\i2c_manager:clock_count[19]                ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |video_display|i2c_state_count[0]                                         ;
-; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |video_display|i2c:i2c_master|state[1]                                    ;
-; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |video_display|adv7180:decoder|state                                      ;
-; 14:1               ; 5 bits    ; 45 LEs        ; 20 LEs               ; 25 LEs                 ; No         ; |video_display|i2c:i2c_master|Selector71                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                         ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |video_display|vga:vga_output|v_count[3]                                 ;
+; 3:1                ; 31 bits   ; 62 LEs        ; 31 LEs               ; 31 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_rows[7] ;
+; 5:1                ; 31 bits   ; 93 LEs        ; 31 LEs               ; 62 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:clock_count[26]          ;
+; 6:1                ; 32 bits   ; 128 LEs       ; 32 LEs               ; 96 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:data_buffer[25]          ;
+; 7:1                ; 31 bits   ; 124 LEs       ; 31 LEs               ; 93 LEs                 ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:buffer_index[8]          ;
+; 8:1                ; 31 bits   ; 155 LEs       ; 31 LEs               ; 124 LEs                ; Yes        ; |video_display|adv7180:decoder|\adv7180_decoder:decimation_count_cols[0] ;
+; 10:1               ; 62 bits   ; 372 LEs       ; 62 LEs               ; 310 LEs                ; Yes        ; |video_display|adv7180:decoder|data_address[15]                          ;
+; 19:1               ; 30 bits   ; 360 LEs       ; 30 LEs               ; 330 LEs                ; Yes        ; |video_display|i2c:i2c_master|\i2c_manager:data_count[19]                ;
+; 23:1               ; 31 bits   ; 465 LEs       ; 31 LEs               ; 434 LEs                ; Yes        ; |video_display|i2c:i2c_master|\i2c_manager:clock_count[15]               ;
+; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |video_display|i2c:i2c_master|state[2]                                   ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |video_display|i2c_state_count[0]                                        ;
+; 4:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |video_display|adv7180:decoder|state                                     ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; No         ; |video_display|adv7180:decoder|state                                     ;
+; 5:1                ; 3 bits    ; 9 LEs         ; 6 LEs                ; 3 LEs                  ; No         ; |video_display|adv7180:decoder|state                                     ;
+; 26:1               ; 5 bits    ; 85 LEs        ; 20 LEs               ; 65 LEs                 ; No         ; |video_display|i2c:i2c_master|Selector72                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------------------------------+
 
 
 +-------------------------------------------------------------------------------------------------+
@@ -578,6 +584,26 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------+-----------------------------------+
 ; frequency      ; 100000 ; Signed Integer                    ;
 +----------------+--------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i2c:i2c_master|tristate:sda_map ;
++----------------+---------+---------------------------------------------------+
+; Parameter Name ; Value   ; Type                                              ;
++----------------+---------+---------------------------------------------------+
+; mode           ; PULL_UP ; Enumerated                                        ;
++----------------+---------+---------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: i2c:i2c_master|tristate:scl_map ;
++----------------+---------+---------------------------------------------------+
+; Parameter Name ; Value   ; Type                                              ;
++----------------+---------+---------------------------------------------------+
+; mode           ; PULL_UP ; Enumerated                                        ;
++----------------+---------+---------------------------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
@@ -864,14 +890,20 @@ Note: In order to hide this table in the UI and the text report file, please set
 +------------+-------+----------+---------------------+
 
 
-+--------------------------------------------+
-; Port Connectivity Checks: "i2c:i2c_master" ;
-+----------+-------+----------+--------------+
-; Port     ; Type  ; Severity ; Details      ;
-+----------+-------+----------+--------------+
-; data_clk ; Input ; Info     ; Stuck at GND ;
-; write    ; Input ; Info     ; Stuck at VCC ;
-+----------+-------+----------+--------------+
++---------------------------------------------------+
+; Port Connectivity Checks: "i2c:i2c_master"        ;
++-----------------+-------+----------+--------------+
+; Port            ; Type  ; Severity ; Details      ;
++-----------------+-------+----------+--------------+
+; data_clk        ; Input ; Info     ; Stuck at GND ;
+; data_addr[5..0] ; Input ; Info     ; Stuck at GND ;
+; data_addr[6]    ; Input ; Info     ; Stuck at VCC ;
+; data_in[3..0]   ; Input ; Info     ; Stuck at GND ;
+; data_in[7]      ; Input ; Info     ; Stuck at GND ;
+; data_in[5]      ; Input ; Info     ; Stuck at GND ;
+; read_en         ; Input ; Info     ; Stuck at GND ;
+; write           ; Input ; Info     ; Stuck at VCC ;
++-----------------+-------+----------+--------------+
 
 
 +--------------------------------------------------------------------------------------------------------------------+
@@ -909,28 +941,28 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 72                          ;
-; cycloneiii_ff         ; 481                         ;
-;     CLR               ; 89                          ;
-;     ENA               ; 174                         ;
-;     ENA CLR           ; 2                           ;
+; cycloneiii_ff         ; 484                         ;
+;     CLR               ; 87                          ;
+;     ENA               ; 176                         ;
+;     ENA CLR           ; 6                           ;
 ;     ENA SCLR          ; 156                         ;
 ;     ENA SLD           ; 31                          ;
-;     plain             ; 29                          ;
+;     plain             ; 28                          ;
 ; cycloneiii_io_obuf    ; 4                           ;
-; cycloneiii_lcell_comb ; 1027                        ;
+; cycloneiii_lcell_comb ; 1066                        ;
 ;     arith             ; 399                         ;
 ;         2 data inputs ; 306                         ;
 ;         3 data inputs ; 93                          ;
-;     normal            ; 628                         ;
+;     normal            ; 667                         ;
 ;         0 data inputs ; 4                           ;
-;         1 data inputs ; 23                          ;
-;         2 data inputs ; 183                         ;
-;         3 data inputs ; 39                          ;
-;         4 data inputs ; 379                         ;
+;         1 data inputs ; 29                          ;
+;         2 data inputs ; 177                         ;
+;         3 data inputs ; 59                          ;
+;         4 data inputs ; 398                         ;
 ; cycloneiii_ram_block  ; 160                         ;
 ;                       ;                             ;
 ; Max LUT depth         ; 11.10                       ;
-; Average LUT depth     ; 5.67                        ;
+; Average LUT depth     ; 5.66                        ;
 +-----------------------+-----------------------------+
 
 
@@ -949,7 +981,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 14.0.0 Build 200 06/17/2014 SJ Web Edition
-    Info: Processing started: Wed Jun 10 22:02:03 2015
+    Info: Processing started: Thu Jun 11 03:06:20 2015
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off video_display -c video_display
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file /nu/current/ece392/eecs-392/src/tristate.vhdl
@@ -991,10 +1023,46 @@ Warning (10036): Verilog HDL or VHDL warning at video_display.vhdl(155): object 
 Warning (10036): Verilog HDL or VHDL warning at video_display.vhdl(155): object "fifo_empty" assigned a value but never read
 Warning (10541): VHDL Signal Declaration warning at video_display.vhdl(161): used implicit default value for signal "i2c_dout" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations.
 Warning (10492): VHDL Process Statement warning at video_display.vhdl(250): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at video_display.vhdl(254): signal "clk50" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(255): signal "i2c_config_state" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(269): signal "i2c_available" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(273): signal "i2c_available" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(282): signal "i2c_available" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(286): signal "i2c_available" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10631): VHDL Process Statement warning at video_display.vhdl(248): inferring latch(es) for signal or variable "i2c_data_clk", which holds its previous value in one or more paths through the process
-Warning (10542): VHDL Variable Declaration warning at video_display.vhdl(293): used initial value expression for variable "decimation" because variable was never assigned a value
-Warning (10492): VHDL Process Statement warning at video_display.vhdl(295): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at video_display.vhdl(248): inferring latch(es) for signal or variable "i2c_config_state", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at video_display.vhdl(248): inferring latch(es) for signal or variable "i2c_status_led", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at video_display.vhdl(248): inferring latch(es) for signal or variable "i2c_write_en", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at video_display.vhdl(248): inferring latch(es) for signal or variable "i2c_read_en", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at video_display.vhdl(248): inferring latch(es) for signal or variable "i2c_daddr", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at video_display.vhdl(248): inferring latch(es) for signal or variable "i2c_din", which holds its previous value in one or more paths through the process
+Warning (10542): VHDL Variable Declaration warning at video_display.vhdl(301): used initial value expression for variable "decimation" because variable was never assigned a value
+Warning (10492): VHDL Process Statement warning at video_display.vhdl(303): signal "reset" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (10041): Inferred latch for "i2c_din[0]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_din[1]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_din[2]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_din[3]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_din[4]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_din[5]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_din[6]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_din[7]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_daddr[0]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_daddr[1]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_daddr[2]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_daddr[3]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_daddr[4]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_daddr[5]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_daddr[6]" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_read_en" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_write_en" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_status_led" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_config_state.DONE_CONFIG" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_config_state.I2C_DATA_FREE" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_config_state.I2C_DATA_BUSY" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_config_state.I2C_DATA_CONFIG" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_config_state.I2C_ADDR_FREE" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_config_state.I2C_ADDR_BUSY" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_config_state.I2C_ADDR_CONFIG" at video_display.vhdl(248)
+Info (10041): Inferred latch for "i2c_config_state.INIT_CONFIG" at video_display.vhdl(248)
 Info (10041): Inferred latch for "i2c_data_clk" at video_display.vhdl(248)
 Warning (10665): Bidirectional port "i2c_clk" at video_display.vhdl(24) has a one-way connection to bidirectional port "gpio_i2c_clk"
 Warning (10665): Bidirectional port "i2c_data" at video_display.vhdl(24) has a one-way connection to bidirectional port "gpio_i2c_data"
@@ -1005,8 +1073,8 @@ Info (12128): Elaborating entity "ycc2rgb" for hierarchy "ycc2rgb:ycc2rgb_conver
 Info (12128): Elaborating entity "vga" for hierarchy "vga:vga_output"
 Info (12128): Elaborating entity "fifo" for hierarchy "fifo:fifo_i2c"
 Info (12128): Elaborating entity "i2c" for hierarchy "i2c:i2c_master"
-Warning (10036): Verilog HDL or VHDL warning at i2c.vhdl(65): object "clock_ct" assigned a value but never read
-Warning (10036): Verilog HDL or VHDL warning at i2c.vhdl(66): object "data_ct" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at i2c.vhdl(69): object "clock_ct" assigned a value but never read
+Warning (10036): Verilog HDL or VHDL warning at i2c.vhdl(70): object "data_ct" assigned a value but never read
 Info (12128): Elaborating entity "tristate" for hierarchy "i2c:i2c_master|tristate:sda_map"
 Info (12128): Elaborating entity "leddcd" for hierarchy "leddcd:led_output"
 Warning (13046): Tri-state node(s) do not directly drive top-level pin(s)
@@ -1161,19 +1229,32 @@ Info (12131): Elaborated megafunction instantiation "ycc2rgb:ycc2rgb_converter|l
 Info (12021): Found 1 design units, including 1 entities, in source file db/add_sub_gkh.tdf
     Info (12023): Found entity 1: add_sub_gkh
 Info (12131): Elaborated megafunction instantiation "ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2|altshift:external_latency_ffs", which is child of megafunction instantiation "ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2"
+Warning (13034): The following nodes have both tri-state and non-tri-state drivers
+    Warning (13035): Inserted always-enabled tri-state buffer between "i2c_clk" and its non-tri-state driver.
+    Warning (13035): Inserted always-enabled tri-state buffer between "i2c_data" and its non-tri-state driver.
 Info (13060): One or more bidirs are fed by always enabled tri-state buffers
     Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidir "i2c_clk" is moved to its source
+    Info (13061): Fan-out of permanently enabled tri-state buffer feeding bidir "i2c_data" is moved to its source
+Info (13025): Duplicate LATCH primitives merged into single LATCH primitive
+    Info (13026): Duplicate LATCH primitive "i2c_din[4]" merged with LATCH primitive "i2c_din[6]"
+Warning (13012): Latch i2c_config_state.DONE_CONFIG_1131 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal i2c_config_state.I2C_DATA_FREE_1141
+Warning (13012): Latch i2c_config_state.I2C_DATA_CONFIG_1161 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal i2c_config_state.I2C_ADDR_FREE_1171
+Warning (13012): Latch i2c_config_state.I2C_DATA_FREE_1141 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal i2c_config_state.I2C_DATA_BUSY_1151
+Warning (13012): Latch i2c_config_state.I2C_ADDR_FREE_1171 has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal i2c_config_state.I2C_ADDR_BUSY_1181
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13009): TRI or OPNDRN buffers permanently enabled
-    Warning (13010): Node "i2c:i2c_master|tristate:scl_map|dout"
+    Warning (13010): Node "i2c_clk~synth"
+    Warning (13010): Node "i2c_data~synth"
     Warning (13010): Node "gpio_i2c_clk~synth"
     Warning (13010): Node "gpio_i2c_data~synth"
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "i2c_status_led" is stuck at GND
+    Warning (13410): Pin "i2c_availability" is stuck at VCC
     Warning (13410): Pin "i2c_state_segments[1]" is stuck at GND
-    Warning (13410): Pin "i2c_state_segments[2]" is stuck at GND
-    Warning (13410): Pin "i2c_state_segments[6]" is stuck at VCC
     Warning (13410): Pin "i2c_internal_segments[1]" is stuck at GND
 Info (286030): Timing-Driven Synthesis is running
 Info (17049): 33 registers lost all their fanouts during netlist optimizations.
@@ -1181,16 +1262,16 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 1 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "i2c_config_clk"
-Info (21057): Implemented 1361 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1398 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 14 input pins
     Info (21059): Implemented 54 output pins
     Info (21060): Implemented 4 bidirectional pins
-    Info (21061): Implemented 1129 logic cells
+    Info (21061): Implemented 1166 logic cells
     Info (21064): Implemented 160 RAM segments
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 64 warnings
-    Info: Peak virtual memory: 605 megabytes
-    Info: Processing ended: Wed Jun 10 22:02:13 2015
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 84 warnings
+    Info: Peak virtual memory: 606 megabytes
+    Info: Processing ended: Thu Jun 11 03:06:30 2015
     Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:10
+    Info: Total CPU time (on all processors): 00:00:09
 
 

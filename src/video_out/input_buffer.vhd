@@ -28,9 +28,9 @@ begin
   variable counter : natural := 0;
   variable full : std_logic;
   begin
-    if rising_edge(clk) then  
+    if falling_edge(clk) then  
         
-      full := '0';
+      --full := '0';
       if (enable = '1') then
         data_buffer <= data_buffer(BUFFER_WIDTH-DATA_WIDTH-1 downto 0) & data_in;
         counter := counter + 1;

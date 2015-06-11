@@ -3,111 +3,339 @@ TimeQuest Timing Analyzer Summary
 ------------------------------------------------------------
 
 Type  : Slow 1200mV 85C Model Setup 'td_clk27'
-Slack : -14.909
-TNS   : -3290.545
+Slack : -14.324
+TNS   : -3620.679
 
 Type  : Slow 1200mV 85C Model Setup 'clk50'
-Slack : -6.502
-TNS   : -419.512
+Slack : -6.293
+TNS   : -436.170
+
+Type  : Slow 1200mV 85C Model Setup 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : -4.399
+TNS   : -17.414
 
 Type  : Slow 1200mV 85C Model Setup 'vga:vga_output|pixel_clock'
-Slack : -3.067
-TNS   : -132.833
+Slack : -3.626
+TNS   : -124.362
+
+Type  : Slow 1200mV 85C Model Setup 'reset'
+Slack : -2.332
+TNS   : -4.534
+
+Type  : Slow 1200mV 85C Model Setup 'i2c:i2c_master|available'
+Slack : -1.061
+TNS   : -5.401
+
+Type  : Slow 1200mV 85C Model Hold 'i2c:i2c_master|available'
+Slack : -0.570
+TNS   : -0.570
+
+Type  : Slow 1200mV 85C Model Hold 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : -0.005
+TNS   : -0.005
+
+Type  : Slow 1200mV 85C Model Hold 'vga:vga_output|pixel_clock'
+Slack : 0.090
+TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'clk50'
-Slack : 0.385
+Slack : 0.356
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Hold 'td_clk27'
-Slack : 0.385
+Slack : 0.403
 TNS   : 0.000
 
-Type  : Slow 1200mV 85C Model Hold 'vga:vga_output|pixel_clock'
-Slack : 0.402
+Type  : Slow 1200mV 85C Model Hold 'reset'
+Slack : 1.704
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Recovery 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : -1.910
+TNS   : -12.796
+
+Type  : Slow 1200mV 85C Model Recovery 'i2c:i2c_master|available'
+Slack : -1.318
+TNS   : -8.389
+
+Type  : Slow 1200mV 85C Model Recovery 'clk50'
+Slack : -1.103
+TNS   : -7.268
+
+Type  : Slow 1200mV 85C Model Recovery 'td_clk27'
+Slack : -0.994
+TNS   : -52.173
+
+Type  : Slow 1200mV 85C Model Recovery 'vga:vga_output|pixel_clock'
+Slack : -0.155
+TNS   : -1.806
+
+Type  : Slow 1200mV 85C Model Removal 'vga:vga_output|pixel_clock'
+Slack : 0.043
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'i2c:i2c_master|available'
+Slack : 0.290
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : 0.557
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'td_clk27'
+Slack : 0.575
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Removal 'clk50'
+Slack : 0.881
 TNS   : 0.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'td_clk27'
 Slack : -3.000
-TNS   : -2136.435
+TNS   : -2141.575
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'clk50'
 Slack : -3.000
-TNS   : -101.945
+TNS   : -100.660
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'reset'
+Slack : -3.000
+TNS   : -3.000
 
 Type  : Slow 1200mV 85C Model Minimum Pulse Width 'vga:vga_output|pixel_clock'
 Slack : -1.285
 TNS   : -109.225
 
-Type  : Slow 1200mV 0C Model Setup 'td_clk27'
-Slack : -13.578
-TNS   : -2943.550
-
-Type  : Slow 1200mV 0C Model Setup 'clk50'
-Slack : -5.872
-TNS   : -376.870
-
-Type  : Slow 1200mV 0C Model Setup 'vga:vga_output|pixel_clock'
-Slack : -2.729
-TNS   : -116.439
-
-Type  : Slow 1200mV 0C Model Hold 'clk50'
-Slack : 0.337
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'i2c:i2c_master|available'
+Slack : 0.397
 TNS   : 0.000
 
-Type  : Slow 1200mV 0C Model Hold 'td_clk27'
-Slack : 0.338
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : 0.430
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Setup 'td_clk27'
+Slack : -12.949
+TNS   : -3244.928
+
+Type  : Slow 1200mV 0C Model Setup 'clk50'
+Slack : -5.734
+TNS   : -395.612
+
+Type  : Slow 1200mV 0C Model Setup 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : -4.027
+TNS   : -15.356
+
+Type  : Slow 1200mV 0C Model Setup 'vga:vga_output|pixel_clock'
+Slack : -3.250
+TNS   : -109.806
+
+Type  : Slow 1200mV 0C Model Setup 'reset'
+Slack : -2.088
+TNS   : -4.111
+
+Type  : Slow 1200mV 0C Model Setup 'i2c:i2c_master|available'
+Slack : -0.964
+TNS   : -4.753
+
+Type  : Slow 1200mV 0C Model Hold 'i2c:i2c_master|available'
+Slack : -0.518
+TNS   : -0.518
+
+Type  : Slow 1200mV 0C Model Hold 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : 0.029
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Hold 'vga:vga_output|pixel_clock'
+Slack : 0.144
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'clk50'
+Slack : 0.339
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'td_clk27'
 Slack : 0.353
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Hold 'reset'
+Slack : 1.514
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Recovery 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : -1.730
+TNS   : -11.405
+
+Type  : Slow 1200mV 0C Model Recovery 'i2c:i2c_master|available'
+Slack : -1.269
+TNS   : -8.053
+
+Type  : Slow 1200mV 0C Model Recovery 'clk50'
+Slack : -0.931
+TNS   : -6.066
+
+Type  : Slow 1200mV 0C Model Recovery 'td_clk27'
+Slack : -0.823
+TNS   : -47.154
+
+Type  : Slow 1200mV 0C Model Recovery 'vga:vga_output|pixel_clock'
+Slack : -0.258
+TNS   : -3.485
+
+Type  : Slow 1200mV 0C Model Removal 'vga:vga_output|pixel_clock'
+Slack : 0.076
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'i2c:i2c_master|available'
+Slack : 0.297
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'td_clk27'
+Slack : 0.517
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : 0.534
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Removal 'clk50'
+Slack : 0.950
 TNS   : 0.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'td_clk27'
 Slack : -3.000
-TNS   : -2108.275
+TNS   : -2113.415
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'clk50'
 Slack : -3.000
-TNS   : -101.945
+TNS   : -100.660
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'reset'
+Slack : -3.000
+TNS   : -3.000
 
 Type  : Slow 1200mV 0C Model Minimum Pulse Width 'vga:vga_output|pixel_clock'
 Slack : -1.285
 TNS   : -109.225
 
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : 0.407
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'i2c:i2c_master|available'
+Slack : 0.444
+TNS   : 0.000
+
 Type  : Fast 1200mV 0C Model Setup 'td_clk27'
-Slack : -6.535
-TNS   : -1568.117
+Slack : -6.373
+TNS   : -1336.665
 
 Type  : Fast 1200mV 0C Model Setup 'clk50'
-Slack : -2.582
-TNS   : -164.099
+Slack : -2.533
+TNS   : -174.886
+
+Type  : Fast 1200mV 0C Model Setup 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : -2.133
+TNS   : -6.565
 
 Type  : Fast 1200mV 0C Model Setup 'vga:vga_output|pixel_clock'
-Slack : -1.188
-TNS   : -36.508
+Slack : -1.243
+TNS   : -33.909
+
+Type  : Fast 1200mV 0C Model Setup 'reset'
+Slack : -0.685
+TNS   : -1.289
+
+Type  : Fast 1200mV 0C Model Setup 'i2c:i2c_master|available'
+Slack : -0.253
+TNS   : -0.755
+
+Type  : Fast 1200mV 0C Model Hold 'i2c:i2c_master|available'
+Slack : -0.264
+TNS   : -0.264
+
+Type  : Fast 1200mV 0C Model Hold 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : -0.033
+TNS   : -0.033
 
 Type  : Fast 1200mV 0C Model Hold 'clk50'
-Slack : 0.049
+Slack : 0.043
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'td_clk27'
-Slack : 0.173
+Slack : 0.149
 TNS   : 0.000
 
 Type  : Fast 1200mV 0C Model Hold 'vga:vga_output|pixel_clock'
 Slack : 0.181
 TNS   : 0.000
 
+Type  : Fast 1200mV 0C Model Hold 'reset'
+Slack : 0.509
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Recovery 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : -1.052
+TNS   : -7.202
+
+Type  : Fast 1200mV 0C Model Recovery 'clk50'
+Slack : -0.696
+TNS   : -4.528
+
+Type  : Fast 1200mV 0C Model Recovery 'td_clk27'
+Slack : -0.645
+TNS   : -22.721
+
+Type  : Fast 1200mV 0C Model Recovery 'i2c:i2c_master|available'
+Slack : -0.354
+TNS   : -1.748
+
+Type  : Fast 1200mV 0C Model Recovery 'vga:vga_output|pixel_clock'
+Slack : 0.317
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'td_clk27'
+Slack : 0.213
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'clk50'
+Slack : 0.223
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'vga:vga_output|pixel_clock'
+Slack : 0.252
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : 0.273
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Removal 'i2c:i2c_master|available'
+Slack : 0.485
+TNS   : 0.000
+
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'td_clk27'
 Slack : -3.000
-TNS   : -1070.741
+TNS   : -1056.809
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'clk50'
 Slack : -3.000
-TNS   : -86.028
+TNS   : -83.782
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'reset'
+Slack : -3.000
+TNS   : -3.000
 
 Type  : Fast 1200mV 0C Model Minimum Pulse Width 'vga:vga_output|pixel_clock'
 Slack : -1.000
 TNS   : -85.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'i2c:i2c_master|available'
+Slack : 0.407
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'i2c_config_state.I2C_ADDR_BUSY_1181'
+Slack : 0.444
+TNS   : 0.000
 
 ------------------------------------------------------------
