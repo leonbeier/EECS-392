@@ -92,6 +92,7 @@ begin
       -- active low reset
       reading := '0';
       writing := '0';
+      error <= '0';
       i2c_s <= INIT;
     elsif(rising_edge(clock_50)) then
       clock_ct <= clock_count;
@@ -100,7 +101,6 @@ begin
         when INIT =>
           -- wait until the user sets a mode
           --  modes: write, read where write has the higher priority
-          error <= '1';
           clock_count := 0;
           clock_ct <= 0;
           sda_enable <= '0';
