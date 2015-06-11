@@ -255,14 +255,14 @@ begin
 ------------------------------------------------------------------------
         when STOP =>
           if(clock_count < i2c_period_count/2) then
+            sda_enable <= '1';
+            sda_write <= '0';
             if(writing = '0' and reading = '1') then
               odata <= data_buffer;
             end if; 
             scl_write <= '0';
             clock_count := clock_count + 1;
           elsif(clock_count = i2c_period_count/2) then
-            sda_enable <= '1';
-            sda_write <= '0';
             scl_write <= '1';
             clock_count := clock_count +1;
           elsif(clock_count < (3*i2c_period_count)/4) then
@@ -276,7 +276,7 @@ begin
             clock_count := 0;
             data_count := 0;
             error <= '0';
-            -- i2c_s <= INIT;
+            i2c_s <= INIT;
           end if;
         when OTHERS =>
           i2c_s <= INIT;
