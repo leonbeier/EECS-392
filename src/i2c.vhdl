@@ -27,7 +27,10 @@ entity i2c is
     -- fifo control
     write : in std_logic;
     odata : out std_logic_vector(7 downto 0);
-    idata : in std_logic_vector(7 downto 0)
+    idata : in std_logic_vector(7 downto 0);
+
+    -- TESTING
+    state : out std_logic_vector(3 downto 0)
   );
 end entity i2c;
 
@@ -66,6 +69,13 @@ begin
   i2c_period_count <= 50_000_000 / FREQUENCY;
   sda_map: tristate port map(din => sda_write, dout => sda, en => sda_enable);
   scl_map: tristate port map(din => scl_write, dout => scl, en => scl_enable);
+
+  state <= "0000" when (i2c_s = INIT) else
+           "0001" when (i2c_s = START) else
+           "0010" when (i2c_s = ADDRESS) else
+           "0011" when (i2c_s = DATA) else
+           "0100" when (i2c_s = STOP) else
+           "0101";
   
   -- master device drives scl
 --  i2c_manager: process(clock_50, reset, rx_write, rx_full, rx_data, tx_read, tx_empty, tx_data)

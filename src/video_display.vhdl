@@ -30,10 +30,11 @@ entity video_display is
     -- TESTING -------------------------------------------------------------------------
     segments_out : out std_logic_vector(6 downto 0);
     i2c_state_segments : out std_logic_vector(6 downto 0);
+    i2c_internal_segments : out std_logic_vector(6 downto 0);
     reset_led : out std_logic;
 	 
-	 gpio_i2c_clk : inout std_logic;
-	 gpio_i2c_data : inout std_logic
+    gpio_i2c_clk : inout std_logic;
+    gpio_i2c_data : inout std_logic
   );
   
 end entity video_display;
@@ -138,7 +139,10 @@ architecture video_display of video_display is
       -- fifo control
       write : in std_logic;
       odata : out std_logic_vector(7 downto 0);
-      idata : in std_logic_vector(7 downto 0)
+      idata : in std_logic_vector(7 downto 0);
+
+      -- TESTING
+      state : out std_logic_vector(3 downto 0)
     );
   end component i2c;
   
@@ -181,6 +185,7 @@ architecture video_display of video_display is
   -- TESTING -------------------------------------------------------------------------
   signal led_count : std_logic_vector(3 downto 0);
   signal i2c_state_count : std_logic_vector(3 downto 0);
+  signal i2c_internal_state : std_logic_vector(3 downto 0);
   
   component leddcd is
     port(
@@ -220,7 +225,7 @@ begin
 
   i2c_master: i2c generic map(FREQUENCY => 100_000)
                   port map(clk50, reset, i2c_error, i2c_data, i2c_clk, i2c_data_clk, i2c_daddr, i2c_din, 
-                           i2c_write_en, i2c_read_en, i2c_available, i2c_write, fifo_din, i2c_dout);
+                           i2c_write_en, i2c_read_en, i2c_available, i2c_write, fifo_din, i2c_dout, i2c_internal_state);
   
   -- ram address update -------------------------------------------------------------------------
   ram_read_manager: process(vga_pixel_clk, reset) is
@@ -295,7 +300,7 @@ begin
     end if;
   end process;
   
-  gpio_i2c_clk <= td_clk27; -- i2c_clk;
+  gpio_i2c_clk <= i2c_clk;
   gpio_i2c_data <= i2c_data;
   
   i2c_state_count <= "0000" when (i2c_config_state = INIT_CONFIG) else
@@ -306,6 +311,7 @@ begin
 
   led_output: leddcd port map(led_count, segments_out);
   i2c_state_output : leddcd port map(i2c_state_count, i2c_state_segments);
+  i2c_internal_output : leddcd port map(i2c_internal_state, i2c_internal_segments);
   
   reset_led <= reset;
   
