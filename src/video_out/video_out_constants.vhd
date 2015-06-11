@@ -135,22 +135,4 @@ component leddcd is
 		);
 end component leddcd;	
   
-component dual_port_ram is
-	generic 
-	(
-		DATA_WIDTH : natural := 32;
-		RAM_SIZE : natural := 128
-	);
-	port 
-	(
-		rclk	: in std_logic;
-		wclk	: in std_logic;
-		read_addr	: in natural range 0 to RAM_SIZE-1;
-		write_addr	: in natural range 0 to RAM_SIZE-1;
-		we		: in std_logic := '1';
-		data_in	: in std_logic_vector((DATA_WIDTH-1) downto 0);
-		data_out	: out std_logic_vector((DATA_WIDTH -1) downto 0)
-	);
-end component;
-  
 end package;
