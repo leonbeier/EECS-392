@@ -88,7 +88,7 @@ begin
     variable active : std_logic := '0';
     variable er : std_logic := '0';
   begin
-    if(reset = '0') then
+    if(reset = '1') then
       -- active low reset
       reading := '0';
       writing := '0';
@@ -109,13 +109,13 @@ begin
           clock_count := 0;
           data_count := 0;
           available <= '1';
-          if(write_en = '1') then
+          if(write_en = '1' and er = '0') then
             sda_enable <= '1';
             writing := '1';
             reading := '0';
             available <= '0';
             i2c_s <= START;
-          elsif(read_en = '1') then
+          elsif(read_en = '1' and er = '0') then
             sda_enable <= '0';
             reading := '1';
             writing := '0';
@@ -152,11 +152,11 @@ begin
 	      end if;
 	      clock_count := clock_count + 1;
 
-            elsif(clock_count = i2c_period_count/4) then
+            elsif(clock_count <= i2c_period_count/4) then
               scl_write <= '0';
 	      clock_count := clock_count + 1;
 
-            elsif(clock_count = i2c_period_count/2) then
+            elsif(clock_count <= i2c_period_count/2) then
               
 	      if(data_count < I2C_ADDR_WIDTH and scl = '0') then
                 -- send out the address bits msb first
@@ -215,11 +215,11 @@ begin
                 clock_count := clock_count +1;
               end if;
 
-            elsif(clock_count = i2c_period_count/4) then
+            elsif(clock_count <= i2c_period_count/4) then
               scl_write <= '0';
 	      clock_count := clock_count + 1;
 
-            elsif(clock_count = i2c_period_count/2 and data_count < I2C_DATA_WIDTH) then
+            elsif(clock_count <= i2c_period_count/2 and data_count < I2C_DATA_WIDTH) then
               if(writing = '0' and reading = '1') then 
                 data_buffer(I2C_DATA_WIDTH-1-data_count) := sda;
               end if;
@@ -237,7 +237,7 @@ begin
                 end if;
 	      clock_count := clock_count + 1;
 
-	    elsif(clock_count = i2c_period_count/2 and data_count = I2C_DATA_WIDTH) then
+	    elsif(clock_count <= i2c_period_count/2 and data_count = I2C_DATA_WIDTH) then
 		sda_enable <= '0';
 		clock_count := clock_count +1;
 
@@ -263,17 +263,17 @@ begin
             end if; 
             scl_write <= '0';
             clock_count := clock_count +1;
-          elsif(clock_count = i2c_period_count/4) then
+          elsif(clock_count <= i2c_period_count/4) then
             sda_enable <= '1';
             sda_write <= '0';
             clock_count := clock_count +1;
-          elsif(clock_count = i2c_period_count/2) then
+          elsif(clock_count <= i2c_period_count/2) then
             scl_write <= '1';
             clock_count := clock_count +1;
-          elsif(clock_count = (3*i2c_period_count)/4) then
+          elsif(clock_count <= (3*i2c_period_count)/4) then
             sda_write <= '1';
             clock_count := clock_count +1;
-          elsif(clock_count = i2c_period_count) then
+          elsif(clock_count <= i2c_period_count) then
             clock_count := 0;
             data_count := 0;
             error <= '0';
