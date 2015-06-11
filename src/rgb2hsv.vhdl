@@ -5,7 +5,7 @@ use IEEE.numeric_std.all;
 use WORK.tracker_constants.all;
 
 
-entity ycc2hsv is
+entity rgb2hsv is
   
   port (
     clk, reset : in std_logic;
@@ -13,10 +13,10 @@ entity ycc2hsv is
     h, s, v : out std_logic_vector(7 downto 0)
   );
   
-end entity ycc2hsv;
+end entity rgb2hsv;
 
 
-architecture ycc2hsv of ycc2hsv is
+architecture rgb2hsv of rgb2hsv is
   signal r_int, g_int, b_int : integer;
   signal max_value, min_value, delta : integer;
   signal h_value, s_value, v_value : unsigned(7 downto 0);
@@ -72,4 +72,4 @@ begin
     end if;
   end process;
   
-end architecture ycc2hsv;
+end architecture rgb2hsv;

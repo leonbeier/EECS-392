@@ -5,17 +5,20 @@ import numpy as np
 from image_serializer import *
 
 if __name__ == '__main__':
-  lena = cv2.imread('lena.jpg')
+  lena = cv2.imread('392.png')
   lena_rgb = cv2.cvtColor(lena, cv2.COLOR_BGR2RGB)
   lena_ycbcr = cv2.cvtColor(lena, cv2.COLOR_BGR2YCR_CB)
   lena_ycbcr[:,:,1], lena_ycbcr[:,:,2] = np.copy(lena_ycbcr[:,:,2]), np.copy(lena_ycbcr[:,:,1])
   lena_hsv = cv2.cvtColor(lena, cv2.COLOR_BGR2HSV)
   ycbcr_serialized = serialize_image(lena_ycbcr)
   hsv_serialized = serialize_image(lena_hsv)
+  rgb_serialized = serialize_image(lena_rgb)
   with open('ycbcr2hsv_input.txt', 'w+') as f:
     f.write(ycbcr_serialized)
   with open('ycbcr2hsv_output.txt', 'w+') as f:
     f.write(hsv_serialized)
+  with open('final_input.txt', 'w+') as f:
+    f.write(rgb_serialized)
   
   # Deserialization
   in_str = ''

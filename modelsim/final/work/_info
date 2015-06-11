@@ -1,0 +1,200 @@
+m255
+K4
+z2
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+d/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/modelsim/adv7180
+Ecentroid
+Z0 w1434061932
+Z1 DPx4 ieee 11 numeric_std 0 22 :ASDNFgHXf_ih3J@9F3Ze1
+Z2 DPx3 std 6 textio 0 22 zE1`LPoLg^DX3Oz^4Fj1K3
+Z3 DPx4 ieee 14 std_logic_1164 0 22 eNV`TJ_GofJTzYa?f<@Oe1
+Z4 d/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/modelsim/final
+Z5 8/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/centroid.vhdl
+Z6 F/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/centroid.vhdl
+l0
+L5
+V<m9mEI5;mfMCk<3To[]>?0
+!s100 EcK;mAA>]@WnKL5S2zgMf3
+Z7 OV;C;10.3d;59
+32
+Z8 !s110 1434063749
+!i10b 1
+Z9 !s108 1434063749.903501
+Z10 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/centroid.vhdl|
+Z11 !s107 /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/centroid.vhdl|
+!i113 1
+Z12 o-work work -2002 -explicit
+Z13 tExplicit 1
+Abehavior
+R1
+R2
+R3
+DEx4 work 8 centroid 0 22 <m9mEI5;mfMCk<3To[]>?0
+l22
+L21
+VNfg8BI`_SA0m77c2kc_[z1
+!s100 ZTK:If>LSY]mej8EFg>kQ1
+R7
+32
+R8
+!i10b 1
+R9
+R10
+R11
+!i113 1
+R12
+R13
+Efinal_tb
+Z14 w1434063743
+Z15 DPx4 work 17 tracker_constants 0 22 7EJFAlXmibkbi9=RI=ek@3
+R1
+R2
+R3
+R4
+Z16 8/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/testbench/final/final_tb.vhdl
+Z17 F/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/testbench/final/final_tb.vhdl
+l0
+L8
+V7g;l71fk0hN_<:6Do<ClK0
+!s100 =EHGMlPekbiTc8hA>Ncj`3
+R7
+32
+R8
+!i10b 1
+Z18 !s108 1434063749.938354
+Z19 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/testbench/final/final_tb.vhdl|
+Z20 !s107 /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/testbench/final/final_tb.vhdl|
+!i113 1
+R12
+R13
+Afinal_tb
+R15
+R1
+R2
+R3
+Z21 DEx4 work 8 final_tb 0 22 7g;l71fk0hN_<:6Do<ClK0
+l94
+L11
+VR@KP`^E^f3O<]G7=0<[4B0
+!s100 `kJgQgl:O?1hNZhkgl1D`0
+R7
+32
+R8
+!i10b 1
+R18
+R19
+R20
+!i113 1
+R12
+R13
+Ergb2hsv
+Z22 w1434056797
+R15
+R1
+R2
+R3
+R4
+Z23 8/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/rgb2hsv.vhdl
+Z24 F/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/rgb2hsv.vhdl
+l0
+L8
+VbFkcB=g5HK:WR49KiQ9h60
+!s100 0?o^5iGMZ4[1dfX0RzJ@31
+R7
+32
+R8
+!i10b 1
+Z25 !s108 1434063749.832767
+Z26 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/rgb2hsv.vhdl|
+Z27 !s107 /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/rgb2hsv.vhdl|
+!i113 1
+R12
+R13
+Argb2hsv
+R15
+R1
+R2
+R3
+DEx4 work 7 rgb2hsv 0 22 bFkcB=g5HK:WR49KiQ9h60
+l23
+L19
+VmX8jJCFNdRkPfm]Hk2azP3
+!s100 Ia<IkKeYSK8<YC1DdBHD52
+R7
+32
+R8
+!i10b 1
+R25
+R26
+R27
+!i113 1
+R12
+R13
+Esram
+Z28 w1433976512
+R1
+R2
+R3
+R4
+Z29 8/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/sram.vhd
+Z30 F/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/sram.vhd
+l0
+L5
+VjT:]PII3ACCbi`5mgmfSI3
+!s100 Rb1nC4<i<7f6h<XY=Vbkj2
+R7
+32
+R8
+!i10b 1
+Z31 !s108 1434063749.869286
+Z32 !s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/sram.vhd|
+Z33 !s107 /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/sram.vhd|
+!i113 1
+R12
+R13
+Abehavior
+R1
+R2
+R3
+DEx4 work 4 sram 0 22 jT:]PII3ACCbi`5mgmfSI3
+l23
+L20
+VKJ4<QLeSDL:Bn2<D4a;BW1
+!s100 cCoCM9IX>8H?=22JZgUS23
+R7
+32
+R8
+!i10b 1
+R31
+R32
+R33
+!i113 1
+R12
+R13
+Ptracker_constants
+R1
+R2
+R3
+w1434012791
+R4
+8/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl
+F/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl
+l0
+L8
+V7EJFAlXmibkbi9=RI=ek@3
+!s100 ;6c`3<@i3]HA@TT:3LY1>2
+R7
+32
+R8
+!i10b 1
+!s108 1434063749.799485
+!s90 -reportprogress|300|-work|work|-2002|-explicit|-stats=none|/home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl|
+!s107 /home/tgdiriba/Code/nu_ws/fpga_project/EECS-392/src/tracker_constants.vhdl|
+!i113 1
+R12
+R13
