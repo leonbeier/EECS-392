@@ -67,6 +67,9 @@ signal ycc_ready_latched : std_logic := '0';
 
 signal clk_n : std_logic;
 
+signal buffer_enable : std_logic := '0';
+signal address_update : std_logic := '0';
+
 begin
   
 ---- structural ----------
@@ -88,18 +91,47 @@ begin
     empty => empty
   );
   
-  in_buffer : input_buffer
+--  in_buffer : input_buffer
+--  generic map(
+--    DATA_WIDTH => SAMPLE_WIDTH,
+--    BUFFER_WIDTH => SAMPLE_WIDTH * 4
+--  )
+--  port map(
+--    clk => clk,
+--    reset => reset,
+--    enable => buffer_latch,
+--    data_in => camera_load,
+--    data_out => ycc_store_temp,
+--    ready => ycc_ready
+--  );
+  
+  buffer_dual : input_buffer
   generic map(
     DATA_WIDTH => SAMPLE_WIDTH,
     BUFFER_WIDTH => SAMPLE_WIDTH * 4
   )
   port map(
-    clk => clk,
+    clk => clk_27,
     reset => reset,
-    enable => buffer_latch,
-    data_in => camera_load,
+    enable => buffer_enable,
+    data_in => camera_store,
     data_out => ycc_store_temp,
     ready => ycc_ready
+  );
+
+  ycc_dual : dual_port_ram
+  generic map(
+    DATA_WIDTH => YCC_WIDTH,
+    RAM_SIZE => YCC_RAM_SIZE
+  )
+  port map(
+    rclk => clk,
+    wclk => clk_27,
+    read_addr => ycc_read_addr,
+    write_addr => ycc_write_addr,
+    we => ycc_ready,
+    data_in => ycc_store,
+    data_out => ycc_load 
   );
 
   video : vga 
@@ -118,20 +150,19 @@ begin
     blue => blue 
   );
   
-  ycc_mem : sram
-  generic map(
-    RAM_SIZE => YCC_RAM_SIZE,
-    DATA_WIDTH => YCC_WIDTH
-  )
-  port map(
-    clk => clk,
-    --reset => reset,
-    we => ycc_write_en, -- ycc_ready
-    write_addr => ycc_write_addr,
-    data_in => ycc_store,
-    read_addr => ycc_read_addr,
-    data_out => ycc_load
-  );
+--  ycc_mem : sram
+--  generic map(
+--    RAM_SIZE => YCC_RAM_SIZE,
+--    DATA_WIDTH => YCC_WIDTH
+--  )
+--  port map(
+--    clk => clk,
+--    we => ycc_write_en, -- ycc_ready
+--    write_addr => ycc_write_addr,
+--    data_in => ycc_store,
+--    read_addr => ycc_read_addr,
+--    data_out => ycc_load
+--  );
 
   -- determine read address for ycc and bw memories
   get_addr : pixel_address
@@ -319,29 +350,69 @@ begin
 --  end process;
   
     -- fill fifo with ycc test data
-  write_fifo : process(clk_27, reset)
+--  write_fifo : process(clk_27, reset)
+--	 variable addr : natural := 0;
+--   variable color : std_logic_vector(YCC_WIDTH-1 downto 0) := RED_PIXEL;
+--   variable byte : natural := 3;
+--   variable write_en : std_logic := '0';
+--  begin
+--    if (reset = '0') then
+--      byte := 3;
+--      addr := 0;
+--     	color := RED_PIXEL;
+--     	write_en := '0';
+--    elsif falling_edge(clk_27) then
+--      write_en := '1';
+--			camera_store <= color((byte+1)*8-1 downto byte*8);
+--			if (byte = 0) then
+--			  byte := 3;
+--			  addr := addr + 1;
+--			  if (addr = YCC_RAM_SIZE) then
+--				 addr := 0;
+--			  end if;
+--			else
+--			  byte := byte - 1;
+--			end if;
+--			if (addr < YCC_RAM_SIZE / 3) then
+--			  color := RED_PIXEL;
+--			elsif (addr < YCC_RAM_SIZE * 2/3) then
+--			  color := GREEN_PIXEL;
+--			elsif (addr < YCC_RAM_SIZE) then
+--			  color := BLUE_PIXEL;
+--			end if;
+--			fifo_write_en <= write_en;
+--    end if;
+--  end process;
+
+  write_dual_ram : process(clk_27, reset)
 	 variable addr : natural := 0;
    variable color : std_logic_vector(YCC_WIDTH-1 downto 0) := RED_PIXEL;
    variable byte : natural := 3;
-   variable write_en : std_logic := '0';
   begin
     if (reset = '0') then
       byte := 3;
       addr := 0;
      	color := RED_PIXEL;
-     	write_en := '0';
-    elsif falling_edge(clk_27) then
-      write_en := '1';
+    elsif rising_edge(clk_27) then
 			camera_store <= color((byte+1)*8-1 downto byte*8);
 			if (byte = 0) then
 			  byte := 3;
+			else
+			  byte := byte - 1;
+			end if;
+			
+			if (address_update = '1') then
 			  addr := addr + 1;
 			  if (addr = YCC_RAM_SIZE) then
 				 addr := 0;
 			  end if;
-			else
-			  byte := byte - 1;
+			  address_update <= '0';
 			end if;
+			
+			if (ycc_ready = '1') then
+			  address_update <= '1';
+			end if;
+			
 			if (addr < YCC_RAM_SIZE / 3) then
 			  color := RED_PIXEL;
 			elsif (addr < YCC_RAM_SIZE * 2/3) then
@@ -349,38 +420,43 @@ begin
 			elsif (addr < YCC_RAM_SIZE) then
 			  color := BLUE_PIXEL;
 			end if;
-			fifo_write_en <= write_en;
+			if (ycc_ready = '1') then
+			  ycc_store <= ycc_store_temp;
+			end if;
+			ycc_write_addr <= addr;
+		elsif falling_edge(clk_27) then
+		  buffer_enable <= '1';
     end if;
   end process;
   
-  buffer_control : process(clk, empty, ycc_ready)
-    variable init : std_logic := '1';
-    variable addr : natural := 0;
-  begin
-    if (reset = '0') then
-      addr := 0;
-      init := '1';
-    elsif falling_edge(clk) then
-      buffer_latch <= not empty;
-      ycc_write_en <= '0';
-      if (ycc_ready_latched = '0' and ycc_ready = '1') then
-        ycc_store <= ycc_store_temp;
-        ycc_write_en <= '1';
-      end if;
-      if (ycc_ready_latched = '1' and ycc_ready = '0') then
-        addr := addr + 1;
-        if (addr = YCC_RAM_SIZE) then
-          addr := 0;
-        end if;
-      end if;
-      ycc_ready_latched <= ycc_ready;
-      if (init = '1' and ycc_ready = '1') then
-        addr := 0;
-        init := not init;
-      end if;
-      ycc_write_addr <= addr;
-    end if;
-  end process;
+--  buffer_control : process(clk, empty, ycc_ready)
+--    variable init : std_logic := '1';
+--    variable addr : natural := 0;
+--  begin
+--    if (reset = '0') then
+--      addr := 0;
+--      init := '1';
+--    elsif falling_edge(clk) then
+--      buffer_latch <= not empty;
+--      ycc_write_en <= '0';
+--      if (ycc_ready_latched = '0' and ycc_ready = '1') then
+--        ycc_store <= ycc_store_temp;
+--        ycc_write_en <= '1';
+--      end if;
+--      if (ycc_ready_latched = '1' and ycc_ready = '0') then
+--        addr := addr + 1;
+--        if (addr = YCC_RAM_SIZE) then
+--          addr := 0;
+--        end if;
+--      end if;
+--      ycc_ready_latched <= ycc_ready;
+--      if (init = '1' and ycc_ready = '1') then
+--        addr := 0;
+--        init := not init;
+--      end if;
+--      ycc_write_addr <= addr;
+--    end if;
+--  end process;
   
   fill_bw_buffer : process(clk, reset)
     variable counter : natural := 0;
