@@ -276,7 +276,7 @@ begin
             clock_count := 0;
             data_count := 0;
             error <= '0';
-            -- i2c_s <= INIT;
+            i2c_s <= INIT;
           end if;
         when OTHERS =>
           i2c_s <= INIT;
