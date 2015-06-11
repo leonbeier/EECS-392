@@ -32,8 +32,8 @@ entity video_display is
     i2c_state_segments : out std_logic_vector(6 downto 0);
     reset_led : out std_logic;
 	 
-	 gpio_i2c_clk : out std_logic;
-	 gpio_i2c_data : out std_logic
+	 gpio_i2c_clk : inout std_logic;
+	 gpio_i2c_data : inout std_logic
   );
   
 end entity video_display;
