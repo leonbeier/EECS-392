@@ -280,8 +280,8 @@ begin
             clock_count := 0;
             data_count := 0;
             error <= '0';
-            -- i2c_s <= INIT;
-            -- clock_count := 0;
+            i2c_s <= INIT;
+            clock_count := 0;
           end if;
         when OTHERS =>
           --set counts to XX
