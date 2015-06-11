@@ -1,12 +1,12 @@
-Analysis & Synthesis Status : Successful - Wed Jun 10 22:02:13 2015
+Analysis & Synthesis Status : Successful - Thu Jun 11 03:06:30 2015
 Quartus II 64-Bit Version : 14.0.0 Build 200 06/17/2014 SJ Web Edition
 Revision Name : video_display
 Top-level Entity Name : video_display
 Family : Cyclone IV E
-Total logic elements : 1,078
-    Total combinational functions : 1,022
-    Dedicated logic registers : 481
-Total registers : 481
+Total logic elements : 1,114
+    Total combinational functions : 1,060
+    Dedicated logic registers : 484
+Total registers : 484
 Total pins : 72
 Total virtual pins : 0
 Total memory bits : 1,228,800

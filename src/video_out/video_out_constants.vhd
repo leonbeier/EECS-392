@@ -127,5 +127,12 @@ component input_buffer is
     ready : out std_logic
   );
 end component;
+
+component leddcd is
+	port(
+		 data_in : in std_logic_vector(3 downto 0);
+		 segments_out : out std_logic_vector(6 downto 0)
+		);
+end component leddcd;	
   
 end package;
