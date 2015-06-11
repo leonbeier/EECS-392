@@ -1,5 +1,14 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="video_display">
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|sram:ram_block|altsyncram:ram_block_rtl_0" CBX_FILE_NAME="altsyncram_69h1.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult1|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_k9h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult1|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_ikh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult3|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_j9h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult3|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_hkh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_k9h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult0|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_ikh.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2|multcore:mult_core|mpar_add:padder|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_i9h.tdf"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|video_display|ycc2rgb:ycc2rgb_converter|lpm_mult:Mult2|multcore:mult_core|mpar_add:padder|mpar_add:sub_par_add|lpm_add_sub:adder[0]" CBX_FILE_NAME="add_sub_gkh.tdf"/>
 	</PROJECT>
 </LOG_ROOT>

@@ -171,8 +171,8 @@ begin
 
   get_addr : pixel_address
   port map(
-    pixel_row => pixel_row_int,
-    pixel_col => pixel_col_int,
+    pixel_row => row,
+    pixel_col => col,
     ycc_read_addr => ycc_read_addr,
     ycc_pixel_sel => ycc_pixel_sel,
     bw_read_addr => bw_read_addr,
@@ -190,10 +190,15 @@ begin
   y2 <= ycc_load(YCC_WIDTH-SAMPLE_WIDTH*2-1 downto YCC_WIDTH-SAMPLE_WIDTH*3);
   cr <= ycc_load(YCC_WIDTH-SAMPLE_WIDTH*3-1 downto 0);
   
+  -- map store data to filters
   y1_filter <= ycc_store(YCC_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH);
   cb_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH*2);
   y2_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH*2-1 downto YCC_WIDTH-SAMPLE_WIDTH*3);
   cr_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH*3-1 downto 0);
+  y1_filter_int <= to_integer(unsigned(y1_filter));
+  y2_filter_int <= to_integer(unsigned(y2_filter));
+  cb_filter_int <= to_integer(unsigned(cb_filter));
+  cr_filter_int <= to_integer(unsigned(cr_filter));
    
   -- select which y component to convert
   with ycc_pixel_sel select y <=
@@ -322,16 +327,9 @@ begin
       elsif (addr < YCC_RAM_SIZE) then
         color := BLUE_PIXEL;
       end if;
-      
-      --color := RED_PIXEL;
 		
     end if;
   end process;
-  
-  y1_filter_int <= to_integer(unsigned(y1_filter));
-  y2_filter_int <= to_integer(unsigned(y2_filter));
-  cb_filter_int <= to_integer(unsigned(cb_filter));
-  cr_filter_int <= to_integer(unsigned(cr_filter));
   
   filter_first : ycc_filter
   port map(
