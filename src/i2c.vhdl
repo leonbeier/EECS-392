@@ -105,6 +105,7 @@ begin
           clock_ct <= 0;
           sda_enable <= '0';
           scl_enable <= '1';
+          scl_write <= '1';
           data_buffer := data_in;
           data_addr_buffer := data_addr;
           clock_count := 0;
@@ -129,13 +130,19 @@ begin
 ------------------------------------------------------------------------
         when START =>
           -- send out the start signal
-          -- if(scl /= '0') then
-            sda_enable <= '1';
-            sda_write <= '0';
+          if(clock_count = 0) then
+            if(scl /= '0') then
+              sda_write <= '0';
+            else
+              i2c_s <= INIT; 
+            end if;
+            clock_count := clock_count + 1;
+          elsif(clock_count < i2c_period_count/4) then
+            clock_count := clock_count + 1;
+          else
+            clock_count := 0;
             i2c_s <= ADDRESS;
-          -- else
-          --   i2c_s <= INIT; 
-          -- end if;
+          end if;
 ------------------------------------------------------------------------
         when ADDRESS =>
           -- inactive if write or read were set but not data latched
@@ -144,6 +151,7 @@ begin
           if(data_count <= I2C_ADDR_WIDTH+1) then
             -- move through the data buffer and update pulse
             if(clock_count = 0) then
+              scl_write <= '0';
               if(data_count = I2C_ADDR_WIDTH+1) then
 		sda_enable <= '0';
               	if(sda = '1') then
@@ -158,6 +166,7 @@ begin
 	      clock_count := clock_count + 1;
 
             elsif(clock_count <= i2c_period_count/2) then
+              scl_write <= '1';
               
 	      if(data_count < I2C_ADDR_WIDTH and scl = '0') then
                 -- send out the address bits msb first
@@ -199,6 +208,7 @@ begin
           if(data_count <= I2C_ADDR_WIDTH+1) then
             -- move through the data buffer and update pulse
             if(clock_count = 0) then
+              scl_write <= '0';
               if(data_count <= I2C_DATA_WIDTH) then
                 if(reading = '1' and writing = '0') then
                   data_buffer(data_count-1) := sda;
@@ -211,7 +221,7 @@ begin
                 elsif(reading = '0' and writing = '1') then
                   if(sda = '1') then
                     error <= '1';
-                    -- i2c_s <= INIT;
+                    i2c_s <= INIT;
                   end if;
                 end if;
                 clock_count := clock_count +1;
@@ -235,11 +245,12 @@ begin
 		  
                 else
                   -- should not be writing or reading
-                  -- i2c_s <= INIT;
+                  i2c_s <= INIT;
                 end if;
 	      clock_count := clock_count + 1;
 
 	    elsif(clock_count <= i2c_period_count/2 and data_count = I2C_DATA_WIDTH) then
+        scl_write <= '1';
 		sda_enable <= '0';
 		clock_count := clock_count +1;
 
@@ -249,11 +260,6 @@ begin
               data_count := data_count + 1;
               clock_count := 0;
             end if;
-            
-            -- increment the clock count
-            --if(clock_count < i2c_period_count) then
-             -- clock_count := clock_count + 1;
-            --end if;
           else
             i2c_s <= STOP;
             clock_count := 0;
@@ -281,11 +287,9 @@ begin
             data_count := 0;
             error <= '0';
             i2c_s <= INIT;
-            clock_count := 0;
           end if;
         when OTHERS =>
-          --set counts to XX
-          --clock_ct := 'X';
+          i2c_s <= INIT;
       end case;
     end if;
   end process i2c_manager;
