@@ -19,7 +19,6 @@ begin
   y_int <= to_integer(unsigned(y));
   cb_int <= to_integer(unsigned(cb));
   cr_int <= to_integer(unsigned(cr));
-  
   r_int <= to_integer(shift_right(to_signed(298*y_int + 409*cr_int, 32), 8)) - 223;
   g_int <= to_integer(shift_right(to_signed(298*y_int - 100*cb_int - 208*cr_int, 32),  8)) + 135;
   b_int <= to_integer(shift_right(to_signed(298*y_int + 516*cb_int, 32), 8)) - 277;
@@ -31,19 +30,16 @@ begin
       red := to_signed(r_int, 9);
       green := to_signed(g_int, 9);
       blue := to_signed(b_int, 9);
-      
       if (red < 0) then
         r <= (others => '0');
       else
         r <= std_logic_vector(red(7 downto 0));
       end if;
-      
       if (green < 0) then
         g <= (others => '0');
       else
         g <= std_logic_vector(green(7 downto 0));
       end if;
-      
       if (blue < 0) then
         b <= (others => '0');
       else

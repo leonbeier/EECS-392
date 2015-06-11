@@ -17,7 +17,7 @@ entity video_out is
 		);
 end entity video_out;
 
-architecture structural of video_out is
+architecture top_level of video_out is
 
 signal pixel_clk : std_logic;
 signal pixel_row : std_logic_vector(9 downto 0);
@@ -52,7 +52,7 @@ signal bw_write_addr, bw_read_addr : natural;
 signal camera_load : std_logic_vector(SAMPLE_WIDTH-1 downto 0);
 signal camera_store : std_logic_vector(SAMPLE_WIDTH-1 downto 0) := x"00";
 signal full, empty : std_logic;
---signal fifo_read_en, fifo_write_en : std_logic := '0';
+signal fifo_read_en, fifo_write_en : std_logic := '0';
 
 signal center_row, center_col : natural;
 signal centroid_in : std_logic_vector(1  downto 0);
@@ -68,8 +68,8 @@ signal ycc_ready_latched : std_logic := '0';
 signal clk_n : std_logic;
 
 begin
-
-  clk_n <= not clk;
+  
+---- structural ----------
 
   input_stream : fifo
   generic map(
@@ -81,48 +81,12 @@ begin
     write_clk => clk_27,
     reset => reset,
     read_en => buffer_latch,
-    write_en => '1',
+    write_en => fifo_write_en,
     data_in => camera_store,
     data_out => camera_load,
     full => full,
     empty => empty
   );
-  
-  buffer_control : process(clk, empty, ycc_ready)
-    variable init : std_logic := '1';
-    variable addr : natural := 0;
-  begin
-    if falling_edge(clk) then
-      buffer_latch <= not empty;
-      ycc_write_en <= '0';
-      
-      if (ycc_ready_latched = '0' and ycc_ready = '1') then
-        ycc_store <= ycc_store_temp;
-        ycc_write_en <= '1';
-      end if;
-      
-      if (ycc_ready_latched = '1' and ycc_ready = '0') then
-        addr := addr + 1;
-        if (addr = YCC_RAM_SIZE) then
-          addr := 0;
-        end if;
-      end if;
-      
-      ycc_ready_latched <= ycc_ready;
-        
-      if (init = '1' and ycc_ready = '1') then
-        addr := 0;
-        init := not init;
-      end if;
-        
-      if (reset = '0') then
-        addr := 0;
-        init := '1';
-      end if;
-        
-      ycc_write_addr <= addr;
-    end if;
-  end process;
   
   in_buffer : input_buffer
   generic map(
@@ -154,10 +118,6 @@ begin
     blue => blue 
   );
   
-  vga_clk <= pixel_clk;
-  h_sync <= hori_sync;
-  v_sync <= vert_sync;
-  
   ycc_mem : sram
   generic map(
     RAM_SIZE => YCC_RAM_SIZE,
@@ -173,6 +133,7 @@ begin
     data_out => ycc_load
   );
 
+  -- determine read address for ycc and bw memories
   get_addr : pixel_address
   port map(
     pixel_row => row,
@@ -182,43 +143,7 @@ begin
     bw_read_addr => bw_read_addr,
     bw_pixel_sel => bw_pixel_sel
   );
-	
-	row <= pixel_row_int mod IMG_HEIGHT;
-  col <= pixel_col_int mod IMG_WIDTH;
-  pixel_row_int <= to_integer(unsigned(pixel_row));
-  pixel_col_int <= to_integer(unsigned(pixel_col));
-	
-  -- map loaded word to ycc data
-  y1 <= ycc_load(YCC_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH);
-  cb <= ycc_load(YCC_WIDTH-SAMPLE_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH*2);
-  y2 <= ycc_load(YCC_WIDTH-SAMPLE_WIDTH*2-1 downto YCC_WIDTH-SAMPLE_WIDTH*3);
-  cr <= ycc_load(YCC_WIDTH-SAMPLE_WIDTH*3-1 downto 0);
   
-  led_0 : leddcd port map(data_in => ycc_store(3 downto 0), segments_out => led0);
-  led_1 : leddcd port map(data_in => ycc_store(7 downto 4), segments_out => led1);
-  led_2 : leddcd port map(data_in => ycc_store(11 downto 8), segments_out => led2);
-  led_3 : leddcd port map(data_in => ycc_store(15 downto 12), segments_out => led3);
-  led_4 : leddcd port map(data_in => ycc_store(19 downto 16), segments_out => led4);
-  led_5 : leddcd port map(data_in => ycc_store(23 downto 20), segments_out => led5);
-  led_6 : leddcd port map(data_in => ycc_store(27 downto 24), segments_out => led6);
-  led_7 : leddcd port map(data_in => ycc_store(31 downto 28), segments_out => led7);
-    
-  -- map store data to filters
-  y1_filter <= ycc_store(YCC_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH);
-  cb_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH*2);
-  y2_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH*2-1 downto YCC_WIDTH-SAMPLE_WIDTH*3);
-  cr_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH*3-1 downto 0);
-  y1_filter_int <= to_integer(unsigned(y1_filter));
-  y2_filter_int <= to_integer(unsigned(y2_filter));
-  cb_filter_int <= to_integer(unsigned(cb_filter));
-  cr_filter_int <= to_integer(unsigned(cr_filter));
-   
-  -- select which y component to convert
-  with ycc_pixel_sel select y <=
-    y1 when '0',
-    y2 when '1',
-    (others => '0') when others;
-    
   -- convert current ycc to rgb for vga output
   get_colors : ycc2rgb
   port map(
@@ -231,30 +156,6 @@ begin
     b => ycc_pixel(PIXEL_WIDTH-SAMPLE_WIDTH*2-1 downto 0)
   );
   
-  -- output depends on current quadrant of screen
-  select_img : process(pixel_col_int, pixel_row_int)
-  begin
-    if (pixel_col_int < 320) then
-      img_sel(0) <= '0';
-    else
-      img_sel(0) <= '1';
-    end if;
-    
-    if (pixel_row_int < 240) then
-      img_sel(1) <= '0';
-    else
-      img_sel(1) <= '1';
-    end if;
-  end process;
-  
-  with img_sel select pixel <=
-    ycc_pixel when "00",
-    ycc_pixel when "01",
-    --bw_pixel_full when "01",
-    bw_pixel_full when "10",
-    bw_pixel_full when "11",
-    x"AAAAAA" when others;
-  
   get_center : centroid
   port map(
     clk => pixel_clk, 
@@ -264,92 +165,6 @@ begin
     center_row => center_row,
     center_col => center_col
   );
-  
-  centroid_in <= filter_result;
-  centroid_enable <= (hori_sync and vert_sync); -- active low signals
-  
-  get_bw_pixel : process(pixel_row, pixel_col)
-  begin
-    if (row >= center_row-1 and row <= center_row+1 and col >= center_col-1 and col <= center_col+1) then
-      bw_pixel_full <= x"FF0000";
-    else
-      bw_pixel_full <= (others => bw_pixel);
-    end if;
-  end process;  
-    
-  -- fill ycc RAM with test data
---  fill_ram : process(clk, reset)
-  --  constant RED_PIXEL : std_logic_vector(YCC_WIDTH-1 downto 0) := x"515A51F0"; -- 81 90 240
-  --  constant GREEN_PIXEL : std_logic_vector(YCC_WIDTH-1 downto 0) := x"91369122"; -- 145 54 34
-  --  constant BLUE_PIXEL : std_logic_vector(YCC_WIDTH-1 downto 0) := x"29F0296E"; -- 41 240 110
---	  variable addr : natural := 0;
---    variable color : std_logic_vector(YCC_WIDTH-1 downto 0) := RED_PIXEL;
---  begin
---    if rising_edge(clk) then
---      addr := addr + 1;
---		  if (addr = YCC_RAM_SIZE) then
---		  	addr := 0;
---		  end if; 
---      if (addr < YCC_RAM_SIZE / 3) then
---        color := RED_PIXEL;
---      elsif (addr < YCC_RAM_SIZE * 2/3) then
---        color := GREEN_PIXEL;
---      elsif (addr < YCC_RAM_SIZE) then
---        color := BLUE_PIXEL;
---      end if;
---      
---      if (reset = '0') then
---        addr := 0;
---        color := RED_PIXEL;
---      end if;
-      
---      ycc_write_addr <= addr;
---      ycc_store <= color;
---    end if;
---  end process;
-  
-    -- fill fifo with ycc test data
-  write_fifo : process(clk_27, reset)
-	variable addr : natural := 0;
-   variable color : std_logic_vector(YCC_WIDTH-1 downto 0) := RED_PIXEL;
-   variable byte : natural := 3;
-	variable counter : natural := 0;
-  begin		
-    if rising_edge(clk_27) then
-      
-      if (reset = '0') then
-        byte := 3;
-        addr := 0;
-       	color := RED_PIXEL;
-      end if;
-		
-		counter := counter + 1;
---		if (counter = 27_000_000) then
---			counter := 0;
-			
-			camera_store <= color((byte+1)*8-1 downto byte*8);
-			if (byte = 0) then
-			  byte := 3;
-			  addr := addr + 1;
-			  if (addr = YCC_RAM_SIZE) then
-				 addr := 0;
-			  end if;
-			else
-			  byte := byte - 1;
-			end if;
-			  
-			if (addr < YCC_RAM_SIZE / 3) then
-			  color := RED_PIXEL;
-			elsif (addr < YCC_RAM_SIZE * 2/3) then
-			  color := GREEN_PIXEL;
-			elsif (addr < YCC_RAM_SIZE) then
-			  color := BLUE_PIXEL;
-			end if;
-			
---		end if;
-		
-    end if;
-  end process;
   
   filter_first : ycc_filter
   port map(
@@ -389,15 +204,194 @@ begin
     read_addr => bw_read_addr,
     data_out => bw_load
   );
+
+
+  
+---- dataflow ----------
+  
+  clk_n <= not clk;
+  
+  vga_clk <= pixel_clk;
+  h_sync <= hori_sync;
+  v_sync <= vert_sync;
+	
+	row <= pixel_row_int mod IMG_HEIGHT;
+  col <= pixel_col_int mod IMG_WIDTH;
+  pixel_row_int <= to_integer(unsigned(pixel_row));
+  pixel_col_int <= to_integer(unsigned(pixel_col));
+	
+  -- map loaded word to ycc data
+  y1 <= ycc_load(YCC_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH);
+  cb <= ycc_load(YCC_WIDTH-SAMPLE_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH*2);
+  y2 <= ycc_load(YCC_WIDTH-SAMPLE_WIDTH*2-1 downto YCC_WIDTH-SAMPLE_WIDTH*3);
+  cr <= ycc_load(YCC_WIDTH-SAMPLE_WIDTH*3-1 downto 0);
+  
+  led_0 : leddcd port map(data_in => ycc_store(3 downto 0), segments_out => led0);
+  led_1 : leddcd port map(data_in => ycc_store(7 downto 4), segments_out => led1);
+  led_2 : leddcd port map(data_in => ycc_store(11 downto 8), segments_out => led2);
+  led_3 : leddcd port map(data_in => ycc_store(15 downto 12), segments_out => led3);
+  led_4 : leddcd port map(data_in => ycc_store(19 downto 16), segments_out => led4);
+  led_5 : leddcd port map(data_in => ycc_store(23 downto 20), segments_out => led5);
+  led_6 : leddcd port map(data_in => ycc_store(27 downto 24), segments_out => led6);
+  led_7 : leddcd port map(data_in => ycc_store(31 downto 28), segments_out => led7);
+    
+  -- map store data to filters
+  y1_filter <= ycc_store(YCC_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH);
+  cb_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH-1 downto YCC_WIDTH-SAMPLE_WIDTH*2);
+  y2_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH*2-1 downto YCC_WIDTH-SAMPLE_WIDTH*3);
+  cr_filter <= ycc_store(YCC_WIDTH-SAMPLE_WIDTH*3-1 downto 0);
+  y1_filter_int <= to_integer(unsigned(y1_filter));
+  y2_filter_int <= to_integer(unsigned(y2_filter));
+  cb_filter_int <= to_integer(unsigned(cb_filter));
+  cr_filter_int <= to_integer(unsigned(cr_filter));
+   
+  -- select which y component to convert
+  with ycc_pixel_sel select y <=
+    y1 when '0',
+    y2 when '1',
+    (others => '0') when others;
+    
+  with img_sel select pixel <=
+    ycc_pixel when "00",
+    ycc_pixel when "01",
+    --bw_pixel_full when "01",
+    bw_pixel_full when "10",
+    bw_pixel_full when "11",
+    x"AAAAAA" when others;
+  
+  centroid_in <= filter_result;
+  centroid_enable <= (hori_sync and vert_sync); -- active low signals
   
   bw_pixel <= bw_load(bw_pixel_sel);
+
+
+
+---- behavioral ----------
+  
+  -- output depends on current quadrant of screen
+  select_img : process(pixel_col_int, pixel_row_int)
+  begin
+    if (pixel_col_int < 320) then
+      img_sel(0) <= '0';
+    else
+      img_sel(0) <= '1';
+    end if;
+    if (pixel_row_int < 240) then
+      img_sel(1) <= '0';
+    else
+      img_sel(1) <= '1';
+    end if;
+  end process;
+  
+  get_bw_pixel : process(pixel_row, pixel_col)
+  begin
+    if (row >= center_row-1 and row <= center_row+1 and col >= center_col-1 and col <= center_col+1) then
+      bw_pixel_full <= x"FF0000";
+    else
+      bw_pixel_full <= (others => bw_pixel);
+    end if;
+  end process;  
+    
+  -- fill ycc RAM with test data
+--  fill_ram : process(clk, reset)
+--    variable addr : natural := 0;
+--    variable color : std_logic_vector(YCC_WIDTH-1 downto 0) := RED_PIXEL;
+--  begin
+--    if rising_edge(clk) then
+--      addr := addr + 1;
+--		  if (addr = YCC_RAM_SIZE) then
+--		  	addr := 0;
+--		  end if; 
+--      if (addr < YCC_RAM_SIZE / 3) then
+--        color := RED_PIXEL;
+--      elsif (addr < YCC_RAM_SIZE * 2/3) then
+--        color := GREEN_PIXEL;
+--      elsif (addr < YCC_RAM_SIZE) then
+--        color := BLUE_PIXEL;
+--      end if;
+--      if (reset = '0') then
+--        addr := 0;
+--        color := RED_PIXEL;
+--      end if;    
+--      ycc_write_addr <= addr;
+--      ycc_store <= color;
+--    end if;
+--  end process;
+  
+    -- fill fifo with ycc test data
+  write_fifo : process(clk_27, reset)
+	 variable addr : natural := 0;
+   variable color : std_logic_vector(YCC_WIDTH-1 downto 0) := RED_PIXEL;
+   variable byte : natural := 3;
+   variable write_en : std_logic := '0';
+  begin
+    if (reset = '0') then
+      byte := 3;
+      addr := 0;
+     	color := RED_PIXEL;
+     	write_en := '0';
+    elsif falling_edge(clk_27) then
+      write_en := '1';
+			camera_store <= color((byte+1)*8-1 downto byte*8);
+			if (byte = 0) then
+			  byte := 3;
+			  addr := addr + 1;
+			  if (addr = YCC_RAM_SIZE) then
+				 addr := 0;
+			  end if;
+			else
+			  byte := byte - 1;
+			end if;
+			if (addr < YCC_RAM_SIZE / 3) then
+			  color := RED_PIXEL;
+			elsif (addr < YCC_RAM_SIZE * 2/3) then
+			  color := GREEN_PIXEL;
+			elsif (addr < YCC_RAM_SIZE) then
+			  color := BLUE_PIXEL;
+			end if;
+			fifo_write_en <= write_en;
+    end if;
+  end process;
+  
+  buffer_control : process(clk, empty, ycc_ready)
+    variable init : std_logic := '1';
+    variable addr : natural := 0;
+  begin
+    if (reset = '0') then
+      addr := 0;
+      init := '1';
+    elsif falling_edge(clk) then
+      buffer_latch <= not empty;
+      ycc_write_en <= '0';
+      if (ycc_ready_latched = '0' and ycc_ready = '1') then
+        ycc_store <= ycc_store_temp;
+        ycc_write_en <= '1';
+      end if;
+      if (ycc_ready_latched = '1' and ycc_ready = '0') then
+        addr := addr + 1;
+        if (addr = YCC_RAM_SIZE) then
+          addr := 0;
+        end if;
+      end if;
+      ycc_ready_latched <= ycc_ready;
+      if (init = '1' and ycc_ready = '1') then
+        addr := 0;
+        init := not init;
+      end if;
+      ycc_write_addr <= addr;
+    end if;
+  end process;
   
   fill_bw_buffer : process(clk, reset)
     variable counter : natural := 0;
     variable addr : natural := 0;
     variable bw_buffer : std_logic_vector(BW_BUFFER_WIDTH-1 downto 0);
   begin  
-    if rising_edge(clk) then
+    if (reset = '0') then
+      counter := 0;
+      addr := 0;
+      bw_buffer := (others => '0');
+    elsif rising_edge(clk) then
       bw_buffer := bw_buffer(SAMPLE_WIDTH-3 downto 0) & filter_result(1) & filter_result(0);
       counter := counter + 1;
       if (counter = SAMPLE_WIDTH/2) then
@@ -405,44 +399,12 @@ begin
         addr := addr + 1;
         if (addr = BW_RAM_SIZE) then
           addr := 0;
-          --bw_wr_en <= '0';
         end if;
       end if;
-      
-      if (reset = '0') then
-        counter := 0;
-        addr := 0;
-        bw_buffer := (others => '0');
-        --bw_wr_en <= '1';
-      end if;
-      
       bw_write_addr <= addr;
       bw_store <= bw_buffer;
-      
     end if;
   end process;
   
-  read_ram_led : process(clk, ycc_load)
-    variable counter : natural := 0;
-    variable cycles : natural := 0;
-    variable addr : natural := 0;
-  begin
-    if rising_edge(clk) then
-      cycles := cycles + 1;
-      if (cycles = 25_000_000) then
-        cycles := 0;
-        addr := addr + 1;
-        counter := counter + 1;
-        if (counter = 10) then
-          counter := 0;
-          addr := addr - 10 + 12800;
-          if (addr > YCC_RAM_SIZE) then
-            addr := 0;
-          end if;
-        end if;
-      end if;
-      --ycc_read_addr <= addr;
-    end if;
-  end process;
-end architecture structural;
+end architecture;
 

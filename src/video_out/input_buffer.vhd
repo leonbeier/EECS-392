@@ -25,12 +25,14 @@ begin
   data_out <= data_buffer;
   
   fill_buffer : process(clk, reset)
-  variable counter : natural := 0;
-  variable full : std_logic;
+    variable counter : natural := 0;
+    variable full : std_logic;
   begin
-    if falling_edge(clk) then  
-        
-      --full := '0';
+    if (reset = '0') then
+      data_buffer <= (others => '0');
+      full := '0';
+      counter := 0;
+    elsif falling_edge(clk) then  
       if (enable = '1') then
         data_buffer <= data_buffer(BUFFER_WIDTH-DATA_WIDTH-1 downto 0) & data_in;
         counter := counter + 1;
@@ -39,14 +41,7 @@ begin
           full := '1';
           counter := 0;
         end if;
-      end if;
-      
-      if (reset = '0') then
-        data_buffer <= (others => '0');
-        full := '0';
-        counter := 0;
-      end if;
-      
+      end if;      
       ready <= full;
     end if;
     

@@ -28,58 +28,48 @@ begin
     variable row_sum, col_sum : natural := 0;
     variable row_index, col_index : natural := 0;
     variable center_row_temp, center_col_temp : natural;
-    
-    begin
-    
-    if rising_edge(clk) then
-      
+  begin
+    if (reset = '0') then
+      total := 0;
+      row_sum := 0;
+      col_sum := 0;
+      row_index := 0;
+      col_index := 0;
+    elsif rising_edge(clk) then
       -- check if pixel is desired then add to counters
       if (pixels(0) = '1' and enable = '1') then
         total := total + 1;
         row_sum := row_sum + row_index;
         col_sum := col_sum + col_index;
-        
-        center_row_temp := row_sum / total;
-        center_col_temp := col_sum / total;
+        --center_row_temp := row_sum / total;
+        --center_col_temp := col_sum / total;
       end if;
-      
       if (pixels(1) = '1' and enable = '1') then
         total := total + 1;
         row_sum := row_sum + row_index + 1;
         col_sum := col_sum + col_index + 1;
-        
+        --center_row_temp := row_sum / total;
+        --center_col_temp := col_sum / total;
+      end if;
+      if (total /= 0) then
         center_row_temp := row_sum / total;
         center_col_temp := col_sum / total;
       end if;
-      
       -- increment indices for col, row
       col_index := col_index + PIXEL_COUNT;
       if (col_index >= COLS) then 
         col_index := 0; 
         row_index := row_index + PIXEL_COUNT;
-        
         if (row_index >= ROWS) then
           row_index := 0;
-          
           total := 0;
           row_sum := 0;
           col_sum := 0;
-			 
-			 center_row <= center_row_temp;
-			 center_col <= center_col_temp;
-        
+          center_row <= center_row_temp;
+			    center_col <= center_col_temp;
         end if;
       end if;
-      
-      if (reset = '0') then
-        total := 0;
-        row_sum := 0;
-        col_sum := 0;
-        row_index := 0;
-        col_index := 0;
-      end if;
     end if;
-    
   end process;
   
 end architecture behavior;

@@ -8,14 +8,14 @@ use ieee.std_logic_unsigned.all;
 
 entity vga is
 	port(
-			clk, reset								: in std_logic;
-			pixel                            : in std_logic_vector(23 downto 0);
+			clk, reset	: in std_logic;
+			pixel : in std_logic_vector(23 downto 0);
 			
-			pixel_clock_out				      : out std_logic;												
-			pixel_row, pixel_col					: out std_logic_vector(9 downto 0);
-			horiz_sync_out, vert_sync_out    : out std_logic; 
-			vga_blank                        : out std_logic;
-			red, green, blue                 : out std_logic_vector(7 downto 0)
+			pixel_clock_out : out std_logic;												
+			pixel_row, pixel_col : out std_logic_vector(9 downto 0);
+			horiz_sync_out, vert_sync_out : out std_logic; 
+			vga_blank : out std_logic;
+			red, green, blue : out std_logic_vector(7 downto 0)
 		);					    		
 end entity vga;
 
