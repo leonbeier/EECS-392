@@ -84,3 +84,20 @@ sim:/decoder_tb/tb_start/vs_flag \
 sim:/decoder_tb/tb_start/hs_flag
 restart -f
 run
+# Compile of adv7180.vhdl was successful.
+# Compile of sram.vhd was successful.
+# Compile of tracker_constants.vhdl was successful.
+# Compile of decoder_tb.vhd was successful.
+# 4 compiles, 0 failed with no errors.
+restart -f
+# Loading work.decoder_tb(test_arch)
+# Loading work.sram(behavior)
+# ** Error: (vsim-13) Recompile work.adv7180 because work.tracker_constants has changed.
+# ** Error: (vsim-12) Recompile work.adv7180(adv7180) after work.adv7180 is recompiled.
+# ** Error: (vsim-13) Recompile work.adv7180(adv7180) because work.tracker_constants has changed.
+# Load interrupted
+restart -f
+# No Design Loaded!
+# Break key hit
+vsim work.decoder_tb
+# Error loading design
