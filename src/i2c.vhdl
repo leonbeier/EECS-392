@@ -67,8 +67,10 @@ architecture i2c of i2c is
 begin
   
   i2c_period_count <= 50_000_000 / FREQUENCY;
-  sda_map: tristate port map(din => sda_write, dout => sda, en => sda_enable);
-  scl_map: tristate port map(din => scl_write, dout => scl, en => scl_enable);
+  sda_map: tristate generic map(MODE => PULL_UP)
+                    port map(din => sda_write, dout => sda, en => sda_enable);
+  scl_map: tristate generic map(MODE => PULL_UP)
+                    port map(din => scl_write, dout => scl, en => scl_enable);
 
   state <= "0000" when (i2c_s = INIT) else
            "0001" when (i2c_s = START) else
@@ -103,7 +105,7 @@ begin
           --  modes: write, read where write has the higher priority
           clock_count := 0;
           clock_ct <= 0;
-          sda_enable <= '0';
+          sda_enable <= '1';
           scl_enable <= '1';
           scl_write <= '1';
           data_buffer := data_in;

@@ -19,6 +19,8 @@ package tracker_constants is
   type i2c_state is (INIT, START, ADDRESS, DATA, STOP);
   type decoder_state is (VS_RESET, HS_RESET, READ);
   type config_state is (INIT, CONFIG, DONE);
+
+  type tristate_mode is (PULL_UP, PULL_DOWN);
   
   -- i2c constants
   constant I2C_ADDR_WIDTH : natural := 7;
