@@ -18,6 +18,10 @@ entity video_out is
 end entity video_out;
 
 architecture top_level of video_out is
+  
+constant y_key : natural := 81;
+constant cb_key : natural := 90;
+constant cr_key : natural := 240;
 
 signal pixel_clk : std_logic;
 signal pixel_row : std_logic_vector(9 downto 0);
@@ -91,48 +95,48 @@ begin
     empty => empty
   );
   
---  in_buffer : input_buffer
---  generic map(
---    DATA_WIDTH => SAMPLE_WIDTH,
---    BUFFER_WIDTH => SAMPLE_WIDTH * 4
---  )
---  port map(
---    clk => clk,
---    reset => reset,
---    enable => buffer_latch,
---    data_in => camera_load,
---    data_out => ycc_store_temp,
---    ready => ycc_ready
---  );
-  
-  buffer_dual : input_buffer
+  in_buffer : input_buffer
   generic map(
     DATA_WIDTH => SAMPLE_WIDTH,
     BUFFER_WIDTH => SAMPLE_WIDTH * 4
   )
   port map(
-    clk => clk_27,
+    clk => clk,
     reset => reset,
-    enable => buffer_enable,
-    data_in => camera_store,
+    enable => buffer_latch,
+    data_in => camera_load,
     data_out => ycc_store_temp,
     ready => ycc_ready
   );
+  
+--  buffer_dual : input_buffer
+--  generic map(
+--    DATA_WIDTH => SAMPLE_WIDTH,
+--    BUFFER_WIDTH => SAMPLE_WIDTH * 4
+--  )
+--  port map(
+--    clk => clk_27,
+--    reset => reset,
+--    enable => buffer_enable,
+--    data_in => camera_store,
+--    data_out => ycc_store_temp,
+--    ready => ycc_ready
+--  );
 
-  ycc_dual : dual_port_ram
-  generic map(
-    DATA_WIDTH => YCC_WIDTH,
-    RAM_SIZE => YCC_RAM_SIZE
-  )
-  port map(
-    rclk => clk,
-    wclk => clk_27,
-    read_addr => ycc_read_addr,
-    write_addr => ycc_write_addr,
-    we => ycc_ready,
-    data_in => ycc_store,
-    data_out => ycc_load 
-  );
+--  ycc_dual : dual_port_ram
+--  generic map(
+--    DATA_WIDTH => YCC_WIDTH,
+--    RAM_SIZE => YCC_RAM_SIZE
+--  )
+--  port map(
+--    rclk => clk,
+--    wclk => clk_27,
+--    read_addr => ycc_read_addr,
+--    write_addr => ycc_write_addr,
+--    we => ycc_ready,
+--    data_in => ycc_store,
+--    data_out => ycc_load 
+--  );
 
   video : vga 
   port map(
@@ -150,19 +154,19 @@ begin
     blue => blue 
   );
   
---  ycc_mem : sram
---  generic map(
---    RAM_SIZE => YCC_RAM_SIZE,
---    DATA_WIDTH => YCC_WIDTH
---  )
---  port map(
---    clk => clk,
---    we => ycc_write_en, -- ycc_ready
---    write_addr => ycc_write_addr,
---    data_in => ycc_store,
---    read_addr => ycc_read_addr,
---    data_out => ycc_load
---  );
+  ycc_mem : sram
+  generic map(
+    RAM_SIZE => YCC_RAM_SIZE,
+    DATA_WIDTH => YCC_WIDTH
+  )
+  port map(
+    clk => clk,
+    we => ycc_write_en, -- ycc_ready
+    write_addr => ycc_write_addr,
+    data_in => ycc_store,
+    read_addr => ycc_read_addr,
+    data_out => ycc_load
+  );
 
   -- determine read address for ycc and bw memories
   get_addr : pixel_address
@@ -203,9 +207,9 @@ begin
     y => y1_filter_int,
     cb => cb_filter_int,
     cr => cr_filter_int,
-    y_key => 81,
-    cb_key => 90,
-    cr_key => 240,
+    y_key => y_key,
+    cb_key => cb_key,
+    cr_key => cr_key,
     result => filter_result(0)
   );
   
@@ -215,9 +219,9 @@ begin
     y => y2_filter_int,
     cb => cb_filter_int,
     cr => cr_filter_int,
-    y_key => 81,
-    cb_key => 90,
-    cr_key => 240,
+    y_key => y_key,
+    cb_key => cb_key,
+    cr_key => cr_key,
     result => filter_result(1)
   );
   
@@ -227,8 +231,7 @@ begin
     DATA_WIDTH => SAMPLE_WIDTH
   )
   port map(
-    clk => clk,
-    --reset => reset, 
+    clk => clk, 
     we => '1', --bw_write_en,
     write_addr => bw_write_addr,
     data_in => bw_store,
