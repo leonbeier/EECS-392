@@ -257,9 +257,9 @@ begin
           i2c_status_led <= '0';
           i2c_write_en <= '0';
           i2c_read_en <= '0';
-          i2c_daddr <= std_logic_vector(to_unsigned(16#30#, 7));
+          i2c_daddr <= std_logic_vector(to_unsigned(16#40#, 7));
 			
-          -- i2c_config_state <= I2C_ADDR_CONFIG;
+          i2c_config_state <= I2C_ADDR_CONFIG;
         when I2C_ADDR_CONFIG =>
 			 i2c_write_en <= '1';
 			 i2c_din <= "00000000";
