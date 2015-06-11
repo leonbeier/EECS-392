@@ -178,7 +178,7 @@ begin
               end if;
 	      clock_count := clock_count + 1;
 
-            elsif(clock_count = (3*i2c_period_count/4)) then
+            elsif(clock_count <= (3*i2c_period_count/4)) then
               scl_write <= '1';
 	      clock_count := 0;
 	      data_count := data_count + 1;
@@ -190,7 +190,8 @@ begin
 	    --else
 	    --i2c_s <= INIT;
 	    --end if;
-	    clock_count := clock_count +1;
+	    -- clock_count := clock_count +1;
+      clock_count := 0;
           end if;
 ------------------------------------------------------------------------
         when DATA =>
@@ -254,30 +255,32 @@ begin
             --end if;
           else
             i2c_s <= STOP;
+            clock_count := 0;
           end if;
 ------------------------------------------------------------------------
         when STOP =>
-          if(clock_count = 0) then
+          if(clock_count < i2c_period_count/4) then
             if(writing = '0' and reading = '1') then
               odata <= data_buffer;
             end if; 
             scl_write <= '0';
             clock_count := clock_count +1;
-          elsif(clock_count <= i2c_period_count/4) then
+          elsif(clock_count < i2c_period_count/2) then
             sda_enable <= '1';
             sda_write <= '0';
             clock_count := clock_count +1;
-          elsif(clock_count <= i2c_period_count/2) then
+          elsif(clock_count < (3*i2c_period_count)/4) then
             scl_write <= '1';
             clock_count := clock_count +1;
-          elsif(clock_count <= (3*i2c_period_count)/4) then
+          elsif(clock_count < i2c_period_count) then
             sda_write <= '1';
             clock_count := clock_count +1;
-          elsif(clock_count <= i2c_period_count) then
+          elsif(clock_count = i2c_period_count) then
             clock_count := 0;
             data_count := 0;
             error <= '0';
             i2c_s <= INIT;
+            clock_count := 0;
           end if;
         when OTHERS =>
           --set counts to XX
