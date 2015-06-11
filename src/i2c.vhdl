@@ -211,7 +211,7 @@ begin
                 elsif(reading = '0' and writing = '1') then
                   if(sda = '1') then
                     error <= '1';
-                    i2c_s <= INIT;
+                    -- i2c_s <= INIT;
                   end if;
                 end if;
                 clock_count := clock_count +1;
@@ -235,7 +235,7 @@ begin
 		  
                 else
                   -- should not be writing or reading
-                  i2c_s <= INIT;
+                  -- i2c_s <= INIT;
                 end if;
 	      clock_count := clock_count + 1;
 
@@ -280,8 +280,8 @@ begin
             clock_count := 0;
             data_count := 0;
             error <= '0';
-            i2c_s <= INIT;
-            clock_count := 0;
+            -- i2c_s <= INIT;
+            -- clock_count := 0;
           end if;
         when OTHERS =>
           --set counts to XX
