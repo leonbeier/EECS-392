@@ -25,11 +25,15 @@ entity video_display is
     i2c_error : out std_logic;
     i2c_config_clk : in std_logic;
     i2c_status_led : out std_logic;
+	 i2c_availability : out std_logic;
     
     -- TESTING -------------------------------------------------------------------------
     segments_out : out std_logic_vector(6 downto 0);
     i2c_state_segments : out std_logic_vector(6 downto 0);
-    reset_led : out std_logic
+    reset_led : out std_logic;
+	 
+	 gpio_i2c_clk : out std_logic;
+	 gpio_i2c_data : out std_logic
   );
   
 end entity video_display;
@@ -214,7 +218,7 @@ begin
 
   fifo_i2c: fifo port map(fifo_read_clk, fifo_write_clk, reset, fifo_read_en, fifo_write_en, fifo_din, fifo_dout, fifo_full, fifo_empty);
 
-  i2c_master: i2c generic map(FREQUENCY => 100000)
+  i2c_master: i2c generic map(FREQUENCY => 100_000)
                   port map(clk50, reset, i2c_error, i2c_data, i2c_clk, i2c_data_clk, i2c_daddr, i2c_din, 
                            i2c_write_en, i2c_read_en, i2c_available, i2c_write, fifo_din, i2c_dout);
   
@@ -235,37 +239,39 @@ begin
     end if;
   end process;
 
-  -- decoder configuration -------------------------------------------------------------------------
+  -- decoder configuration -------------------------------------------------------------------------\
   decoder_config: process(i2c_clk, i2c_data) is
   begin
     if(reset = '0') then
       i2c_data_clk <= '0';
       i2c_config_state <= INIT_CONFIG;
       i2c_status_led <= '0';
-    elsif(falling_edge(i2c_config_clk)) then
+    elsif(falling_edge(clk50)) then
       case(i2c_config_state) is
         when INIT_CONFIG =>
           i2c_status_led <= '0';
-          i2c_write_en <= '1';
-          i2c_read_en <= '0';
-          i2c_daddr <= std_logic_vector(to_unsigned(16#40#, 7));
-          i2c_din <= x"00";
-
-          i2c_config_state <= I2C_ADDR_CONFIG;
-        when I2C_ADDR_CONFIG =>
           i2c_write_en <= '0';
+          i2c_read_en <= '0';
+          i2c_daddr <= std_logic_vector(to_unsigned(16#30#, 7));
+			
+          -- i2c_config_state <= I2C_ADDR_CONFIG;
+        when I2C_ADDR_CONFIG =>
+			 i2c_write_en <= '1';
+			 i2c_din <= "00000000";
           if(i2c_available ='0') then
-            i2c_write_en <= '1';
-            i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
+				i2c_write_en <= '0';
             i2c_config_state <= I2C_DATA_CONFIG;
           end if;
         when I2C_DATA_CONFIG =>
+			 i2c_write_en <= '1';
+			 i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
           if(i2c_available = '0') then
+				i2c_write_en <= '0';
             i2c_config_state <= DONE_CONFIG;
           end if;
         when DONE_CONFIG =>
           i2c_status_led <= '1';
-          i2c_config_state <= DONE_CONFIG;
+          i2c_config_state <= INIT_CONFIG;
         when others =>
           i2c_config_state <= INIT_CONFIG;
       end case;
@@ -288,6 +294,9 @@ begin
       end if;
     end if;
   end process;
+  
+  gpio_i2c_clk <= '1';
+  gpio_i2c_data <= i2c_data;
   
   i2c_state_count <= "0000" when (i2c_config_state = INIT_CONFIG) else
                      "0001" when (i2c_config_state = I2C_ADDR_CONFIG) else
