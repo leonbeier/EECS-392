@@ -176,7 +176,7 @@ begin
               if(data_count = I2C_ADDR_WIDTH+1) then
                 if(sda = '1') then
                   error <= '1';
-                  i2c_s <= INIT;
+                  -- i2c_s <= INIT;
                 end if;
               end if;
               clock_count := clock_count + 1;
@@ -215,37 +215,34 @@ begin
                 end if;
                 clock_count := clock_count +1;
               end if;
-
-            elsif(clock_count <= i2c_period_count/4) then
+            elsif(clock_count < i2c_period_count/2) then
               scl_write <= '0';
-	      clock_count := clock_count + 1;
-
-            elsif(clock_count <= i2c_period_count/2 and data_count < I2C_DATA_WIDTH) then
+              clock_count := clock_count + 1;
+            elsif(clock_count = i2c_period_count/2 and data_count < I2C_DATA_WIDTH) then
+              scl_write <= '1';
               if(writing = '0' and reading = '1') then 
                 data_buffer(I2C_DATA_WIDTH-1-data_count) := sda;
               end if;
-	      if(writing ='1') then
-                  -- take the data line for writing
-                  sda_enable <= '1';
-                  sda_write <= data_buffer(I2C_DATA_WIDTH-1-data_count);
-                elsif(reading ='1') then
-                  -- give the data line to the slave
-                  sda_enable <= '0';
-		  
-                else
-                  -- should not be writing or reading
-                  i2c_s <= INIT;
-                end if;
-	      clock_count := clock_count + 1;
-
-	    elsif(clock_count <= i2c_period_count/2 and data_count = I2C_DATA_WIDTH) then
-        scl_write <= '1';
-		sda_enable <= '0';
-		clock_count := clock_count +1;
-
-            elsif(clock_count <= (3*i2c_period_count/4)) then
+              if(writing ='1') then
+                -- take the data line for writing
+                sda_enable <= '1';
+                sda_write <= data_buffer(I2C_DATA_WIDTH-1-data_count);
+              elsif(reading ='1') then
+                -- give the data line to the slave
+                sda_enable <= '0';
+              else
+                -- should not be writing or reading
+                i2c_s <= INIT;
+              end if;
+              clock_count := clock_count + 1;
+            elsif(clock_count = i2c_period_count/2 and data_count = I2C_DATA_WIDTH) then
+              scl_write <= '1';
+              sda_enable <= '0';
+              clock_count := clock_count +1;
+            elsif(clock_count < i2c_period_count-1) then
               scl_write <= '1';
               clock_count := clock_count + 1;
+            elsif(clock_count = i2c_period_count-1) then
               data_count := data_count + 1;
               clock_count := 0;
             end if;

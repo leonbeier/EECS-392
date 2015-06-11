@@ -288,7 +288,7 @@ begin
           end if;
         when DONE_CONFIG =>
           i2c_status_led <= '1';
-          i2c_config_state <= DONE_CONFIG;
+          i2c_config_state <= INIT_CONFIG;
         when others =>
           i2c_config_state <= INIT_CONFIG;
       end case;
