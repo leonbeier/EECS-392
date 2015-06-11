@@ -314,7 +314,7 @@ begin
     end if;
   end process;
   
-  get_bw_pixel : process(pixel_row, pixel_col)
+  get_bw_pixel : process(row, col, bw_pixel)
   begin
     if (row >= center_row-1 and row <= center_row+1 and col >= center_col-1 and col <= center_col+1) then
       bw_pixel_full <= x"FF0000";
