@@ -77,3 +77,10 @@ vsim work.decoder_tb
 add wave -position insertpoint sim:/decoder_tb/*
 add wave -position insertpoint sim:/decoder_tb/tb_start/adv7180_decoder/*
 run
+add wave -position insertpoint  \
+sim:/decoder_tb/tb_start/state \
+sim:/decoder_tb/tb_start/data_address \
+sim:/decoder_tb/tb_start/vs_flag \
+sim:/decoder_tb/tb_start/hs_flag
+restart -f
+run
