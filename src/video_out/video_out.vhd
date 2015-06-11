@@ -448,9 +448,10 @@ begin
       if (ycc_ready_latched = '0' and ycc_ready = '1') then
         ycc_store <= ycc_store_temp;
         ycc_write_en <= '1';
-        bw_buffer_en <= '1';
+        --bw_buffer_en <= '1';
       end if;
       if (ycc_ready_latched = '1' and ycc_ready = '0') then
+        bw_buffer_en <= '1';
         addr := addr + 1;
         if (addr = YCC_RAM_SIZE) then
           addr := 0;
