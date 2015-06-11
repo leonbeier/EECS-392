@@ -218,19 +218,6 @@ begin
             elsif(clock_count < i2c_period_count/2) then
               scl_write <= '0';
               clock_count := clock_count + 1;
-              if(data_count <= I2C_DATA_WIDTH) then
-                if(reading = '1' and writing = '0') then
-                  data_buffer(data_count-1) := sda;
-                end if;
-                clock_count := clock_count + 1;
-              elsif(data_count = I2C_DATA_WIDTH+1) then
-                if(reading = '1' and writing = '0') then
-                  sda_enable <= '1';
-                  sda_write <= '0';
-                elsif(reading = '0' and writing = '1') then
-                end if;
-                clock_count := clock_count +1;
-              end if;
             elsif(clock_count = i2c_period_count/2 and data_count <= I2C_DATA_WIDTH) then
               scl_write <= '1';
               if(writing ='1') then
