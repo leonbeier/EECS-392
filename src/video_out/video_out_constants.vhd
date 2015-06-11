@@ -16,6 +16,10 @@ package video_out_constants is
   constant YCC_WIDTH : natural := 32;
   constant SAMPLE_WIDTH : natural := 8;
   
+  constant RED_PIXEL : std_logic_vector(YCC_WIDTH-1 downto 0) := x"515A51F0"; -- 81 90 240
+  constant GREEN_PIXEL : std_logic_vector(YCC_WIDTH-1 downto 0) := x"91369122"; -- 145 54 34
+  constant BLUE_PIXEL : std_logic_vector(YCC_WIDTH-1 downto 0) := x"29F0296E"; -- 41 240 110
+  
 component vga is
 	port(
 			clk, reset	: in std_logic;
@@ -96,13 +100,14 @@ end component fifo;
 component centroid is
   generic(
     ROWS : natural := 240;
-    COLS : natural := 320
+    COLS : natural := 320;
+    PIXEL_COUNT : natural := 2
   ); 
   port(
     clk : in std_logic;
     reset : in std_logic;
     enable : in std_logic;
-    pixel : in std_logic;
+    pixels : in std_logic_vector(PIXEL_COUNT-1 downto 0);
     
     center_row : out natural;
     center_col : out natural

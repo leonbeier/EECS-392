@@ -17,7 +17,7 @@ architecture behavior of filter_basic is
 
 begin
     
-  process(clk)
+  process(clk, key, tolerance)
     variable low_bound, up_bound : integer;
     variable res : std_logic := '0';
   begin

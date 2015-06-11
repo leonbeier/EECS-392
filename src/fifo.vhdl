@@ -56,7 +56,7 @@ architecture fifo of fifo is
 	       '1' when (head = tail +1) else
 	       '0';
 
-  buffer_reader: process(read_clk) begin
+  buffer_reader: process(read_clk, temp_empty) begin
     if(rising_edge(read_clk) and temp_empty /= '1') then
       data_out <= fifo_buffer(head);
     elsif (rising_edge(read_clk)) then

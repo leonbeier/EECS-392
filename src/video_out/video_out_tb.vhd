@@ -42,7 +42,7 @@ begin
   process
   begin
       reset <= '0';
-      wait for CLK_PER;
+      wait for CLK_PER_27;
       reset <= '1';
       wait;
   end process;

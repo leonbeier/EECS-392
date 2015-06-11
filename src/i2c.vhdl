@@ -211,7 +211,7 @@ begin
                 elsif(reading = '0' and writing = '1') then
                   if(sda = '1') then
                     error <= '1';
-                    i2c_s <= INIT;
+                    -- i2c_s <= INIT;
                   end if;
                 end if;
                 clock_count := clock_count +1;

@@ -16,15 +16,15 @@ entity pixel_address is
 end entity;
 
 architecture behavioral of pixel_address is
-  signal row, col : natural;
+  --signal row, col : natural;
   signal read_addr_full : signed(31 downto 0);
 begin
   
-  row <= pixel_row mod IMG_HEIGHT;
-  col <= pixel_col mod IMG_WIDTH;
+  --row <= pixel_row mod IMG_HEIGHT;
+  --col <= pixel_col mod IMG_WIDTH;
   
   -- address if IMG_WIDTH * IMG_HEIGHT addresses existed
-  read_addr_full <= to_signed(row * IMG_WIDTH + col, 32);
+  read_addr_full <= to_signed(pixel_row * IMG_WIDTH + pixel_col, 32);
   
   -- each address holds data for 2 pixels, so ignore least significant bit
   ycc_read_addr <= to_integer(shift_right(read_addr_full, 1));
