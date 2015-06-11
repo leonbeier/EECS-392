@@ -251,7 +251,7 @@ begin
       i2c_data_clk <= '0';
       i2c_config_state <= INIT_CONFIG;
       i2c_status_led <= '0';
-    elsif(falling_edge(clk50)) then
+    else
       case(i2c_config_state) is
         when INIT_CONFIG =>
           i2c_status_led <= '0';
@@ -263,21 +263,17 @@ begin
         when I2C_ADDR_CONFIG =>
           i2c_write_en <= '1';
           i2c_din <= "00000000";
-          if(i2c_available ='0') then
-            i2c_write_en <= '0';
-            if(i2c_available = '1') then
-              i2c_config_state <= I2C_DATA_CONFIG;
-            end if;
-          end if;
+          wait until (i2c_available = '0');
+          i2c_write_en <= '1';
+          wait until (i2c_available = '1';
+          i2c_config_state <= I2C_DATA_CONFIG;
         when I2C_DATA_CONFIG =>
           i2c_write_en <= '1';
           i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
-          if(i2c_available = '0') then
-            i2c_write_en <= '0';
-            if(i2c_available = '1') then
-              i2c_config_state <= DONE_CONFIG;
-            end if;
-          end if;
+          wait until (i2c_available = '0');
+          i2c_write_en <= '1';
+          wait until (i2c_available = '1';
+          i2c_config_state <= DONE_CONFIG;
         when DONE_CONFIG =>
           i2c_status_led <= '1';
           i2c_config_state <= INIT_CONFIG;
