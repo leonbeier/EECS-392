@@ -150,7 +150,7 @@ begin
           --  writing or reading data
           if(data_count <= I2C_ADDR_WIDTH+1) then
             -- move through the data buffer and update pulse
-            if(clock_count <= i2c_period_count/4) then
+            if(clock_count < i2c_period_count/2) then
               scl_write <= '0';
               if(data_count < I2C_ADDR_WIDTH and scl = '0') then
                 -- send out the address bits msb first
