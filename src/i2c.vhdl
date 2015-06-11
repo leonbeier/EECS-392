@@ -88,7 +88,7 @@ begin
     variable active : std_logic := '0';
     variable er : std_logic := '0';
   begin
-    if(reset = '1') then
+    if(reset = '0') then
       -- active low reset
       reading := '0';
       writing := '0';
@@ -242,7 +242,7 @@ begin
 		sda_enable <= '0';
 		clock_count := clock_count +1;
 
-            elsif(clock_count = (3*i2c_period_count/4)) then
+            elsif(clock_count <= (3*i2c_period_count/4)) then
               scl_write <= '1';
               clock_count := clock_count + 1;
               data_count := data_count + 1;
