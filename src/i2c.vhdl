@@ -88,7 +88,7 @@ begin
     variable active : std_logic := '0';
     variable er : std_logic := '0';
   begin
-    if(reset = '1') then
+    if(reset = '0') then
       -- active low reset
       reading := '0';
       writing := '0';
@@ -109,13 +109,13 @@ begin
           clock_count := 0;
           data_count := 0;
           available <= '1';
-          if(write_en = '1' and er = '0') then
+          if(write_en = '1') then
             sda_enable <= '1';
             writing := '1';
             reading := '0';
             available <= '0';
             i2c_s <= START;
-          elsif(read_en = '1' and er = '0') then
+          elsif(read_en = '1') then
             sda_enable <= '0';
             reading := '1';
             writing := '0';

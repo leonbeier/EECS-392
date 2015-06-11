@@ -59,3 +59,21 @@ sim:/i2c_tb/test/i2c_s
 run
 restart -f
 run
+quit -sim
+# reading /home/tgdiriba/altera/15.0/modelsim_ase/linuxaloem/../modelsim.ini
+# Loading project adv7180
+vsim work.decoder_tb
+# vsim 
+# Start time: 20:46:24 on Jun 10,2015
+# Loading std.standard
+# Loading std.textio(body)
+# Loading ieee.std_logic_1164(body)
+# Loading ieee.numeric_std(body)
+# Loading work.decoder_tb(test_arch)
+# Loading work.sram(behavior)
+# Loading ieee.math_real(body)
+# Loading work.tracker_constants
+# Loading work.adv7180(adv7180)
+add wave -position insertpoint sim:/decoder_tb/*
+add wave -position insertpoint sim:/decoder_tb/tb_start/adv7180_decoder/*
+run
