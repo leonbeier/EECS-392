@@ -150,25 +150,9 @@ begin
           --  writing or reading data
           if(data_count <= I2C_ADDR_WIDTH+1) then
             -- move through the data buffer and update pulse
-            if(clock_count = 0) then
+            if(clock_count <= i2c_period_count/4) then
               scl_write <= '0';
-              if(data_count = I2C_ADDR_WIDTH+1) then
-		sda_enable <= '0';
-              	if(sda = '1') then
-                  error <= '1';
-                  i2c_s <= INIT;
-              	end if;
-	      end if;
-	      clock_count := clock_count + 1;
-
-            elsif(clock_count <= i2c_period_count/4) then
-              scl_write <= '0';
-	      clock_count := clock_count + 1;
-
-            elsif(clock_count <= i2c_period_count/2) then
-              scl_write <= '1';
-              
-	      if(data_count < I2C_ADDR_WIDTH and scl = '0') then
+              if(data_count < I2C_ADDR_WIDTH and scl = '0') then
                 -- send out the address bits msb first
                 sda_enable <= '1';
                 sda_write <= data_addr_buffer(I2C_ADDR_WIDTH-1-data_count);
@@ -186,22 +170,27 @@ begin
                 -- read the acknowledgement bit
                 sda_enable <= '0'; 
               end if;
-	      clock_count := clock_count + 1;
-
-            elsif(clock_count <= (3*i2c_period_count/4)) then
+              clock_count := clock_count + 1;
+            elsif(clock_count = i2c_period_count/2) then
               scl_write <= '1';
-	      clock_count := 0;
-	      data_count := data_count + 1;
+              if(data_count = I2C_ADDR_WIDTH+1) then
+                if(sda = '1') then
+                  error <= '1';
+                  i2c_s <= INIT;
+                end if;
+              end if;
+              clock_count := clock_count + 1;
+            elsif(clock_count < i2c_period_count-1) then
+              scl_write <= '1';
+              clock_count := clock_count + 1;
+            elsif(clock_count = i2c_period_count-1) then
+              data_count := data_count + 1;
+              clock_count := 0;
             end if;
           else
             data_count := 0;
-	    --if(sda = '1') then
+            clock_count := 0;
             i2c_s <= DATA;
-	    --else
-	    --i2c_s <= INIT;
-	    --end if;
-	    -- clock_count := clock_count +1;
-      clock_count := 0;
           end if;
 ------------------------------------------------------------------------
         when DATA =>
