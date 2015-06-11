@@ -159,7 +159,7 @@ architecture video_display of video_display is
   signal i2c_daddr : std_logic_vector(I2C_ADDR_WIDTH-1 downto 0);
   signal i2c_write : std_logic;
   signal i2c_din, i2c_dout : std_logic_vector(I2C_DATA_WIDTH-1 downto 0);
-  type config_state is (INIT_CONFIG, I2C_ADDR_CONFIG, I2C_DATA_CONFIG, DONE_CONFIG);
+  type config_state is (INIT_CONFIG, I2C_ADDR_CONFIG, I2C_ADDR_BUSY, I2C_ADDR_FREE, I2C_DATA_CONFIG, I2C_DATA_BUSY, I2C_DATA_FREE, DONE_CONFIG);
   signal i2c_config_state : config_state;
 
   -- ram signals -------------------------------------------------------------------------
@@ -263,17 +263,29 @@ begin
         when I2C_ADDR_CONFIG =>
           i2c_write_en <= '1';
           i2c_din <= "00000000";
-          wait until (i2c_available = '0');
-          i2c_write_en <= '1';
-          wait until (i2c_available = '1';
-          i2c_config_state <= I2C_DATA_CONFIG;
+          i2c_config_state <= I2C_ADDR_BUSY;
+        when I2C_ADDR_BUSY =>
+          i2c_write_en <= '0';
+          if(i2c_available = '0') then
+            i2c_config_state <= I2C_ADDR_FREE;
+          end if;
+        when I2C_ADDR_FREE =>
+          if(i2c_available = '1') then
+            i2c_config_state <= I2C_DATA_CONFIG;
+          end if;
         when I2C_DATA_CONFIG =>
           i2c_write_en <= '1';
           i2c_din <= "01010000";    -- configured for composite input on Ain1 and NTSC M
-          wait until (i2c_available = '0');
-          i2c_write_en <= '1';
-          wait until (i2c_available = '1';
-          i2c_config_state <= DONE_CONFIG;
+          i2c_config_state <= I2C_DATA_BUSY;
+        when I2C_DATA_BUSY =>
+          i2c_write_en <= '0';
+          if(i2c_available = '0') then
+            i2c_config_state <= I2C_DATA_FREE;
+          end if;
+        when I2C_DATA_FREE =>
+          if(i2c_available = '1') then
+            i2c_config_state <= DONE_CONFIG;
+          end if;
         when DONE_CONFIG =>
           i2c_status_led <= '1';
           i2c_config_state <= INIT_CONFIG;
